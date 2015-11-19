@@ -45,7 +45,7 @@ public final class AboutActivity extends SherlockPreferenceActivity
 	private static final String KEY_ABOUT_COMMUNITY_GOOGLEPLUS = "about_community_googleplus";
 	private static final String KEY_ABOUT_AUTHOR_TWITTER = "about_author_twitter";
 	private static final String KEY_ABOUT_AUTHOR_GOOGLEPLUS = "about_author_googleplus";
-	private static final String KEY_ABOUT_CREDITS_BITCOINJ = "about_credits_bitcoinj";
+	private static final String KEY_ABOUT_CREDITS_SEXCOINJ = "about_credits_sexcoinj";
 	private static final String KEY_ABOUT_CREDITS_ZXING = "about_credits_zxing";
 
 	@Override
@@ -61,8 +61,8 @@ public final class AboutActivity extends SherlockPreferenceActivity
 		findPreference(KEY_ABOUT_VERSION).setSummary(((WalletApplication) getApplication()).packageInfo().versionName);
 		findPreference(KEY_ABOUT_LICENSE).setSummary(Constants.LICENSE_URL);
 		findPreference(KEY_ABOUT_SOURCE).setSummary(Constants.SOURCE_URL);
-		findPreference(KEY_ABOUT_CREDITS_BITCOINJ).setTitle(getString(R.string.about_credits_sexcoinj_title, VersionMessage.BITCOINJ_VERSION));
-		findPreference(KEY_ABOUT_CREDITS_BITCOINJ).setSummary(Constants.CREDITS_BITCOINJ_URL);
+		findPreference(KEY_ABOUT_CREDITS_SEXCOINJ).setTitle(getString(R.string.about_credits_sexcoinj_title, VersionMessage.BITCOINJ_VERSION));
+		findPreference(KEY_ABOUT_CREDITS_SEXCOINJ).setSummary(Constants.CREDITS_SEXCOINJ_URL);
 		findPreference(KEY_ABOUT_CREDITS_ZXING).setSummary(Constants.CREDITS_ZXING_URL);
 
         if(GenericUtils.isBlackberry()) {
@@ -137,9 +137,9 @@ public final class AboutActivity extends SherlockPreferenceActivity
 			finish();
 		}
 		*/
-		else if (KEY_ABOUT_CREDITS_BITCOINJ.equals(key))
+		else if (KEY_ABOUT_CREDITS_SEXCOINJ.equals(key))
 		{
-			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.CREDITS_BITCOINJ_URL)));
+			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.CREDITS_SEXCOINJ_URL)));
 			finish();
 		}
 		else if (KEY_ABOUT_CREDITS_ZXING.equals(key))

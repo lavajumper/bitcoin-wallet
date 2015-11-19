@@ -14,10 +14,10 @@
 		<Preference
 			android:key="about_source"
 			android:title="Source Code" />
-		<Preference
+		<!--<Preference
 			android:key="about_market_app"
 			android:summary="@string/about_market_app_summary"
-			android:title="@string/about_market_app_title" />
+			android:title="@string/about_market_app_title" /> -->
 		<Preference
 			android:key="about_author_twitter"
 			android:summary="\@Lavajumper"
