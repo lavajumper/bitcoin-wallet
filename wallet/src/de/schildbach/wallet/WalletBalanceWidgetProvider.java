@@ -41,10 +41,10 @@ import de.schildbach.wallet.ui.SendCoinsQrActivity;
 import de.schildbach.wallet.ui.WalletActivity;
 import de.schildbach.wallet.util.GenericUtils;
 import de.schildbach.wallet.util.WalletUtils;
-import de.schildbach.wallet_ltc.R;
+import de.schildbach.wallet_sxc.R;
 
 /**
- * @author Andreas Schildbach, Litecoin Dev Team
+ * @author Andreas Schildbach, Litecoin Dev Team, Lavajumper
  */
 public class WalletBalanceWidgetProvider extends AppWidgetProvider
 {

@@ -53,10 +53,10 @@ import de.schildbach.wallet.WalletApplication;
 import de.schildbach.wallet.service.BlockchainService;
 import de.schildbach.wallet.util.GenericUtils;
 import de.schildbach.wallet.util.WalletUtils;
-import de.schildbach.wallet_ltc.R;
+import de.schildbach.wallet_sxc.R;
 
 /**
- * @author Andreas Schildbach, Litecoin Dev Team
+ * @author Andreas Schildbach, Litecoin Dev Team, Lavajumper
  */
 public final class ExchangeRatesFragment extends SherlockListFragment implements OnSharedPreferenceChangeListener
 {

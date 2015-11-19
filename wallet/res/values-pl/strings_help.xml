@@ -3,11 +3,11 @@
     <string name="help_wallet">
 <![CDATA[
 		<p>
-			Po lewej górnej stronie ekranu wyświetlany jest Twój aktualnie wybrany adres Litecoin, który inne osoby muszą znać żeby wysłać Ci Litecoin.
+			Po lewej górnej stronie ekranu wyświetlany jest Twój aktualnie wybrany adres Sexcoin, który inne osoby muszą znać żeby wysłać Ci Sexcoin.
 			Naciśnij żeby, go zmienić.
 		</p>
 		<p>
-			Kod QR po prawej zawiera Twój adres Litecoin i może zeskanowany przez inną osobę.
+			Kod QR po prawej zawiera Twój adres Sexcoin i może zeskanowany przez inną osobę.
 			Naciśnij na kod QR żeby otrzymać jego większą wersje.
 		</p>
 		<p>
@@ -30,18 +30,18 @@
     <string name="help_request_coins">
 <![CDATA[
 		<p>
-			Przy pomocy tego dialogu, możesz wysłać prośbę o Litecoiny do innej osoby, tak jakbyś wystawił jej rachunek do zapłacenia. Osoba ta powinna mieć zainstalowany Litecoin Wallet.
+			Przy pomocy tego dialogu, możesz wysłać prośbę o Sexcoiny do innej osoby, tak jakbyś wystawił jej rachunek do zapłacenia. Osoba ta powinna mieć zainstalowany Sexcoin Wallet.
 		</p>
 		<p>
-			U góry, wpisz kwotę Litecoin, o którą chcesz zapytać.
+			U góry, wpisz kwotę Sexcoin, o którą chcesz zapytać.
 		</p>
 		<p>
 			Potem osoba wczyta wytworzony kod QR,
 			albo Ty możesz wysłać rachunek za pomocą guzika Opublikuj na listwie menu.
-			Odbiorca będzie musiał otworzyć Litecoin URL zawarty w wysłanej wiadomości.
+			Odbiorca będzie musiał otworzyć Sexcoin URL zawarty w wysłanej wiadomości.
 		</p>
 		<p>
-			Osoba, która otrzymała wysłane zapytanie otrzyma gotowy i wypełniony formularz wysyłania Litecoinów.
+			Osoba, która otrzymała wysłane zapytanie otrzyma gotowy i wypełniony formularz wysyłania Sexcoinów.
 			Jedyne co będzie musiała zrobić to potwierdzenie transakcji.
 		</p>
 ]]>
@@ -50,15 +50,15 @@
 <![CDATA[
 		<p>
 			Zainicjowałeś proces wysyłania monet.
-			Przyszedłeś tutaj przez główny ekran albo naciskając na Litecoin URL w Twojej mobilnej przeglądarce.
+			Przyszedłeś tutaj przez główny ekran albo naciskając na Sexcoin URL w Twojej mobilnej przeglądarce.
 		</p>
 		<p>
-			Wpisz adres Litecoin na który ma wpłynąć zapłata.
+			Wpisz adres Sexcoin na który ma wpłynąć zapłata.
 			Wyświetlone zostaną podpowiedzi adresu z danych Twojej książki adresowej.
-			Możesz też skanować kody QR z adresami Litecoin albo zapytaniami Litecoin naciskając guzik QR w menu.
+			Możesz też skanować kody QR z adresami Sexcoin albo zapytaniami Sexcoin naciskając guzik QR w menu.
 		</p>
 		<p>
-			Poniżej widzisz ile Litecoin możesz wydać w tym momencie.
+			Poniżej widzisz ile Sexcoin możesz wydać w tym momencie.
 			Rożnica ze stanem konta na głównym ekranie wynika z jeszcze nie potwierdzonych monet, które nie mogą jeszcze zostać wydane.
 		</p>
 		<p>
@@ -78,19 +78,19 @@
     </string>
     <string name="help_safety">
 <![CDATA[
-		<p><b>Pare słów o bezpieczeństwie twoich Litecoin:</b></p>
+		<p><b>Pare słów o bezpieczeństwie twoich Sexcoin:</b></p>
         <p>
-            Litecoin w Litecoin Wallet są magazynowane na urządzeniu.
-            <b>Jak zgubisz swoje urządzenie, zgubisz też swój portfel i Litecoiny.</b>
+            Sexcoin w Sexcoin Wallet są magazynowane na urządzeniu.
+            <b>Jak zgubisz swoje urządzenie, zgubisz też swój portfel i Sexcoiny.</b>
             Zupełnie jak pieniądze w Twoim fizycznym portfelu.
         </p>
         <p>
-            <b>Zanim odinstalujesz Litecoin Wallet</b> (albo wymażesz dane aplikacji/wyczyścisz swoje urządzenie), <b>przetransferuj twoje Litecoin na inny portfel</b>.
-            Każdy pozostały Litecoin będzie stracony.
+            <b>Zanim odinstalujesz Sexcoin Wallet</b> (albo wymażesz dane aplikacji/wyczyścisz swoje urządzenie), <b>przetransferuj twoje Sexcoin na inny portfel</b>.
+            Każdy pozostały Sexcoin będzie stracony.
         </p>
         <p>
             <b>Żadne transakcje nie mogą zostać cofnięte</b>.
-            Jeżeli wyślesz swoje Litecoiny, nie będzie już możliwości żeby je odzyskać, dopóki nie znasz odbiorcy, który musi godzić się na ich odesłanie.
+            Jeżeli wyślesz swoje Sexcoiny, nie będzie już możliwości żeby je odzyskać, dopóki nie znasz odbiorcy, który musi godzić się na ich odesłanie.
         </p>
         <p>
             <b>Uważaj na swoje urządzenie Android!</b>
@@ -99,10 +99,10 @@
         </p>
         <p>
             Utrzymuj niskie ryzyko!
-            <b>Używaj Litecoin Wallet do przetrzymywania jedynie małych ilości Litecoin</b> do użytku codziennego.
+            <b>Używaj Sexcoin Wallet do przetrzymywania jedynie małych ilości Sexcoin</b> do użytku codziennego.
         </p>
         <p><b>DISCLAIMER OF WARRANTY</b></p>
-        <p>The developers of this app use their best efforts to improve its functionality and security. That being said, Litecoin (like Bitcoin) is experimental software with source fully available to the public.</p>
+        <p>The developers of this app use their best efforts to improve its functionality and security. That being said, Sexcoin (like Bitcoin) is experimental software with source fully available to the public.</p>
         <span style=\"font-family: monospace\">THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE

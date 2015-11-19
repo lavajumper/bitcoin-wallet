@@ -100,7 +100,7 @@ import de.schildbach.wallet.offline.SendBluetoothTask;
 import de.schildbach.wallet.ui.InputParser.StringInputParser;
 import de.schildbach.wallet.util.GenericUtils;
 import de.schildbach.wallet.util.WalletUtils;
-import de.schildbach.wallet_ltc.R;
+import de.schildbach.wallet_sxc.R;
 
 /**
  * @author Andreas Schildbach, Litecoin Dev Team
@@ -497,7 +497,7 @@ public final class SendCoinsFragment extends SherlockFragment
 			final String scheme = intentUri != null ? intentUri.getScheme() : null;
 
 			if ((Intent.ACTION_VIEW.equals(action) || NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action)) && intentUri != null
-					&& "litecoin".equals(scheme))
+					&& "sexcoin".equals(scheme))
 				initStateFromBitcoinUri(intentUri);
 			else if (intent.hasExtra(SendCoinsActivity.INTENT_EXTRA_ADDRESS))
 				initStateFromIntentExtras(intent.getExtras());
@@ -674,7 +674,7 @@ public final class SendCoinsFragment extends SherlockFragment
             }
 
             if(input == null) return;
-            Log.d("Litecoin", "SCAN RESULT:" + input);
+            Log.d("Sexcoin", "SCAN RESULT:" + input);
 
             new StringInputParser(input)
             {
@@ -1208,7 +1208,7 @@ public final class SendCoinsFragment extends SherlockFragment
 			    cursor = activity.managedQuery(AddressBookProvider.contentUri(activity.getPackageName()),
                     null, AddressBookProvider.SELECTION_QUERY, new String[] { constraint.toString() }, null);
             } catch(NullPointerException e) {
-                Log.i("wallet_ltc", "NULL Pointer exception when doing address book completion");
+                Log.i("wallet_sxc", "NULL Pointer exception when doing address book completion");
                 return null;
             }
 			return cursor;

@@ -49,6 +49,10 @@
 		</menu>
 	</item>
 	<item
+			android:id="@+id/wallet_options_clear_log"
+			android:showAsAction="never"
+			android:title="Clear Logs"/>
+	<item
 		android:id="@+id/wallet_options_disconnect"
 		android:showAsAction="never"
 		android:title="@string/wallet_options_disconnect"/>

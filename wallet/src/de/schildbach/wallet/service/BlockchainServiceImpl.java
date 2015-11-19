@@ -39,7 +39,7 @@ import android.util.Log;
 import com.google.bitcoin.script.Script;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.litecoin.LitcoinPeerDBDiscovery;
+
 
 import android.annotation.SuppressLint;
 import android.app.NotificationManager;
@@ -66,7 +66,7 @@ import android.text.format.DateUtils;
 import com.google.bitcoin.core.AbstractPeerEventListener;
 import com.google.bitcoin.core.Address;
 import com.google.bitcoin.core.Block;
-import com.google.bitcoin.core.BlockChain;
+import org.sexcoin.SexcoinBlockChain;
 import com.google.bitcoin.core.CheckpointManager;
 import com.google.bitcoin.core.Peer;
 import com.google.bitcoin.core.PeerEventListener;
@@ -79,8 +79,9 @@ import com.google.bitcoin.core.TransactionConfidence.ConfidenceType;
 import com.google.bitcoin.core.Wallet;
 import com.google.bitcoin.core.Wallet.BalanceType;
 import com.google.bitcoin.core.WalletEventListener;
-import com.google.bitcoin.net.discovery.DnsDiscovery;
+import org.sexcoin.SexcoinDnsDiscovery;
 import com.google.bitcoin.net.discovery.PeerDiscovery;
+import org.sexcoin.SexcoinPeerDBDiscovery;
 import com.google.bitcoin.net.discovery.PeerDiscoveryException;
 import com.google.bitcoin.store.BlockStore;
 import com.google.bitcoin.store.BlockStoreException;
@@ -95,7 +96,7 @@ import de.schildbach.wallet.util.CrashReporter;
 import de.schildbach.wallet.util.GenericUtils;
 import de.schildbach.wallet.util.ThrottlingWalletChangeListener;
 import de.schildbach.wallet.util.WalletUtils;
-import de.schildbach.wallet_ltc.R;
+import de.schildbach.wallet_sxc.R;
 
 /**
  * @author Andreas Schildbach, Litecoin Dev Team
@@ -107,7 +108,7 @@ public class BlockchainServiceImpl extends android.app.Service implements Blockc
 
 	private BlockStore blockStore;
 	private File blockChainFile;
-	private BlockChain blockChain;
+	private SexcoinBlockChain blockChain;
 	@CheckForNull
 	private PeerGroup peerGroup;
 
@@ -415,15 +416,15 @@ public class BlockchainServiceImpl extends android.app.Service implements Blockc
 
 				peerGroup.addPeerDiscovery(new PeerDiscovery()
 				{
-					private final PeerDiscovery normalPeerDiscovery = new DnsDiscovery(Constants.NETWORK_PARAMETERS);
+					private final PeerDiscovery normalPeerDiscovery = new SexcoinDnsDiscovery(Constants.NETWORK_PARAMETERS);
                     private PeerDiscovery dbPeerDiscovery = null;
 
 					@Override
 					public InetSocketAddress[] getPeers(final long timeoutValue, final TimeUnit timeoutUnit) throws PeerDiscoveryException
 					{
                         try {
-                            dbPeerDiscovery = new LitcoinPeerDBDiscovery(Constants.NETWORK_PARAMETERS,
-                                    getFileStreamPath("litecoin.peerdb"), peerGroup);
+                            dbPeerDiscovery = new SexcoinPeerDBDiscovery(Constants.NETWORK_PARAMETERS,
+                                    getFileStreamPath("sexcoin.peerdb"), peerGroup);
                         } catch(IllegalStateException e) {
                             // This can happen in the guts of bitcoinj
                             Log.i(TAG, "IllegalStateException in bitcoinj: " + e.getMessage());
@@ -678,7 +679,7 @@ public class BlockchainServiceImpl extends android.app.Service implements Blockc
 
 		try
 		{
-			blockChain = new BlockChain(Constants.NETWORK_PARAMETERS, wallet, blockStore);
+			blockChain = new SexcoinBlockChain(Constants.NETWORK_PARAMETERS, wallet, blockStore);
 		}
 		catch (final BlockStoreException x)
 		{

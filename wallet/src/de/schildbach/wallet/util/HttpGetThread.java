@@ -66,7 +66,7 @@ public abstract class HttpGetThread extends Thread
 
 			if (connection instanceof HttpsURLConnection)
 			{
-				final InputStream keystoreInputStream = assets.open("ssl-keystore-litecoin");
+				final InputStream keystoreInputStream = assets.open("ssl-keystore-sexcoin");
 
 				final KeyStore keystore = KeyStore.getInstance("BKS");
 				keystore.load(keystoreInputStream, "password".toCharArray());

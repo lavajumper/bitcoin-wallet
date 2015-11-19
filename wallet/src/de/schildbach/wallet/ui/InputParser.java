@@ -42,7 +42,7 @@ import com.google.bitcoin.uri.BitcoinURIParseException;
 import de.schildbach.wallet.Constants;
 import de.schildbach.wallet.util.Bluetooth;
 import de.schildbach.wallet.util.Qr;
-import de.schildbach.wallet_ltc.R;
+import de.schildbach.wallet_sxc.R;
 
 /**
  * @author Andreas Schildbach, Litecoin Dev Team
@@ -62,7 +62,7 @@ public abstract class InputParser
 		public void parse()
 		{
             if(input == null) return;
-			if (input.startsWith("litecoin:"))
+			if (input.startsWith("sexcoin:"))
 			{
 				try
 				{
@@ -76,7 +76,7 @@ public abstract class InputParser
 				}
 				catch (final BitcoinURIParseException x)
 				{
-					error(R.string.input_parser_invalid_litecoin_uri, input);
+					error(R.string.input_parser_invalid_sexcoin_uri, input);
 				}
 			}
 			else if (PATTERN_BITCOIN_ADDRESS.matcher(input).matches())

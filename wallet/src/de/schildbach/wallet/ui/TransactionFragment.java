@@ -35,7 +35,7 @@ import de.schildbach.wallet.AddressBookProvider;
 import de.schildbach.wallet.Constants;
 import de.schildbach.wallet.WalletApplication;
 import de.schildbach.wallet.util.*;
-import de.schildbach.wallet_ltc.R;
+import de.schildbach.wallet_sxc.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -48,7 +48,7 @@ import java.util.Map;
 import java.util.zip.GZIPOutputStream;
 
 /**
- * @author Andreas Schildbach, Litecoin Dev Team
+ * @author Andreas Schildbach, Litecoin Dev Team, Lavajumper
  */
 
 public final class TransactionFragment extends SherlockFragment
@@ -266,7 +266,7 @@ public final class TransactionFragment extends SherlockFragment
 				final byte[] gzippedSerializedTx = bos.toByteArray();
 				final boolean useCompressioon = gzippedSerializedTx.length < serializedTx.length;
 
-				final StringBuilder txStr = new StringBuilder("ltctx:");
+				final StringBuilder txStr = new StringBuilder("sxctx:");
 				txStr.append(useCompressioon ? 'Z' : '-');
 				txStr.append(Base43.encode(useCompressioon ? gzippedSerializedTx : serializedTx));
 				final Bitmap qrCodeBitmap = Qr.bitmap(txStr.toString().toUpperCase(Locale.US), 512);

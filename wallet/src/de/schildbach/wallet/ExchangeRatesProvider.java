@@ -25,11 +25,13 @@ import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Currency;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.ArrayList;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
@@ -37,9 +39,11 @@ import android.util.Log;
 import de.schildbach.wallet.exchange.GoogleRateLookup;
 import de.schildbach.wallet.exchange.RateLookup;
 import de.schildbach.wallet.exchange.YahooRateLookup;
+import de.schildbach.wallet.exchange.CryptsyRateLookup;
 import de.schildbach.wallet.util.GenericUtils;
 import de.schildbach.wallet.util.Io;
 import org.json.JSONObject;
+import org.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import android.content.ContentProvider;
@@ -51,11 +55,11 @@ import android.provider.BaseColumns;
 import android.text.format.DateUtils;
 
 /**
- * @author Andreas Schildbach, Litecoin Dev Team
+ * @author Andreas Schildbach, Litecoin Dev Team, Lavajumper
  */
 public class ExchangeRatesProvider extends ContentProvider
 {
-    static final protected String TAG = ExchangeRatesProvider.class.getName();
+	static final protected String TAG = ExchangeRatesProvider.class.getName();
 
 	public static class ExchangeRate
 	{
@@ -85,22 +89,34 @@ public class ExchangeRatesProvider extends ContentProvider
 	private Map<String, ExchangeRate> exchangeRates = null;
 	private long lastUpdated = 0;
 
-    private static final URL BTCE_URL;
-    private static final String[] BTCE_FIELDS = new String[] { "avg" };
-    private static final URL BTCE_EURO_URL;
-    private static final String[] BTCE_EURO_FIELDS = new String[] { "avg" };
-    private static final URL KRAKEN_URL;
-    private static final URL KRAKEN_EURO_URL;
-	private static final String[] KRAKEN_FIELDS = new String[] { "value" };
+	private static final URL BTCE_URL;
+	private static final String[] BTCE_FIELDS = new String[] { "avg" };
+	private static final URL BTCE_EURO_URL;
+	private static final String[] BTCE_EURO_FIELDS = new String[] { "avg" };
+	private static final URL KRAKEN_URL;
+	private static final URL KRAKEN_EURO_URL;
+	private static final String[] KRAKEN_FIELDS = new String[] { "c" };
+	private static final URL CRYPTSY_BTC_URL;
+	private static final URL CRYPTSY_LTC_URL;
+	private static final URL CRYPTSY_SXCBTC_URL;
+	private static final URL CRYPTSY_SXCLTC_URL;
+	private static final String[] CRYPTSY_BTC_FIELDS = new String[] { "BTC" };
+	private static final String[] CRYPTSY_LTC_FIELDS = new String[] { "LTC" };
+	private static final String[] CRYPTSY_SXCBTC_FIELDS = new String[] { "SXC" };
+	private static final String[] CRYPTSY_SXCLTC_FIELDS = new String[] { "SXC" };
 
 	static
 	{
 		try
 		{
-            BTCE_URL = new URL("https://btc-e.com/api/2/ltc_usd/ticker");
-            BTCE_EURO_URL = new URL("https://btc-e.com/api/2/ltc_eur/ticker");
-            KRAKEN_URL = new URL("https://api.kraken.com/0/public/Ticker?pair=XLTCZUSD");
-            KRAKEN_EURO_URL = new URL("https://api.kraken.com/0/public/Ticker?pair=XLTCZEUR");
+			BTCE_URL = new URL("https://btc-e.com/api/2/ltc_usd/ticker");
+			BTCE_EURO_URL = new URL("https://btc-e.com/api/2/ltc_eur/ticker");
+			KRAKEN_URL = new URL("https://api.kraken.com/0/public/Ticker?pair=XLTCZUSD");
+			KRAKEN_EURO_URL = new URL("https://api.kraken.com/0/public/Ticker?pair=XLTCZEUR");
+			CRYPTSY_BTC_URL = new URL("http://pubapi.cryptsy.com/api.php?method=singlemarketdata&marketid=2");
+			CRYPTSY_LTC_URL = new URL("http://pubapi.cryptsy.com/api.php?method=singlemarketdata&marketid=1");
+			CRYPTSY_SXCBTC_URL = new URL("http://pubapi.cryptsy.com/api.php?method=singlemarketdata&marketid=153");
+			CRYPTSY_SXCLTC_URL = new URL("http://pubapi.cryptsy.com/api.php?method=singlemarketdata&marketid=98");
 		}
 		catch (final MalformedURLException x)
 		{
@@ -110,6 +126,7 @@ public class ExchangeRatesProvider extends ContentProvider
 
 	private static final long UPDATE_FREQ_MS = 10 * DateUtils.MINUTE_IN_MILLIS;
 
+	// WTF...
 	private static final Logger log = LoggerFactory.getLogger(ExchangeRatesProvider.class);
 
 	@Override
@@ -130,30 +147,35 @@ public class ExchangeRatesProvider extends ContentProvider
 
 		if (exchangeRates == null || now - lastUpdated > UPDATE_FREQ_MS)
 		{
+
 			Map<String, ExchangeRate> newExchangeRates = null;
-            // Attempt to get USD exchange rates from all providers.  Stop after first.
-			newExchangeRates = requestExchangeRates(BTCE_URL, "USD", BTCE_FIELDS);
+			Map<String, ExchangeRate> newLtcExchangeRates = null;
+
+			// Attempt to get USD exchange rates from all providers.  Stop after first.
+			newExchangeRates = requestCryptsyExchangeRates(CRYPTSY_BTC_URL, "USD", CRYPTSY_BTC_FIELDS);
+			newLtcExchangeRates = requestCryptsyExchangeRates(CRYPTSY_LTC_URL, "USD", CRYPTSY_LTC_FIELDS);
+			//newExchangeRates = requestExchangeRates(BTCE_URL, "USD", BTCE_FIELDS);
+			if (newExchangeRates == null)
+			{
+				Log.i(TAG, "Failed to fetch BTC USD rates");
+				newExchangeRates = requestExchangeRates(KRAKEN_URL, "USD", KRAKEN_FIELDS);
+			}
 
 			if (newExchangeRates == null)
-            {
-                Log.i(TAG, "Failed to fetch BTCE USD rates");
-				newExchangeRates = requestExchangeRates(KRAKEN_URL, "USD", KRAKEN_FIELDS);
-            }
+			{
+				Log.i(TAG, "Failed to fetch KRAKEN USD rates");
+				// Continue without USD rate (shouldn't generally happen)
+			}
 
-            if (newExchangeRates == null)
-            {
-                Log.i(TAG, "Failed to fetch KRAKEN USD rates");
-                // Continue without USD rate (shouldn't generally happen)
-            }
+			// Get Euro rates as a fallback if Yahoo! fails below
+			Map<String, ExchangeRate> euroRate = requestExchangeRates(BTCE_EURO_URL, "EUR", BTCE_EURO_FIELDS);
+			if (euroRate == null)
+			{
+				Log.i(TAG, "Failed to fetch BTCE EUR rates");
+				euroRate = requestExchangeRates(KRAKEN_EURO_URL, "EUR", KRAKEN_FIELDS);
+			}
 
-            // Get Euro rates as a fallback if Yahoo! fails below
-            Map<String, ExchangeRate> euroRate = requestExchangeRates(BTCE_EURO_URL, "EUR", BTCE_EURO_FIELDS);
-            if (euroRate == null)
-            {
-                Log.i(TAG, "Failed to fetch BTCE EUR rates");
-                euroRate = requestExchangeRates(KRAKEN_EURO_URL, "EUR", KRAKEN_FIELDS);
-            }
-
+/*
             if (euroRate == null)
             {
                 Log.i(TAG, "Failed to fetch KRAKEN EUR rates");
@@ -165,27 +187,31 @@ public class ExchangeRatesProvider extends ContentProvider
                 else
                     newExchangeRates = euroRate;
             }
-
-            if (newExchangeRates != null)
+*/
+			if (newExchangeRates != null)
 			{
-                // Get USD conversion exchange rates from Google/Yahoo
-                ExchangeRate usdRate = newExchangeRates.get("USD");
-                RateLookup providers[] = {new GoogleRateLookup(), new YahooRateLookup()};
-                Map<String, ExchangeRate> fiatRates;
-                for(RateLookup provider : providers) {
-                    fiatRates = provider.getRates(usdRate);
-                    if(fiatRates != null) {
-                        // Remove EUR if we have a better source above
-                        if(euroRate != null)
-                            fiatRates.remove("EUR");
-                        // Remove USD rate because we already have it
-                        fiatRates.remove("USD");
-                        newExchangeRates.putAll(fiatRates);
-                        break;
-                    }
-                }
+				// Get USD conversion exchange rates from Google/Yahoo
+				ExchangeRate usdRate = newExchangeRates.get("USD");
+				//ExchangeRate btcRate = newExchangeRates.get("BTC");
+				//RateLookup providers[] = {new GoogleRateLookup(), new YahooRateLookup()};
+				RateLookup providers[] = { new CryptsyRateLookup() };
+				Map<String, ExchangeRate> fiatRates;
+				for(RateLookup provider : providers) {
+					fiatRates = provider.getRates(usdRate);
+					if(fiatRates != null) {
+						// Remove EUR if we have a better source above
+						if(euroRate != null)
+							fiatRates.remove("EUR");
+						// Remove USD rate because we already have it
+						fiatRates.remove("USD");
+						newExchangeRates.putAll(fiatRates);
+						break;
+					}
+				}
 
 				exchangeRates = newExchangeRates;
+				if(newLtcExchangeRates != null)
+					exchangeRates.putAll(newLtcExchangeRates);
 				lastUpdated = now;
 			}
 		}
@@ -288,24 +314,25 @@ public class ExchangeRatesProvider extends ContentProvider
 			final int responseCode = connection.getResponseCode();
 			if (responseCode == HttpURLConnection.HTTP_OK)
 			{
-				reader = new InputStreamReader(new BufferedInputStream(connection.getInputStream(), 1024), Constants.UTF_8);
+				reader = new InputStreamReader(new BufferedInputStream(connection.getInputStream(), 4096), Constants.UTF_8);
 				final StringBuilder content = new StringBuilder();
 				Io.copy(reader, content);
-
+				//log.info("RETURN FROM JSON: " + content.toString());
 				final Map<String, ExchangeRate> rates = new TreeMap<String, ExchangeRate>();
 
 				final JSONObject head = new JSONObject(content.toString());
+				//log.info("JSON 0: " + head.toString(4));
+
 				for (final Iterator<String> i = head.keys(); i.hasNext();)
 				{
 					String code = i.next();
+
 					if (!"timestamp".equals(code))
 					{
 						final JSONObject o = head.getJSONObject(code);
-
 						for (final String field : fields)
 						{
 							final String rateStr = o.optString(field, null);
-
 							if (rateStr != null)
 							{
 								try
@@ -359,5 +386,171 @@ public class ExchangeRatesProvider extends ContentProvider
 		}
 
 		return null;
+	}
+
+	// Cryptsy uses their own json schema
+	private static Map<String, ExchangeRate> requestCryptsyExchangeRates(final URL url, final String currencyCode, final String... fields)
+	{
+		HttpURLConnection connection = null;
+		Reader reader = null;
+		log.info("Currency code = " + currencyCode);
+		log.info("fields " + Arrays.toString(fields));
+		log.info("RETRIEVING " + url.toString());
+		BigInteger sxcrate;
+		try
+		{
+			connection = (HttpURLConnection) url.openConnection();
+			connection.setConnectTimeout(Constants.HTTP_TIMEOUT_MS);
+			connection.setReadTimeout(Constants.HTTP_TIMEOUT_MS);
+			connection.connect();
+
+			final int responseCode = connection.getResponseCode();
+			if (responseCode == HttpURLConnection.HTTP_OK)
+			{
+				reader = new InputStreamReader(new BufferedInputStream(connection.getInputStream(), 128), Constants.UTF_8);
+				final StringBuilder content = new StringBuilder();
+				Io.copy(reader, content);
+				String saveContent = content.toString().replace(":1," , ":\"1\",");
+
+
+				//logBigString("RETURN FROM JSON: " + saveContent);
+				final Map<String, ExchangeRate> rates = new TreeMap<String, ExchangeRate>();
+				try{
+					final JSONObject o = new JSONObject(saveContent);
+					JSONObject data = o.getJSONObject("return").getJSONObject("markets").getJSONObject(fields[0]);
+					String price = data.getString("lasttradeprice");
+					BigInteger rate = GenericUtils.toNanoCoinsRounded(price, 0);
+					if (rate.signum() > 0)
+					{
+						if(fields[0].equals("BTC")){
+							sxcrate = getSexcoinRate(CRYPTSY_SXCBTC_URL);
+							log.info("sxcrate(btc) = " + sxcrate);
+						}else{
+							sxcrate = getSexcoinRate(CRYPTSY_SXCLTC_URL);
+							log.info("sxcrate(ltc) = " + sxcrate);
+						}
+						log.info("rate = " + rate);
+						double cRate = rate.doubleValue() / 100000000;
+						double sRate = sxcrate.doubleValue() / 100000000;
+						double tRate = cRate * sRate;
+						log.info("converted rate = " + tRate);
+						String nRate = "" + tRate;
+
+						rate = GenericUtils.toNanoCoinsRounded(nRate, 0);
+						rates.put(currencyCode, new ExchangeRate(currencyCode, rate, url.getHost()));
+					}
+
+				}catch(Exception e){
+					logBigString("***O.exception          : " + e.getMessage());
+				}
+				return rates;
+			}
+			else
+			{
+				log.warn("http status " + responseCode + " when fetching " + url);
+			}
+		}
+		catch (final Exception x)
+		{
+			log.warn("problem fetching exchange rates", x);
+		}
+		finally
+		{
+			if (reader != null)
+			{
+				try
+				{
+					reader.close();
+				}
+				catch (final IOException x)
+				{
+					// swallow
+				}
+			}
+
+			if (connection != null)
+				connection.disconnect();
+		}
+
+		return null;
+	}
+
+	private static BigInteger getSexcoinRate ( URL url ){
+		HttpURLConnection connection = null;
+		Reader reader = null;
+		log.info("RETRIEVING " + url.toString());
+		try
+		{
+			connection = (HttpURLConnection) url.openConnection();
+			connection.setConnectTimeout(Constants.HTTP_TIMEOUT_MS);
+			connection.setReadTimeout(Constants.HTTP_TIMEOUT_MS);
+			connection.connect();
+
+			final int responseCode = connection.getResponseCode();
+			if (responseCode == HttpURLConnection.HTTP_OK)
+			{
+				reader = new InputStreamReader(new BufferedInputStream(connection.getInputStream(), 128), Constants.UTF_8);
+				final StringBuilder content = new StringBuilder();
+				Io.copy(reader, content);
+				String saveContent = content.toString().replace(":1," , ":\"1\",");
+
+				//logBigString("RETURN FROM JSON: " + saveContent);
+				try{
+					final JSONObject o = new JSONObject(saveContent);
+					JSONObject data = o.getJSONObject("return").getJSONObject("markets").getJSONObject("SXC");
+					String price = data.getString("lasttradeprice");
+					final BigInteger rate = GenericUtils.toNanoCoinsRounded(price, 0);
+					return rate;
+				}catch(Exception e){
+					logBigString("***SXC.exception          : " + e.getMessage());
+				}
+
+			}
+			else
+			{
+				log.warn("http status " + responseCode + " when fetching " + url);
+			}
+		}
+		catch (final Exception x)
+		{
+			log.warn("problem fetching sxc exchange rates", x);
+		}
+		finally
+		{
+			if (reader != null)
+			{
+				try
+				{
+					reader.close();
+				}
+				catch (final IOException x)
+				{
+					// swallow
+				}
+			}
+
+			if (connection != null)
+				connection.disconnect();
+		}
+
+		return null;
+	}
+
+	private static void logBigString(String msg, int lineLength){
+		int len = msg.length();
+		if(len > lineLength){ lineLength = len; }
+		int numStrings=(int)(len/lineLength) + 1;
+		int end = len;
+
+		for(int i=0; i< numStrings ; i++){
+			end = lineLength*i + lineLength;
+			if( end > len ) { end = len; }
+			log.info("--" + msg.substring(lineLength*i,end));
+		}
+		log.info("<<");
+	}
+	private static void logBigString(String msg){
+		logBigString(msg,80);
+
 	}
 }

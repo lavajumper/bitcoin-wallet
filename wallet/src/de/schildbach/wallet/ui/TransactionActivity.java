@@ -29,7 +29,7 @@ import com.google.bitcoin.core.*;
 import de.schildbach.wallet.Constants;
 import de.schildbach.wallet.WalletApplication;
 import de.schildbach.wallet.util.Base43;
-import de.schildbach.wallet_ltc.R;
+import de.schildbach.wallet_sxc.R;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -97,7 +97,7 @@ public final class TransactionActivity extends AbstractWalletActivity
 			final Wallet wallet = ((WalletApplication) getApplication()).getWallet();
 			tx = wallet.getTransaction((Sha256Hash) intent.getSerializableExtra(INTENT_EXTRA_TRANSACTION_HASH));
 		}
-		else if (intentUri != null && "ltctx".equals(scheme))
+		else if (intentUri != null && "sxctx".equals(scheme))
 		{
 			try
 			{

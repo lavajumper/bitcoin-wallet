@@ -4,10 +4,10 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>wallet</artifactId>
+	<artifactId>sexcoin-wallet</artifactId>
 	<packaging>apk</packaging>
-	<version>3.30.10</version>
-	<name>Litecoin Wallet</name>
+	<version>0.10.8</version>
+	<name>Sexcoin Wallet</name>
 
 	<parent>
 		<groupId>de.schildbach.wallet</groupId>
@@ -53,8 +53,8 @@
 		<!-- com.google.bitcoin.* -->
 		<dependency>
 			<groupId>com.google</groupId>
-			<artifactId>bitcoinj</artifactId>
-			<version>0.11-SNAPSHOT</version>
+			<artifactId>sexcoinj</artifactId>
+			<version>0.12-SNAPSHOT</version>
 		</dependency>
 
 		<!-- de.schildbach.wallet.integration.android.* -->
@@ -202,7 +202,7 @@
             <plugin>
                 <groupId>com.jayway.maven.plugins.android.generation2</groupId>
                 <artifactId>android-maven-plugin</artifactId>
-                <version>3.8.0</version>
+                <version>3.6.1</version>
                 <inherited>true</inherited>
                 <configuration>
                     <excludeJarResources>

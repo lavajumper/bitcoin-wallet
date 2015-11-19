@@ -1,4 +1,4 @@
-Welcome to _Litecoin Wallet_, a standalone Litecoin payment app for your Android device!
+Welcome to __Sexcoin Wallet__, a standalone Sexcoin payment app for your Android device!
 
 This project contains several sub-projects:
 

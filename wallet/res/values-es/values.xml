@@ -2,10 +2,10 @@
 <resources>
 
 	<string-array name="preferences_precision_labels">
-		<item>LTC, 8 dígitos</item>
-		<item>LTC, 6 dígitos</item>
-		<item>LTC, 4 dígitos</item>
-		<item>mLTC, 2 dígitos</item>
+		<item>SXC, 8 dígitos</item>
+		<item>SXC, 6 dígitos</item>
+		<item>SXC, 4 dígitos</item>
+		<item>mSXC, 2 dígitos</item>
 	</string-array>
 
 </resources>

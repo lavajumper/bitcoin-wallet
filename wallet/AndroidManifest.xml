@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
-	package="de.schildbach.wallet_ltc"
+	package="de.schildbach.wallet_sxc"
 	android:installLocation="internalOnly"
-	android:versionCode="164"
-	android:versionName="3.30.10" >
+	android:versionCode="58"
+	android:versionName="0.10.8" >
 
 	<uses-sdk
 		android:minSdkVersion="10"
@@ -20,6 +20,9 @@
 	<uses-permission android:name="android.permission.WAKE_LOCK" />
 	<uses-permission android:name="android.permission.BROADCAST_STICKY" />
 	<uses-permission android:name="android.permission.BLUETOOTH" />
+	<uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
+	<uses-permission android:name="android.permission.INTERACT_ACROSS_USERS" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 	<uses-feature
 		android:name="android.hardware.touchscreen"
@@ -73,7 +76,7 @@
 			<intent-filter>
 				<action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
-				<data android:mimeType="application/x-ltctx" />
+				<data android:mimeType="application/x-sxctx" />
 
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
@@ -88,7 +91,7 @@
 			<intent-filter android:label="@string/send_coins_activity_title" >
 				<action android:name="android.intent.action.VIEW" />
 
-				<data android:scheme="litecoin" />
+				<data android:scheme="sexcoin" />
 
 				<category android:name="android.intent.category.DEFAULT" />
 				<category android:name="android.intent.category.BROWSABLE" />
@@ -96,7 +99,7 @@
 			<intent-filter android:label="@string/send_coins_activity_title" >
 				<action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
-				<data android:scheme="litecoin" />
+				<data android:scheme="sexcoin" />
 
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
@@ -120,7 +123,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
-                <data android:scheme="ltctx" />
+                <data android:scheme="sxctx" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
@@ -158,7 +161,7 @@
 
 				<category android:name="android.intent.category.DEFAULT" />
 
-				<data android:mimeType="x-litecoin/private-keys" />
+				<data android:mimeType="x-sexcoin/private-keys" />
 				<data android:mimeType="application/octet-stream" />
 			</intent-filter>
 		</activity>
@@ -172,11 +175,11 @@
 
 		<provider
 			android:name="de.schildbach.wallet.AddressBookProvider"
-			android:authorities="de.schildbach.wallet_ltc.address_book"
+			android:authorities="de.schildbach.wallet_sxc.address_book"
 			android:exported="false" />
 		<provider
 			android:name="de.schildbach.wallet.ExchangeRatesProvider"
-			android:authorities="de.schildbach.wallet_ltc.exchange_rates"
+			android:authorities="de.schildbach.wallet_sxc.exchange_rates"
 			android:exported="false" />
 
 		<receiver
