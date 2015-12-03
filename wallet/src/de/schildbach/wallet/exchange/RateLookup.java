@@ -56,7 +56,7 @@ public abstract class RateLookup {
                 reader = new InputStreamReader(new BufferedInputStream(connection.getInputStream(), 1024), Constants.UTF_8);
                 final StringBuilder content = new StringBuilder();
                 Io.copy(reader, content);
-                this.data = content.toString();
+                this.data = content.toString().replace(":true," , ":\"1\",");
                 return true;
             }
             else

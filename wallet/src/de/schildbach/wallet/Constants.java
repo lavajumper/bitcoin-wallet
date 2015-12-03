@@ -33,7 +33,7 @@ import de.schildbach.wallet_sxc.R;
 import org.sexcoin.SexcoinParams;
 
 /**
- * @author Andreas Schildbach, Litecoin Dev Team
+ * @author Andreas Schildbach, Litecoin Dev Team, Lavajumper
  */
 public class Constants
 {
@@ -100,8 +100,8 @@ public class Constants
 	public static final String CREDITS_SEXCOINJ_URL = "https://github.com/lavajumper/bitcoinj-scrypt";
 	public static final String CREDITS_ZXING_URL = "http://code.google.com/p/zxing/";
 	public static final String AUTHOR_TWITTER_URL = "https://twitter.com/lavajumper";
-	public static final String AUTHOR_GOOGLEPLUS_URL = "https://plus.google.com/+LitecoinOrg";
-	public static final String COMMUNITY_GOOGLEPLUS_URL = "https://plus.google.com/+LitecoinOrg";
+	public static final String AUTHOR_GOOGLEPLUS_URL = "https://plus.google.com/+SexcoinOrg";
+	public static final String COMMUNITY_GOOGLEPLUS_URL = "https://plus.google.com/+SexcoinOrg";
 	public static final String COMMUNITY_SEXCOIN_FORUM = "https://sexcoinforum.com";
 	public static final String WEB_SEXCOIN_URL = "http://sexcoin.info";
     public static final String ANDROID_MARKET_APP_URL = "market://details?id=%s";

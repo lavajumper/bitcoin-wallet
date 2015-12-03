@@ -20,7 +20,7 @@ public class CryptsyRateLookup extends RateLookup {
 
     public CryptsyRateLookup()
     {
-        super("http://pubapi.cryptsy.com/api.php?method=singlemarketdata&marketid=153");
+        super("https://api.cryptsy.com/api/v2/markets/sxc_btc");
     }
 
     public Map<String, ExchangeRatesProvider.ExchangeRate> getRates(ExchangeRatesProvider.ExchangeRate usdRate) {
@@ -35,9 +35,9 @@ public class CryptsyRateLookup extends RateLookup {
             try
             {
                 JSONObject head = new JSONObject(this.data);
-                head = head.getJSONObject("result").getJSONObject("markets").getJSONObject("SXC");
+                head = head.getJSONObject("data").getJSONObject("last_trade");
 
-                JSONArray resultArray = head.getJSONArray("SXC");
+                JSONArray resultArray = head.getJSONArray("price");
                 Log.i(TAG,resultArray.toString(2));
                 // Format: eg. _cpzh4: 3.673
                 Pattern p = Pattern.compile("_cpzh4: ([\\d\\.]+)");
@@ -49,20 +49,20 @@ public class CryptsyRateLookup extends RateLookup {
                     {
                         // Just get the good part
                         rateStr = m.group(1);
-                        Log.d(TAG, "Currency: " + currencyCd);
-                        Log.d(TAG, "Rate: " + rateStr);
-                        Log.d(TAG, "BTC Rate: " + decUsdRate.toString());
+                        Log.i(TAG, "Currency: " + currencyCd);
+                        Log.i(TAG, "Rate: " + rateStr);
+                        Log.i(TAG, "BTC Rate: " + decUsdRate.toString());
                         BigDecimal rate = new BigDecimal(rateStr);
-                        Log.d(TAG, "Converted Rate: " + rate.toString());
+                        Log.i(TAG, "Converted Rate: " + rate.toString());
                         rate = decUsdRate.multiply(rate);
-                        Log.d(TAG, "Final Rate: " + rate.toString());
+                        Log.i(TAG, "Final Rate: " + rate.toString());
                         if (rate.signum() > 0)
                         {
                             rates.put(currencyCd, new ExchangeRatesProvider.ExchangeRate(currencyCd,
                                     GenericUtils.toNanoCoinsRounded(rate.toString(), 0), this.url.getHost()));
                         }
                     }else{
-                        Log.d(TAG,"rateStr = " + rateStr);
+                        Log.i(TAG,"rateStr = " + rateStr);
                     }
 
                 }
