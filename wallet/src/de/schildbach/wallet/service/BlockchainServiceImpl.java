@@ -433,11 +433,22 @@ public class BlockchainServiceImpl extends android.app.Service implements Blockc
 
 						boolean needsTrimPeersWorkaround = false;
 
+
+
 						if (hasTrustedPeer)
 						{
 							log.info("trusted peer '" + trustedPeerHost + "'" + (connectTrustedPeerOnly ? " only" : ""));
 
-							final InetSocketAddress addr = new InetSocketAddress(trustedPeerHost, Constants.NETWORK_PARAMETERS.getPort());
+							String address=trustedPeerHost;
+							int port=Constants.NETWORK_PARAMETERS.getPort();
+
+							if(trustedPeerHost.contains(":")){
+								String[] host = trustedPeerHost.split(":");
+								address = host[0];
+								port = Integer.parseInt(host[1]);
+							}
+
+							final InetSocketAddress addr = new InetSocketAddress(address, port );
 							if (addr.getAddress() != null)
 							{
 								peers.add(addr);

@@ -234,6 +234,10 @@ public class TransactionsListAdapter extends BaseAdapter
 		final boolean isCoinBase = tx.isCoinBase();
 		final boolean isInternal = WalletUtils.isInternal(tx);
 
+		final boolean isOverConsent = tx.isOverConsent();
+		final boolean isOver18 = tx.isOver18();
+		final boolean isOver21 = tx.isOver21();
+
 		try
 		{
 			final BigInteger value = tx.getValue(wallet);
@@ -335,6 +339,26 @@ public class TransactionsListAdapter extends BaseAdapter
 			rowValue.setAlwaysSigned(true);
 			rowValue.setPrecision(precision, shift);
 			rowValue.setAmount(value);
+
+			// Sexcoin Age Verification
+
+			final String txAgeVerif;
+			if(isOverConsent)
+				txAgeVerif = "Consent";
+			else if(isOver18)
+				txAgeVerif = "18";
+			else if(isOver21)
+				txAgeVerif = "21";
+			else
+				txAgeVerif = "None";
+
+			final TextView ageView = (TextView)row.findViewById(R.id.transaction_row_age_verification);
+			if(txAgeVerif.isEmpty()){
+				ageView.setVisibility(View.GONE);
+			}else{
+				ageView.setVisibility(View.VISIBLE);
+				ageView.setText("AV: " + txAgeVerif );
+			}
 
             // note
             final TextView noteView = (TextView)row.findViewById(R.id.txNote);

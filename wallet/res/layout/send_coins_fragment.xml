@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:orientation="vertical"
-	tools:ignore="RequiredSize" >
+			  xmlns:tools="http://schemas.android.com/tools"
+			  android:orientation="vertical"
+			  tools:ignore="RequiredSize" android:layout_width="match_parent" android:layout_height="match_parent">
 
 	<TextView
 		android:layout_width="match_parent"
@@ -117,6 +117,45 @@
 
 	<!-- stretch dummy -->
 
+	<LinearLayout
+			android:orientation="vertical"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+		<RadioGroup android:layout_width="match_parent" android:layout_height="wrap_content">
+		<RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/send_coins_fragment_consent_age"
+                android:id="@+id/send_coins_radio_consent_age"
+                android:layout_marginLeft="@dimen/list_entry_padding_horizontal" android:layout_marginTop="8dp"
+                android:layout_marginRight="@dimen/list_entry_padding_horizontal"
+                android:textSize="@dimen/font_size_normal"/>
+		<RadioButton
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/send_coins_fragment_over18"
+				android:id="@+id/send_coins_radio_over18"
+                android:layout_marginLeft="@dimen/list_entry_padding_horizontal" android:layout_marginTop="8dp"
+                android:layout_marginRight="@dimen/list_entry_padding_horizontal"
+                android:textSize="@dimen/font_size_normal"/>
+		<RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/send_coins_fragment_over21"
+                android:id="@+id/send_coins_radio_over21" android:checked="false"
+                android:layout_marginLeft="@dimen/list_entry_padding_horizontal"
+                android:layout_marginRight="@dimen/list_entry_padding_horizontal" android:layout_marginTop="8dp"
+                android:textSize="@dimen/font_size_normal"/>
+		<RadioButton
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/send_coins_dont_use_age"
+				android:id="@+id/send_coins_radio_none"
+				android:layout_marginLeft="@dimen/list_entry_padding_horizontal" android:layout_marginTop="8dp"
+				android:layout_marginRight="@dimen/list_entry_padding_horizontal" android:checked="true"
+				android:enabled="true"/>
+		</RadioGroup>
+	</LinearLayout>
 	<ImageView
 		android:layout_width="0px"
 		android:layout_height="0px"

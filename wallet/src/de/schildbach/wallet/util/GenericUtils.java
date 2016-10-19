@@ -20,11 +20,14 @@ package de.schildbach.wallet.util;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Locale;
+import java.util.Currency;
 
 import javax.annotation.Nonnull;
 
 import com.google.bitcoin.core.Utils;
+import de.schildbach.wallet.Configuration;
 import de.schildbach.wallet.Constants;
+import de.schildbach.wallet.CoinDefinition;
 
 /**
  * @author Andreas Schildbach, Litecoin Dev Team
@@ -33,9 +36,11 @@ public class GenericUtils
 {
 	public static final BigInteger ONE_BTC = new BigInteger("100000000", 10);
 	public static final BigInteger ONE_MBTC = new BigInteger("100000", 10);
+	public static final BigInteger ONE_UBTC = new BigInteger("100", 10);
 
 	private static final int ONE_BTC_INT = ONE_BTC.intValue();
 	private static final int ONE_MBTC_INT = ONE_MBTC.intValue();
+	private static final int ONE_UBTC_INT = ONE_UBTC.intValue();
 
 	public static String formatValue(@Nonnull final BigInteger value, final int precision, final int shift)
 	{
@@ -135,5 +140,35 @@ public class GenericUtils
     {
         return new BigDecimal(value).movePointLeft(8 - shift);
     }
+
+	public static String formatDebugValue(@Nonnull final BigInteger value)
+	{
+		return formatValue(value, Constants.BTC_MAX_PRECISION, 0);
+	}
+
+	public static String currencySymbol(@Nonnull final String currencyCode)
+	{
+		try
+		{
+			final Currency currency = Currency.getInstance(currencyCode);
+			return currency.getSymbol();
+		}
+		catch (final IllegalArgumentException x)
+		{
+			return currencyCode;
+		}
+	}
+
+	public static BigInteger parseCoin(final String str, final int shift) throws ArithmeticException
+	{
+		final BigInteger coin = new BigDecimal(str).movePointRight(8 - shift).toBigIntegerExact();
+
+		if (coin.signum() < 0)
+			throw new ArithmeticException("negative amount: " + str);
+		if (coin.compareTo(BigInteger.valueOf(CoinDefinition.MAX_MONEY)) > 0)
+			throw new ArithmeticException("amount too large: " + str);
+
+		return coin;
+	}
 
 }

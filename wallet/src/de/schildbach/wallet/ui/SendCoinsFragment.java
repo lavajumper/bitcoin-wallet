@@ -26,7 +26,7 @@ import javax.annotation.Nullable;
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.util.Log;
-import android.widget.Toast;
+import android.widget.*;
 import com.google.bitcoin.core.ECKey;
 import com.google.bitcoin.core.InsufficientMoneyException;
 import com.google.bitcoin.core.TransactionOutput;
@@ -64,15 +64,7 @@ import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.CursorAdapter;
-import android.widget.ListView;
-import android.widget.PopupWindow;
-import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.ActionMode;
@@ -86,6 +78,7 @@ import com.google.bitcoin.core.Sha256Hash;
 import com.google.bitcoin.core.Transaction;
 import com.google.bitcoin.core.TransactionConfidence;
 import com.google.bitcoin.core.TransactionConfidence.ConfidenceType;
+//import org.sexcoin.SexcoinWallet;
 import com.google.bitcoin.core.Wallet;
 import com.google.bitcoin.core.Wallet.BalanceType;
 import com.google.bitcoin.core.Wallet.SendRequest;
@@ -129,6 +122,11 @@ public final class SendCoinsFragment extends SherlockFragment
 	private TextView receivingStaticAddressView;
 	private TextView receivingStaticLabelView;
 	private CheckBox bluetoothEnableView;
+	private RadioButton isConsentRadio;
+	private RadioButton isOver18Radio;
+	private RadioButton isOver21Radio;
+	private RadioButton isNoneRadio;
+	private long txFlags;
 
 	private TextView bluetoothMessageView;
 	private ListView sentTransactionView;
@@ -165,7 +163,7 @@ public final class SendCoinsFragment extends SherlockFragment
 	{
 		INPUT, PREPARATION, SENDING, SENT, FAILED
 	}
-
+	//private final class AgeVerificationListener implements OnClickListener{}
 	private final class ReceivingAddressListener implements OnFocusChangeListener, TextWatcher
 	{
 		@Override
@@ -449,6 +447,11 @@ public final class SendCoinsFragment extends SherlockFragment
 		});
 
 		bluetoothMessageView = (TextView) view.findViewById(R.id.send_coins_bluetooth_message);
+
+		isConsentRadio = (RadioButton) view.findViewById(R.id.send_coins_radio_consent_age);
+		isOver18Radio = (RadioButton) view.findViewById(R.id.send_coins_radio_over18);
+		isOver21Radio = (RadioButton) view.findViewById(R.id.send_coins_radio_over21);
+		isNoneRadio = (RadioButton) view.findViewById(R.id.send_coins_radio_none);
 
 		sentTransactionView = (ListView) view.findViewById(R.id.send_coins_sent_transaction);
 		sentTransactionListAdapter = new TransactionsListAdapter(activity, wallet, application.maxConnectedPeers(), false);
@@ -866,6 +869,16 @@ public final class SendCoinsFragment extends SherlockFragment
 			popupWindow = null;
 		}
 	}
+	private long getAgeVerificationFlags(){
+		if(isConsentRadio.isChecked())
+			txFlags = 0x0001L;
+		else if(isOver18Radio.isChecked())
+			txFlags = 0x0002L;
+		else if(isOver21Radio.isChecked())
+			txFlags = 0x0004L;
+		else txFlags = 0;
+		return txFlags;
+	}
 
 	private void handleGo()
 	{
@@ -875,7 +888,8 @@ public final class SendCoinsFragment extends SherlockFragment
 		// create spend
 		BigInteger amount = amountCalculatorLink.getAmount();
         BigInteger origAmount = amount;
-		SendRequest baseSendRequest = SendRequest.to(validatedAddress.address, amount);
+		//; // 1 is current version... need this paramaterized
+		SendRequest baseSendRequest = SendRequest.to(validatedAddress.address, amount, getAgeVerificationFlags() + 1);
         baseSendRequest.changeAddress = WalletUtils.pickOldestKey(wallet).toAddress(Constants.NETWORK_PARAMETERS);
         baseSendRequest.emptyWallet = amount.equals(wallet.getBalance(BalanceType.AVAILABLE));
 
@@ -896,7 +910,7 @@ public final class SendCoinsFragment extends SherlockFragment
                 Log.i(TAG, "\t" + o.getValue().toString());
             }
             amount = amount.subtract(Constants.MIN_TX_FEE);
-            baseSendRequest = SendRequest.to(validatedAddress.address, amount);
+            baseSendRequest = SendRequest.to(validatedAddress.address, amount, getAgeVerificationFlags() + 1);
             Log.i(TAG, "After refactoring: ");
             for(TransactionOutput o : baseSendRequest.tx.getOutputs()) {
                 Log.i(TAG, "\t" + o.getValue().toString());
