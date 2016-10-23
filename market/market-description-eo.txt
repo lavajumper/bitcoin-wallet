@@ -1,4 +1,4 @@
-Havu viajn Bitmonojn ĉiam kun vi, en via poŝo! Vi povas pagi per rapide skanado de QR-kodo. Kiel komercisto, vi povas ricevi pagojn fidinde kaj tuj. Litecoin Wallet estas unua movebla Bitmona aplikaĵo, kaj disputeble ankaŭ la plej sekura!
+Havu viajn Bitmonojn ĉiam kun vi, en via poŝo! Vi povas pagi per rapide skanado de QR-kodo. Kiel komercisto, vi povas ricevi pagojn fidinde kaj tuj. Sexcoin Wallet estas unua movebla Bitmona aplikaĵo, kaj disputeble ankaŭ la plej sekura!
 
 TRAJTOJ:
 
@@ -12,10 +12,10 @@ TRAJTOJ:
 • Aplikaĵa fenestraĵo por Bitmona saldo.
 
 Vi povas trovi pli pri Bitmono ĉe
-http://litecoin.org
+http://Sexcoin.info
 
-Se vi volas kontribui al Litecoin Wallet, la projekto lokas ĉe
-https://github.com/Litecoin-Java/bitcoin-wallet
+Se vi volas kontribui al Sexcoin Wallet, la projekto lokas ĉe
+https://github.com/Lavajumper/sexcoin-wallet
 
 Licenco: GPLv3
 Uzu je via propra risko!

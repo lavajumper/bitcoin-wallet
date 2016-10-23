@@ -869,6 +869,7 @@ public final class SendCoinsFragment extends SherlockFragment
 			popupWindow = null;
 		}
 	}
+
 	private long getAgeVerificationFlags(){
 		if(isConsentRadio.isChecked())
 			txFlags = 0x0001L;
@@ -888,7 +889,7 @@ public final class SendCoinsFragment extends SherlockFragment
 		// create spend
 		BigInteger amount = amountCalculatorLink.getAmount();
         BigInteger origAmount = amount;
-		//; // 1 is current version... need this paramaterized
+		//; // 1 is current version... need this parametrized
 		SendRequest baseSendRequest = SendRequest.to(validatedAddress.address, amount, getAgeVerificationFlags() + 1);
         baseSendRequest.changeAddress = WalletUtils.pickOldestKey(wallet).toAddress(Constants.NETWORK_PARAMETERS);
         baseSendRequest.emptyWallet = amount.equals(wallet.getBalance(BalanceType.AVAILABLE));

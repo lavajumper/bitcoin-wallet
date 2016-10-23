@@ -210,5 +210,6 @@
 	<string name="button_edit_address">Tilføj/redigér adresse</string>
 	<string name="time_today">i dag</string>
 	<string name="address_unlabeled">(uden etiket)</string>
+	<string name="widget_wallet_prefix"></string>
 
 </resources>
