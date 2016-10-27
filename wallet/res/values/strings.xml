@@ -257,5 +257,6 @@
 	<string name="send_coins_fragment_over18">I Certify I am over 18</string>
 	<string name="send_coins_fragment_over21">I Ceritfy I am over 21</string>
 	<string name="send_coins_dont_use_age">Do not Use Age Verification</string>
+	<string name="transaction_fragment_av_label">Age Verification</string>
 
 </resources>

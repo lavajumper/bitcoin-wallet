@@ -229,12 +229,6 @@ public class TransactionsListFragment extends SherlockListFragment implements Lo
 				final MenuInflater inflater = mode.getMenuInflater();
 				inflater.inflate(R.menu.wallet_transactions_context, menu);
 
-				return true;
-			}
-
-			@Override
-			public boolean onPrepareActionMode(final ActionMode mode, final Menu menu)
-			{
 				try
 				{
 					final Date time = tx.getUpdateTime();
@@ -279,6 +273,60 @@ public class TransactionsListFragment extends SherlockListFragment implements Lo
 				{
 					return false;
 				}
+
+			}
+
+			@Override
+			public boolean onPrepareActionMode(final ActionMode mode, final Menu menu)
+			{
+				if(address == null)
+				{
+					try
+					{
+						final Date time = tx.getUpdateTime();
+						final DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(activity);
+						final DateFormat timeFormat = android.text.format.DateFormat.getTimeFormat(activity);
+
+						mode.setTitle(time != null ? (DateUtils.isToday(time.getTime()) ? getString(R.string.time_today) : dateFormat.format(time))
+								+ ", " + timeFormat.format(time) : null);
+
+						final BigInteger value = tx.getValue(wallet);
+						final boolean sent = value.signum() < 0;
+
+						address = sent ? WalletUtils.getFirstToAddress(tx) : WalletUtils.getFirstFromAddress(tx);
+
+						final String label;
+						if (tx.isCoinBase())
+							label = getString(R.string.wallet_transactions_fragment_coinbase);
+						else if (address != null)
+							label = AddressBookProvider.resolveLabel(activity, address.toString());
+						else
+							label = "?";
+
+						final String prefix = getString(sent ? R.string.symbol_to : R.string.symbol_from) + " ";
+
+						if (tx.getPurpose() != Purpose.KEY_ROTATION)
+							mode.setSubtitle(label != null ? prefix + label : WalletUtils.formatAddress(prefix, address,
+									Constants.ADDRESS_FORMAT_GROUP_SIZE, Constants.ADDRESS_FORMAT_LINE_SIZE));
+						else
+							mode.setSubtitle(null);
+
+						menu.findItem(R.id.wallet_transactions_context_edit_address).setVisible(address != null);
+
+						serializedTx = tx.unsafeBitcoinSerialize();
+
+						menu.findItem(R.id.wallet_transactions_context_show_qr).setVisible(serializedTx.length < SHOW_QR_THRESHOLD_BYTES);
+
+						Nfc.publishMimeObject(nfcManager, activity, Constants.MIMETYPE_TRANSACTION, serializedTx, false);
+
+
+					}
+					catch (final ScriptException x)
+					{
+						return false;
+					}
+				}
+				return true;
 			}
 
 			@Override
@@ -329,6 +377,9 @@ public class TransactionsListFragment extends SherlockListFragment implements Lo
 
 			private void handleEditAddress(@Nonnull final Transaction tx)
 			{
+				if(address == null) {
+					onPrepareActionMode(null,null);
+				}
 				EditAddressBookEntryFragment.edit(getFragmentManager(), address.toString());
 			}
 
@@ -339,6 +390,11 @@ public class TransactionsListFragment extends SherlockListFragment implements Lo
 
 			private void handleShowQr()
 			{
+
+				if(address == null) {
+					onPrepareActionMode(null,null);
+					//address = WalletUtils.getFirstToAddress(tx);
+				}
 				final int size = (int) (384 * getResources().getDisplayMetrics().density);
 				final Bitmap qrCodeBitmap = Qr.bitmap(Qr.encodeBinary(serializedTx), size);
 				BitmapFragment.show(getFragmentManager(), qrCodeBitmap);
