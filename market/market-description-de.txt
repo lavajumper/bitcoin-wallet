@@ -3,7 +3,7 @@ Hab deine Sexcoins immer dabei, in deiner Hosentasche! Du zahlst, indem du rasch
 FEATURES:
 
 • Keine Registrierung, Web-Dienst oder Cloud nötig! Diese Wallet ist de-zentral und Peer to Peer.
-• Anzeige von Sexcoin-Werten in LTC und mLTC.
+• Anzeige von Sexcoin-Werten in SXC und mSXC.
 • Umrechnung von und zu den nationalen Währungen.
 • Senden und Empfangen von Sexcoin via NFC, QR-Codes oder Sexcoin URLs.
 • Adressbuch für regelmäßig genutzte Empfänger.

@@ -35,7 +35,7 @@ import java.util.concurrent.TimeUnit;
 import javax.annotation.Nonnull;
 
 import org.bitcoinj.wallet.Protos;
-import org.sexcoin.SexcoinWallet;
+//import org.sexcoin.SexcoinWallet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -288,7 +288,7 @@ public class WalletApplication extends Application
                     NetworkParameters params = NetworkParameters.fromID(paramsID);
                     if (params == null)
                         throw new UnreadableWalletException("Unknown network parameters ID " + paramsID);
-                    wallet = new SexcoinWallet(params);
+                    wallet = new Wallet(params);
                     ser.readWallet(walletProto, wallet);
                 } catch (IOException e) {
                     throw new UnreadableWalletException("Could not parse input stream to protobuf", e);
@@ -308,7 +308,7 @@ public class WalletApplication extends Application
 			{
 				log.error("problem loading wallet", x);
 
-				Toast.makeText(WalletApplication.this, x.getClass().getName(), Toast.LENGTH_LONG).show();
+				Toast.makeText(WalletApplication.this, x.getClass().getName() + ":" + x.getMessage(), Toast.LENGTH_LONG).show();
 
 				wallet = restoreWalletFromBackup();
 			}
@@ -339,7 +339,7 @@ public class WalletApplication extends Application
 		}
 		else
 		{
-			wallet = new SexcoinWallet(Constants.NETWORK_PARAMETERS);
+			wallet = new Wallet(Constants.NETWORK_PARAMETERS);
 
 			log.info("new wallet created");
 		}
@@ -358,7 +358,7 @@ public class WalletApplication extends Application
 
 			resetBlockchain();
 
-			Toast.makeText(this, R.string.toast_wallet_reset, Toast.LENGTH_LONG).show();
+			//Toast.makeText(this, R.string.toast_wallet_reset, Toast.LENGTH_LONG).show();
 
 			log.info("wallet restored from backup: '" + Constants.WALLET_KEY_BACKUP_BASE58 + "'");
 
@@ -376,7 +376,7 @@ public class WalletApplication extends Application
 		final List<ECKey> keys = WalletUtils.readKeys(in);
 		in.close();
 
-		final Wallet wallet = new SexcoinWallet(Constants.NETWORK_PARAMETERS);
+		final Wallet wallet = new Wallet(Constants.NETWORK_PARAMETERS);
 		for (final ECKey key : keys)
 			wallet.addKey(key);
 

@@ -79,6 +79,7 @@ import com.google.bitcoin.core.Transaction;
 import com.google.bitcoin.core.TransactionConfidence;
 import com.google.bitcoin.core.TransactionConfidence.ConfidenceType;
 //import org.sexcoin.SexcoinWallet;
+
 import com.google.bitcoin.core.Wallet;
 import com.google.bitcoin.core.Wallet.BalanceType;
 import com.google.bitcoin.core.Wallet.SendRequest;
@@ -872,11 +873,11 @@ public final class SendCoinsFragment extends SherlockFragment
 
 	private long getAgeVerificationFlags(){
 		if(isConsentRadio.isChecked())
-			txFlags = 0x0001L;
+			txFlags = 0x00010000L;
 		else if(isOver18Radio.isChecked())
-			txFlags = 0x0002L;
+			txFlags = 0x00020000L;
 		else if(isOver21Radio.isChecked())
-			txFlags = 0x0004L;
+			txFlags = 0x00040000L;
 		else txFlags = 0;
 		return txFlags;
 	}

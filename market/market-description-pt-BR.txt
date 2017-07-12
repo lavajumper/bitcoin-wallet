@@ -3,7 +3,7 @@ Tenha os seus Sexcoins sempre com você, no seu bolso! Efetue pagamentos rapidam
 CARACTERÍSTICAS:
 
 • Sem necessidade de cadastro, serviço web ou hospedagem! Esta carteira é descentralizada e "peer to peer".
-• Exibe a quantidade de Sexcoins em LTC e mLTC.
+• Exibe a quantidade de Sexcoins em SXC e mSXC.
 • Conversão para moedas nacionais.
 • Envio e recebimento de Sexcoins via NFC, códigos QR ou endereços Sexcoin.
 • Catálogo para guardar os endereços mais utilizados.

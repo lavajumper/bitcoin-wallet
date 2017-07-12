@@ -16,7 +16,7 @@ public class CoinDefinition {
     public static final String coinURIScheme = "sexcoin";
     public static final String cryptopiaMarketId = "1193";
     public static final String cryptopiaMarketCurrency = "BTC";
-    public static final String alternateExchangeInfo = "http://sexcoin.info/sxc_api.php";
+    public static final String alternateExchangeInfo = "https://sexcoin.info/sxc_api.php";
 
 
     public static final String BLOCKEXPLORER_BASE_URL_PROD = "http://be.sexcoin.info/chain/Sexcoin/";

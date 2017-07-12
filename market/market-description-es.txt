@@ -3,7 +3,7 @@ Ten tus Sexcoins siempre contigo, en tu bolsillo! Paga rápidamente escaneando u
 CARACTERÍSTICAS:
 
 • ¡No requiere registro, servidor en la nube o servicio web! Este monedero es auténticamente entre pares (peer-to-peer).
-• Muestra la cantidad de Sexcoins en LTC y mLTC
+• Muestra la cantidad de Sexcoins en SXC y mSXC
 • Conversión a divisas nacionales.
 • Envío y recepción de Sexcoins vía NFC, códigos QR o URL de Sexcoin.
 • Libreta de direcciones para guardar las direcciones Sexcoin más utilizadas.

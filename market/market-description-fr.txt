@@ -3,7 +3,7 @@ Ayez vos Sexcoins toujours avec vous dans votre poche ! Payez rapidement en num�
 FONCTIONS :
 
 • Pas d'inscription, de service Web ou de nuage de nécessaire ! Ce portefeuille est décentralisé et de pair-à-pair.
-• Affichage du montant de Sexcoin en LTC et mLTC.
+• Affichage du montant de Sexcoin en SXC et mSXC.
 • Conversion de et vers des devises nationales.
 • Envoi et réception des Sexcoin via NFC, codes QR ou des URLs Sexcoin.
 • Carnet d'adresse pour les adresses Sexcoin utilisées régulièrement.

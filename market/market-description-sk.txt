@@ -3,7 +3,7 @@ Litecoiny vždy so sebou vo svojom vrecku. Jednoduché a rýchle platby pomocou 
 FUNKCIE:
 
 • Nie je potrebná žiadna registrácia ani žiadny účet.
-• Zobrazenie zostatku Litecoinov v LTC alebo mLTC.
+• Zobrazenie zostatku Litecoinov v SXC alebo mSXC.
 • Prepočet hodnoty Litecoinov do viacerých cudzích mien.
 • Posielanie a prijímanie Litecoinov pomocou NFC, QR kódov alebo Litecoin adries.
 • Adresár pre často používané Litecoin adresy.

@@ -40,6 +40,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.util.Log;
 
 import com.google.bitcoin.core.Address;
 import com.google.bitcoin.core.ScriptException;
@@ -55,6 +56,7 @@ import de.schildbach.wallet.Constants;
 import de.schildbach.wallet.util.CircularProgressView;
 import de.schildbach.wallet.util.WalletUtils;
 import de.schildbach.wallet_sxc.R;
+import org.sexcoin.TransactionFlags;
 
 /**
  * @author Andreas Schildbach, Litecoin Dev Team
@@ -238,6 +240,8 @@ public class TransactionsListAdapter extends BaseAdapter
 		final boolean isOver18 = tx.isOver18();
 		final boolean isOver21 = tx.isOver21();
 
+		//Log.d("TxListAdapter, init", "tx.version = " + tx.getVersion() + ", tx.isOver21= " + (tx.isOver21() ? "true": "false" + ", hash:" + tx.getHash().toString()));
+		//Log.d("TxListAdapter, init", "isOver21 = " + (isOver21 ? "true" : "false") );
 		try
 		{
 			final BigInteger value = tx.getValue(wallet);
@@ -342,13 +346,15 @@ public class TransactionsListAdapter extends BaseAdapter
 
 			// Sexcoin Age Verification
 
+
 			final String txAgeVerif;
+			//Log.d("TxListAdapter","tx.version=" + tx.getVersion());
 			if(isOverConsent)
 				txAgeVerif = "Consent";
 			else if(isOver18)
-				txAgeVerif = "18";
+				txAgeVerif = "18+";
 			else if(isOver21)
-				txAgeVerif = "21";
+				txAgeVerif = "21+";
 			else
 				txAgeVerif = "None";
 

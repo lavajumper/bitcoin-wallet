@@ -131,11 +131,19 @@ public final class WalletActivity extends AbstractOnDemandServiceActivity
 	@Override
 	protected void onResume()
 	{
+		Log.i("WalletActivity", "onResume");
 		super.onResume();
 
-		getWalletApplication().startBlockchainService(true);
+		getWalletApplication().startBlockchainService(false);
 
 		checkLowStorageAlert();
+	}
+
+	@Override
+	protected void onPause()
+	{
+		Log.i("WalletActivity", "onPause");
+		super.onPause();
 	}
 
 	@Override

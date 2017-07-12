@@ -40,7 +40,7 @@ public class Constants
 {
 	public static final boolean TEST = R.class.getPackage().getName().contains("_test");
 
-	public static final NetworkParameters NETWORK_PARAMETERS = SexcoinParams.get();
+	public static final SexcoinParams NETWORK_PARAMETERS = SexcoinParams.get();
 	private static final String FILENAME_NETWORK_SUFFIX = "sexcoins";
 
 	public static final String WALLET_FILENAME = "wallet" + FILENAME_NETWORK_SUFFIX;
@@ -56,8 +56,8 @@ public class Constants
 
 	public static final String CHECKPOINTS_FILENAME = "checkpoints" + FILENAME_NETWORK_SUFFIX;
 
-    private static final String EXPLORE_BASE_URL_PROD = "http://be.lavajumper.com/";
-    private static final String EXPLORE2_BASE_URL_PROD = "http://sxcexplorer.com/";
+    private static final String EXPLORE_BASE_URL_PROD = "http://be.sexcoin.info/chain/Sexcoin/";
+    private static final String EXPLORE2_BASE_URL_PROD = "http://be.lavajumper.com/chain/Sexcoin/";
     public static final String EXPLORE_BASE_URL = EXPLORE_BASE_URL_PROD;
     public static final String EXPLORE2_BASE_URL = EXPLORE2_BASE_URL_PROD;
 
@@ -98,19 +98,19 @@ public class Constants
 	public static final String LICENSE_URL = "http://www.gnu.org/licenses/gpl-3.0.txt";
 	public static final String SOURCE_URL = "https://github.com/lavajumper/sexcoin-wallet";
 	public static final String BINARY_URL = "https://github.com/lavajumper/sexcoin-wallet/releases";
-	public static final String CREDITS_SEXCOINJ_URL = "https://github.com/lavajumper/sexcoinj-scrypt";
+	public static final String CREDITS_SEXCOINJ_URL = "https://github.com/lavajumper/sexcoinj";
 	public static final String CREDITS_ZXING_URL = "http://code.google.com/p/zxing/";
 	public static final String AUTHOR_TWITTER_URL = "https://twitter.com/lavajumper";
 	public static final String AUTHOR_GOOGLEPLUS_URL = "https://plus.google.com/+SexcoinOrg";
 	public static final String COMMUNITY_GOOGLEPLUS_URL = "https://plus.google.com/+SexcoinOrg";
 	public static final String COMMUNITY_SEXCOIN_FORUM = "https://sexcoinforum.com";
-	public static final String WEB_SEXCOIN_URL = "http://sexcoin.info";
+	public static final String WEB_SEXCOIN_URL = "https://sexcoin.info";
     public static final String ANDROID_MARKET_APP_URL = "market://details?id=%s";
     public static final String BB_MARKET_APP_URL = "http://appworld.blackberry.com/webstore/content/46329888";
     public static final String ANDROID_WEBMARKET_APP_URL = "https://play.google.com/store/apps/details?id=%s";
     public static final String BB_WEBMARKET_APP_URL = "http://appworld.blackberry.com/webstore/content/46329888";
 
-	public static final String VERSION_URL = "http://sexcoin.info/androidwalletversion";
+	public static final String VERSION_URL = "https://sexcoin.info/androidwalletversion";
 	public static final int HTTP_TIMEOUT_MS = 15 * (int) DateUtils.SECOND_IN_MILLIS;
 
 	public static final String PREFS_KEY_LAST_VERSION = "last_version";

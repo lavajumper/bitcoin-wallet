@@ -234,6 +234,16 @@ public final class TransactionFragment extends SherlockFragment
         final TextView viewConfirmations = (TextView)view.findViewById(R.id.transaction_fragment_confirmations);
         viewConfirmations.setText(String.valueOf(confidence.getDepthInBlocks()));
 
+		final TextView viewAgeVerification = (TextView) view.findViewById(R.id.transaction_fragment_age_verification);
+		if(tx.isOverConsent())
+			viewAgeVerification.setText("Over Consent");
+		else if(tx.isOver18())
+			viewAgeVerification.setText("Over 18");
+		else if( tx.isOver21())
+			viewAgeVerification.setText("Over 21");
+		else
+			viewAgeVerification.setText("None");
+
 		final TextView viewHash = (TextView) view.findViewById(R.id.transaction_fragment_hash);
 		final View viewHashButton = view.findViewById(R.id.transaction_fragment_hash_button);
 		final String txHashString = tx.getHash().toString();

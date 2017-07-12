@@ -3,7 +3,7 @@ Litecoin'leriniz daima cebinizde sizinle olsun! Herhangi bir QR kodunu okuyarak 
 İŞLEVLERİ:
 
 • Hiçbir oturuma, web ya da bulut hizmetine gerek yoktur. Bu cüzdan merkezsiz ve eşten eşedir.
-• Litecoin meblağlarının LTC ve mLTC olarak gösterilmesi.
+• Litecoin meblağlarının SXC ve mSXC olarak gösterilmesi.
 • Dövizlere ve dövizlerden dönüştürme.
 • NFC, QR kodu veya Litecoin bağlantıları ile Litecoin gönderir ve alır.
 • Sık kullanılan Litecoin adresleri için adres defteri içerir.

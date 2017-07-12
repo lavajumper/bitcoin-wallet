@@ -43,6 +43,10 @@ public class Configuration
     public static final String PREFS_KEY_CONNECTIVITY_NOTIFICATION = "connectivity_notification";
     public static final String PREFS_KEY_EXCHANGE_CURRENCY = "exchange_currency";
     public static final String PREFS_KEY_TRUSTED_PEER = "trusted_peer";
+    public static final String PREFS_KEY_TRUSTED_PEER2 = "trusted_peer2";
+    public static final String PREFS_KEY_TRUSTED_PEER3 = "trusted_peer3";
+    public static final String PREFS_KEY_TRUSTED_PEER4 = "trusted_peer4";
+
     public static final String PREFS_KEY_TRUSTED_PEER_ONLY = "trusted_peer_only";
     public static final String PREFS_KEY_DISCLAIMER = "disclaimer";
     public static final String PREFS_KEY_SELECTED_ADDRESS = "selected_address";

@@ -77,6 +77,7 @@ import com.google.bitcoin.core.StoredBlock;
 import com.google.bitcoin.core.Transaction;
 import com.google.bitcoin.core.TransactionConfidence.ConfidenceType;
 import com.google.bitcoin.core.Wallet;
+//import org.sexcoin.SexcoinWallet;
 import com.google.bitcoin.core.Wallet.BalanceType;
 import com.google.bitcoin.core.WalletEventListener;
 import org.sexcoin.SexcoinDnsDiscovery;
@@ -417,6 +418,7 @@ public class BlockchainServiceImpl extends android.app.Service implements Blockc
 				peerGroup.addPeerDiscovery(new PeerDiscovery()
 				{
 					private final PeerDiscovery normalPeerDiscovery = new SexcoinDnsDiscovery(Constants.NETWORK_PARAMETERS);
+					//private final PeerDiscovery ircPeerDiscovery = new SexcoinIrcDiscovery("#sexcoin00");
                     private PeerDiscovery dbPeerDiscovery = null;
 
 					@Override
@@ -427,13 +429,11 @@ public class BlockchainServiceImpl extends android.app.Service implements Blockc
                                     getFileStreamPath("sexcoin.peerdb"), peerGroup);
                         } catch(IllegalStateException e) {
                             // This can happen in the guts of bitcoinj
-                            Log.i(TAG, "IllegalStateException in bitcoinj: " + e.getMessage());
+                            Log.i(TAG, "IllegalStateException in sexcoinj: " + e.getMessage());
                         }
 						final List<InetSocketAddress> peers = new LinkedList<InetSocketAddress>();
 
 						boolean needsTrimPeersWorkaround = false;
-
-
 
 						if (hasTrustedPeer)
 						{
