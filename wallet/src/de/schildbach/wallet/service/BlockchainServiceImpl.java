@@ -460,7 +460,7 @@ public class BlockchainServiceImpl extends android.app.Service implements Blockc
 
 						if (!connectTrustedPeerOnly) {
 							peers.addAll(Arrays.asList(normalPeerDiscovery.getPeers(10, TimeUnit.SECONDS)));
-                            if(dbPeerDiscovery != null)
+                            if(dbPeerDiscovery != null) 
 								peers.addAll(Arrays.asList(dbPeerDiscovery.getPeers(10, TimeUnit.SECONDS)));
                                 //peers.addAll(Arrays.asList(dbPeerDiscovery.getPeers(1, TimeUnit.SECONDS)));
                         }
