@@ -911,7 +911,8 @@ public final class SendCoinsFragment extends SherlockFragment
             for(TransactionOutput o : baseSendRequest.tx.getOutputs()) {
                 Log.i(TAG, "\t" + o.getValue().toString());
             }
-            amount = amount.subtract(Constants.MIN_TX_FEE);
+
+            amount = amount.subtract(Constants.MIN_TX_FEE.multiply(BigInteger.valueOf(10)));
             baseSendRequest = SendRequest.to(validatedAddress.address, amount, getAgeVerificationFlags() + 1);
             Log.i(TAG, "After refactoring: ");
             for(TransactionOutput o : baseSendRequest.tx.getOutputs()) {

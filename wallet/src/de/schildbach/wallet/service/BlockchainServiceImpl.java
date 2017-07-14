@@ -383,6 +383,7 @@ public class BlockchainServiceImpl extends android.app.Service implements Blockc
 		@SuppressLint("Wakelock")
 		private void check()
 		{
+			//Log.w(TAG,"-------------check called.------------------");
 			final Wallet wallet = application.getWallet();
 			final boolean hasEverything = hasConnectivity && hasStorage;
 
@@ -427,6 +428,7 @@ public class BlockchainServiceImpl extends android.app.Service implements Blockc
                         try {
                             dbPeerDiscovery = new SexcoinPeerDBDiscovery(Constants.NETWORK_PARAMETERS,
                                     getFileStreamPath("sexcoin.peerdb"), peerGroup);
+							//Log.w(TAG,"Creating new PeerDBDiscovery...");
                         } catch(IllegalStateException e) {
                             // This can happen in the guts of bitcoinj
                             Log.i(TAG, "IllegalStateException in sexcoinj: " + e.getMessage());
@@ -457,9 +459,10 @@ public class BlockchainServiceImpl extends android.app.Service implements Blockc
 						}
 
 						if (!connectTrustedPeerOnly) {
-							peers.addAll(Arrays.asList(normalPeerDiscovery.getPeers(timeoutValue, timeoutUnit)));
+							peers.addAll(Arrays.asList(normalPeerDiscovery.getPeers(10, TimeUnit.SECONDS)));
                             if(dbPeerDiscovery != null)
-                                peers.addAll(Arrays.asList(dbPeerDiscovery.getPeers(1, TimeUnit.SECONDS)));
+								peers.addAll(Arrays.asList(dbPeerDiscovery.getPeers(10, TimeUnit.SECONDS)));
+                                //peers.addAll(Arrays.asList(dbPeerDiscovery.getPeers(1, TimeUnit.SECONDS)));
                         }
 
 						// workaround because PeerGroup will shuffle peers
