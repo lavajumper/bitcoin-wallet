@@ -17,7 +17,7 @@ This project contains several sub-projects:
      your Android app.
 
 
-The wallet project relies on __sexcoinj-0.12.5-SNAPSHOT__. This is NOT in a maven repository. The easiest way to integrate is to pull the source for sexcoinj (https://github.com/lavajumper/sexcoinj-scrypt), and run:
+The wallet project relies on __sexcoinj-0.12.5-SNAPSHOT__. This is NOT in a maven repository. The easiest way to integrate is to pull the source for sexcoinj (https://github.com/lavajumper/sexcoinj), and run:
 
 `mvn clean install -Dmaven.test.skip=true`
 
@@ -28,6 +28,6 @@ You can then build all sub-projects at once using Maven:
 `mvn clean install`
 
 
-The source for sexcoinj is https://github.com/lavajumper/sexcoinj-scrypt, __use the sexcoin branch__
+The source for sexcoinj is https://github.com/lavajumper/sexcoinj, __use the sexcoin branch__
 
 *Note for devs who don't LIVE in AndroidLand*: __Intellij IDE__ was the way to go for this project.
