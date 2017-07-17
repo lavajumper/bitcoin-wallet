@@ -64,6 +64,7 @@ public abstract class HttpGetThread extends Thread
             Log.d("HTTPGetThread", "Requesting " + url);
 			connection = (HttpURLConnection) new URL(url).openConnection();
 
+			/*
 			if (connection instanceof HttpsURLConnection)
 			{
 				final InputStream keystoreInputStream = assets.open("ssl-keystore-sexcoin");
@@ -80,7 +81,7 @@ public abstract class HttpGetThread extends Thread
 
 				((HttpsURLConnection) connection).setSSLSocketFactory(sslContext.getSocketFactory());
 			}
-
+			*/
 			connection.setConnectTimeout(Constants.HTTP_TIMEOUT_MS);
 			connection.setReadTimeout(Constants.HTTP_TIMEOUT_MS);
 			connection.setRequestProperty("Accept-Charset", "utf-8");
