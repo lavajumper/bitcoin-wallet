@@ -5,12 +5,12 @@
 
 <![CDATA[
 		<p>
-			Bovenin wordt uw huidige saldo in bitcoin en nationale valuta weergegeven.
+			Bovenin wordt uw huidige saldo in sexcoin en nationale valuta weergegeven.
 			Raak aan om naar de lijst van nationale valuta\'s te gaan en raak één van deze valuta\'s aan om deze als standaard te selecteren.
 		</p>
 
 		<p>
-			De QR code aan de rechterkant bevat een bitcoin adres en kan door anderen gebruikt worden om te scannen.
+			De QR code aan de rechterkant bevat een sexcoin adres en kan door anderen gebruikt worden om te scannen.
 			Raak de QR code aan om deze groter weer te geven.
 		</p>
 
@@ -21,7 +21,7 @@
 		</p>
 
 		<p>
-			U kunt bitcoin verzenden of verzoeken door op de knoppen van de actiebalk te drukken.
+			U kunt sexcoin verzenden of verzoeken door op de knoppen van de actiebalk te drukken.
 			Meer opties zijn aanwezig in het opties menu.
 		</p>
 	]]>
@@ -29,18 +29,18 @@
   <string name="help_request_coins">
 <![CDATA[
 		<p>
-			Deze dialoog kunt u gebruiken om bitcoins te verzoeken van iemand (die ook Bitcoin Wallet of een andere Bitcoin client geinstalleerd heeft).
+			Deze dialoog kunt u gebruiken om sexcoins te verzoeken van iemand (die ook Sexcoin Wallet of een andere Sexcoin client geinstalleerd heeft).
 		</p>
 		<p>
-			Eerst vul je een hoeveelheid bitcoin in die je wilt ontvangen.
+			Eerst vul je een hoeveelheid sexcoin in die je wilt ontvangen.
 		</p>
 		<p>
 			Daarna kan de andere persoon de QR-code scannen.
 			Of u kunt uw verzoek met de \'delen\'-knop versturen.
-			De andere persoon dient op de Bitcoin URL te klikken.
+			De andere persoon dient op de Sexcoin URL te klikken.
 		</p>
 		<p>
-			De andere persoon zal nu de dialoog te zien krijgen voor het verzenden van Bitcoins waarin alle velden ingevuld zijn.
+			De andere persoon zal nu de dialoog te zien krijgen voor het verzenden van Sexcoins waarin alle velden ingevuld zijn.
 			Als er akkoord gegaan wordt met de transactie hoeft deze alleen nog verzonden te worden.
 		</p>
 	]]>
@@ -48,16 +48,16 @@
   <string name="help_send_coins">
 <![CDATA[
 		<p>
-			U heeft het dialoog gestart om Bitcoins te verzenden.
-			U bent hier terecht gekomen via het hoofd scherm of door het klikken op een Bitcoin URL in uw browser.
+			U heeft het dialoog gestart om Sexcoins te verzenden.
+			U bent hier terecht gekomen via het hoofd scherm of door het klikken op een Sexcoin URL in uw browser.
 		</p>
 		<p>
-			Als eerste geeft u het Bitcoin adres in waar naar u wilt betalen.
+			Als eerste geeft u het Sexcoin adres in waar naar u wilt betalen.
 			Het adres zal automatisch aangevuld worden als deze bekend is in het adresboek.
-			U kan ook QR-codes scannen met een Bitcoin adres of verzoek door op de QR knop in de actie-balk te klikken.
+			U kan ook QR-codes scannen met een Sexcoin adres of verzoek door op de QR knop in de actie-balk te klikken.
 		</p>
 		<p>
-			Vervolgens kunt u zien hoe veel Bitcoins op dit moment beschikbaar zijn voor besteding.
+			Vervolgens kunt u zien hoe veel Sexcoins op dit moment beschikbaar zijn voor besteding.
 			Het eventuele verschil met het saldo van het hoofdscherm is nog onbevestigd en kan dus nog niet worden uitgegeven.
 		</p>
 		<p>
@@ -65,7 +65,7 @@
 		</p>
 		<p>
 			U kunt ook transacties ingeven terwijl u offline bent.
-			Deze transacties zullen verzonden worden zodra Bitcoin Wallet de volgende keer gestart wordt en online is.
+			Deze transacties zullen verzonden worden zodra Sexcoin Wallet de volgende keer gestart wordt en online is.
 			Als u wenst dat uw transacties zo snel mogelijk verwerkt worden is het verstandig om verbonden te zijn met een zo goed mogelijke internet verbinding (d.w.z. op WLAN).
 		</p>
 		<p>
@@ -78,20 +78,20 @@
   <string name="help_safety">
 <![CDATA[
 		<p>
-			<b>Enkele woorden over de veiligheid van uw Bitcoins:</b>
+			<b>Enkele woorden over de veiligheid van uw Sexcoins:</b>
 		</p>
 		<p>
-			Bitcoins in Bitcoin Wallet zijn opgeslagen op het apparaat.
-			<b>Als u uw apparaat verliest zullen deze Bitcoins ook verloren zijn.</b>
+			Sexcoins in Sexcoin Wallet zijn opgeslagen op het apparaat.
+			<b>Als u uw apparaat verliest zullen deze Sexcoins ook verloren zijn.</b>
 			Vergelijkbaar met het verlies van uw portemonnee.
 		</p>
 		<p>
-			<b>Voor het verwijderen van Bitcoin Wallet</b> (of verschonen van app data of wipe van het apparaat), <b>dient u de bitcoins over te zetten naar een andere wallet.</b>.
-			Overblijvende Bitcoins zullen verloren gaan.
+			<b>Voor het verwijderen van Sexcoin Wallet</b> (of verschonen van app data of wipe van het apparaat), <b>dient u de sexcoins over te zetten naar een andere wallet.</b>.
+			Overblijvende Sexcoins zullen verloren gaan.
 		</p>
 		<p>
-			<b>Transacties met Bitcoin kunnen niet ongedaan gemaakt worden</b>.
-			Als u Bitcoins naar een onbekend adres stuurt zijn ze onmogelijk terug te krijgen tenzij u de eigenaar kent en deze bereid is de Bitcoins terug te sturen.
+			<b>Transacties met Sexcoin kunnen niet ongedaan gemaakt worden</b>.
+			Als u Sexcoins naar een onbekend adres stuurt zijn ze onmogelijk terug te krijgen tenzij u de eigenaar kent en deze bereid is de Sexcoins terug te sturen.
 		</p>
 		<p>
 			<b>Houd uw Android apparaat veilig!</b>
@@ -100,7 +100,7 @@
 		</p>
 		<p>
 			Houd het risico laag!
-			<b>Gebruik Bitcoin Wallet alleen voor kleine bedragen</b> voor dagelijks gebruik.
+			<b>Gebruik Sexcoin Wallet alleen voor kleine bedragen</b> voor dagelijks gebruik.
 		</p>
 	]]>
 	</string>
@@ -110,13 +110,13 @@
             <b>Technische opmerkingen:</b>
         </p>
         <p>
-            Als een SPV/light portemonnee, Bitcoin Wallet volgt de keten van de meeste \"proof-of-work\" (soms ook genaamd \"longest chain\", de \"winning chain\" of de \"Bitcoin blockchain\").
+            Als een SPV/light portemonnee, Sexcoin Wallet volgt de keten van de meeste \"proof-of-work\" (soms ook genaamd \"longest chain\", de \"winning chain\" of de \"Sexcoin blockchain\").
             Je kan alleen inkomende betalingen ontvangen als je de mogelijkheid hebt om op die keten te kunnen betalen.
-            Er zijn geen garanties voor Bitcoins of minderheidsketens (\"minority chains\"), dat zijn keten met minder \"proof-of-work\".
+            Er zijn geen garanties voor Sexcoins of minderheidsketens (\"minority chains\"), dat zijn keten met minder \"proof-of-work\".
         </p>
         <p>
             In het verleden zijn deze minderheidsketens zeer snel irrelevant geworden.
-            Als je de wens hebt om toch een minderheidsketen te volgen, wordt geadviseerd om de \"trusted peer\" feature te gebruiken om exclusief te verbinden met een implementatie van bitcoind die forceert om die gewenste keten te volgen.
+            Als je de wens hebt om toch een minderheidsketen te volgen, wordt geadviseerd om de \"trusted peer\" feature te gebruiken om exclusief te verbinden met een implementatie van sexcoind die forceert om die gewenste keten te volgen.
             Als het netwerk tussen je portemonnee en je trusted peer niet te vertrouwen is, gebruik een VPN voor de authenticatie van die verbinding.
         </p>
     ]]>

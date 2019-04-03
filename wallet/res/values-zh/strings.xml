@@ -3,10 +3,10 @@
   <string name="toast_wallet_reset">钱包已重置，\n 需要一些时间才能恢复</string>
   <string name="wallet_disclaimer_fragment_remind_safety">使用时请您自担风险。请务必阅读 &lt;u&gt;安全提示&lt;/u&gt;.</string>
   <string name="wallet_disclaimer_fragment_remind_backup">你需要 &lt;u&gt;备份你的钱包&lt;/u&gt;!</string>
-  <string name="blockchain_state_progress_hours">%1$s, %2$d 小时延迟</string>
-  <string name="blockchain_state_progress_days">%1$s, %2$d 天延迟</string>
-  <string name="blockchain_state_progress_weeks">%1$s, %2$d 星期延迟</string>
-  <string name="blockchain_state_progress_months">%1$s, %2$d 月延迟</string>
+  <string name="blockchain_state_progress_hours">%1$s, %2$d 小时延迟 [%3$d]</string>
+  <string name="blockchain_state_progress_days">%1$s, %2$d 天延迟 [%3$d]</string>
+  <string name="blockchain_state_progress_weeks">%1$s, %2$d 星期延迟 [%3$d]</string>
+  <string name="blockchain_state_progress_months">%1$s, %2$d 月延迟 [%3$d]</string>
   <string name="blockchain_state_progress_downloading">与网络同步</string>
   <string name="blockchain_state_progress_stalled">同步已停滞</string>
   <string name="blockchain_state_progress_problem_storage">同步：存储出现了问题</string>
@@ -39,7 +39,7 @@
   <string name="wallet_options_encrypt_keys_change">更改支付 PIN 码</string>
   <string name="wallet_options_safety">安全及风险提示</string>
   <string name="wallet_options_donate">技巧 / 捐助</string>
-  <string name="wallet_donate_address_label">向比特币钱包 (Bitcoin Wallet) 捐款</string>
+  <string name="wallet_donate_address_label">向比特币钱包 (Sexcoin Wallet) 捐款</string>
   <string name="wallet_low_storage_dialog_title">内部设备存储空间不足！</string>
   <string name="wallet_low_storage_dialog_msg">比特币钱包使用内部存储设备来记录交易和区块。如果存储空间不足，它将会停止工作，并且您的比特币将存在风险！\n您是否想要打开应用程序管理器，以卸载掉一些不需要的应用程序？</string>
   <string name="wallet_low_storage_dialog_button_apps">管理应用程序</string>
@@ -331,4 +331,18 @@
   <string name="error_parse">解析错误: %s</string>
   <string name="error_http">HTTP 错误 %1$s:\n%2$s</string>
   <string name="error_bluetooth">蓝牙连接错误：%1$s</string>
+    <string name="send_coins_agev_radio_none">None</string>
+    <string name="send_coins_agev_consent">Over age of Consent</string>
+    <string name="send_coins_agev_over18">Over 18</string>
+    <string name="send_coins_agev_over21">Over 21</string>
+    <string name="send_coins_agev_header_hint">Set age verification for this transaction</string>
+    <string name="send_coins_agev_consent_hint">By clicking this you certify that you are over the age of consent
+    </string>
+    <string name="send_coins_agev_over18_hint">By setting this you Certify that you are at or over 18 years of age
+    </string>
+    <string name="send_coins_agev_over21_hint">By setting this you Certify that you are at or over 21 years of age
+    </string>
+    <string name="transaction_row_agev_text">AV: %1$s</string>
+    <string name="wallet_options_disconnect">断开</string>
+    <string name="send_coins_age_verification_header">年龄验证</string>
 </resources>

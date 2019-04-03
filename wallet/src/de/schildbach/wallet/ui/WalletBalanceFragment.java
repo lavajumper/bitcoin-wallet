@@ -84,7 +84,7 @@ public final class WalletBalanceFragment extends Fragment {
     private static final int ID_RATE_LOADER = 1;
     private static final int ID_BLOCKCHAIN_STATE_LOADER = 2;
 
-    private static final long BLOCKCHAIN_UPTODATE_THRESHOLD_MS = DateUtils.HOUR_IN_MILLIS;
+    private static final long BLOCKCHAIN_UPTODATE_THRESHOLD_MS = 15 * DateUtils.MINUTE_IN_MILLIS; // 15 minutes
     private static final Coin SOME_BALANCE_THRESHOLD = Coin.COIN.multiply(100);
     private static final Coin TOO_MUCH_BALANCE_THRESHOLD = Coin.COIN.multiply(10000);
 
@@ -220,16 +220,16 @@ public final class WalletBalanceFragment extends Fragment {
 
             if (blockchainLag < 2 * DateUtils.DAY_IN_MILLIS) {
                 final long hours = blockchainLag / DateUtils.HOUR_IN_MILLIS;
-                viewProgress.setText(getString(R.string.blockchain_state_progress_hours, downloading, hours));
+                viewProgress.setText(getString(R.string.blockchain_state_progress_hours, downloading, hours, blockchainState.bestChainHeight));
             } else if (blockchainLag < 2 * DateUtils.WEEK_IN_MILLIS) {
                 final long days = blockchainLag / DateUtils.DAY_IN_MILLIS;
-                viewProgress.setText(getString(R.string.blockchain_state_progress_days, downloading, days));
+                viewProgress.setText(getString(R.string.blockchain_state_progress_days, downloading, days, blockchainState.bestChainHeight));
             } else if (blockchainLag < 90 * DateUtils.DAY_IN_MILLIS) {
                 final long weeks = blockchainLag / DateUtils.WEEK_IN_MILLIS;
-                viewProgress.setText(getString(R.string.blockchain_state_progress_weeks, downloading, weeks));
+                viewProgress.setText(getString(R.string.blockchain_state_progress_weeks, downloading, weeks, blockchainState.bestChainHeight));
             } else {
                 final long months = blockchainLag / (30 * DateUtils.DAY_IN_MILLIS);
-                viewProgress.setText(getString(R.string.blockchain_state_progress_months, downloading, months));
+                viewProgress.setText(getString(R.string.blockchain_state_progress_months, downloading, months, blockchainState.bestChainHeight));
             }
         } else {
             showProgress = false;

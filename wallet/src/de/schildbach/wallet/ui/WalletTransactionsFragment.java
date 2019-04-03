@@ -340,10 +340,11 @@ public class WalletTransactionsFragment extends Fragment implements LoaderCallba
                 case R.id.wallet_transactions_context_browse:
                     if (!txRotation) {
                         final String txHash = tx.getHashAsString();
-                        final Uri blockExplorerUri = Uri.parse(Constants.EXPLORE_BASE_URL_TX);
+                        final Uri blockExplorerUri = Uri.parse(Constants.EXPLORE_BASE_URL_TX + txHash);
+                        //final Uri blockExplorerUri = new Uri.Builder(Constants.EXPLORE_BASE_URL_TX)
                         log.info("Viewing transaction {} on {}", txHash, blockExplorerUri);
                         startActivity(
-                                new Intent(Intent.ACTION_VIEW, Uri.withAppendedPath(blockExplorerUri, txHash)));
+                                new Intent(Intent.ACTION_VIEW, blockExplorerUri));
                     } else {
                         startActivity(new Intent(Intent.ACTION_VIEW, KEY_ROTATION_URI));
                     }
@@ -537,7 +538,7 @@ public class WalletTransactionsFragment extends Fragment implements LoaderCallba
 
                 if ((direction == Direction.RECEIVED && !sent && !isInternal) || direction == null
                         || (direction == Direction.SENT && sent && !isInternal))
-                    filteredTransactions.add(tx);
+                    filteredTransactions.add((Transaction)tx);
             }
 
             Collections.sort(filteredTransactions, TRANSACTION_COMPARATOR);

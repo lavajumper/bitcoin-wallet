@@ -19,6 +19,7 @@ package de.schildbach.wallet.ui.preference;
 
 import java.net.InetAddress;
 
+import de.schildbach.wallet.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -125,29 +126,44 @@ public final class SettingsFragment extends PreferenceFragment implements OnPref
     }
 
     private void updateTrustedPeer() {
-        final String trustedPeer = config.getTrustedPeerHost();
+        String address = config.getTrustedPeerHost();
+        int aport = Constants.NETWORK_PARAMETERS.getPort();
 
-        if (trustedPeer == null) {
+        if(address == null){
             trustedPeerPreference.setSummary(R.string.preferences_trusted_peer_summary);
             trustedPeerOnlyPreference.setEnabled(false);
-        } else {
-            trustedPeerPreference.setSummary(
-                    trustedPeer + "\n[" + getString(R.string.preferences_trusted_peer_resolve_progress) + "]");
-            trustedPeerOnlyPreference.setEnabled(true);
-
-            new ResolveDnsTask(backgroundHandler) {
-                @Override
-                protected void onSuccess(final InetAddress address) {
-                    trustedPeerPreference.setSummary(trustedPeer);
-                    log.info("trusted peer '{}' resolved to {}", trustedPeer, address);
-                }
-
-                @Override
-                protected void onUnknownHost() {
-                    trustedPeerPreference.setSummary(trustedPeer + "\n["
-                            + getString(R.string.preferences_trusted_peer_resolve_unknown_host) + "]");
-                }
-            }.resolve(trustedPeer);
+            return;
         }
+
+        if(address.contains(":")){
+            String[]hostID=address.split(":");
+            address = hostID[0];
+            aport = Integer.valueOf(hostID[1]);
+       }
+       final String trustedPeer = address;
+       final int port = aport;
+
+       trustedPeerPreference.setSummary(
+               trustedPeer + "\n[" + getString(R.string.preferences_trusted_peer_resolve_progress) + "]");
+       trustedPeerOnlyPreference.setEnabled(true);
+
+       new ResolveDnsTask(backgroundHandler) {
+           @Override
+           protected void onSuccess(final InetAddress address) {
+               if(port == Constants.NETWORK_PARAMETERS.getPort()) {
+                   trustedPeerPreference.setSummary(trustedPeer);
+               }else{
+                   trustedPeerPreference.setSummary(trustedPeer + ":" + port);
+               }
+               log.info("trusted peer '{}' resolved to {}:{}", trustedPeer, address, port);
+           }
+
+           @Override
+           protected void onUnknownHost() {
+               trustedPeerPreference.setSummary(trustedPeer + "\n["
+                       + getString(R.string.preferences_trusted_peer_resolve_unknown_host) + "]");
+           }
+       }.resolve(trustedPeer);
     }
+
 }

@@ -4,10 +4,10 @@
 	<string name="toast_wallet_reset">تم إعادة تعيين المحفظة،\nسوف يستغرق بعض الوقت لاستعادة الوضع</string>
 	<string name="wallet_disclaimer_fragment_remind_safety">استخدم على مسؤوليتك الخاصة. يرجى قراءة ملاحظات السلامة.</string>
 	<string name="wallet_disclaimer_fragment_remind_backup">يجب عليك القيام بإجراء حفظ احتياطي لمحفظتك!</string>
-	<string name="blockchain_state_progress_hours">متأخر %1$s, %2$d ساعات</string>
-	<string name="blockchain_state_progress_days">متأخر %1$s, %2$d أيام</string>
-	<string name="blockchain_state_progress_weeks">متأخر %1$s, %2$d أسابيع</string>
-	<string name="blockchain_state_progress_months">متأخر %1$s, %2$d أشهر</string>
+	<string name="blockchain_state_progress_hours">[%3$d]متأخر %1$s, %2$d ساعات</string>
+	<string name="blockchain_state_progress_days">[%3$d]متأخر %1$s, %2$d أيام</string>
+	<string name="blockchain_state_progress_weeks">متأخر %1$s, %2$d أسابيع[%3$d]</string>
+	<string name="blockchain_state_progress_months">متأخر %1$s, %2$d أشهر[%3$d]</string>
 	<string name="blockchain_state_progress_downloading">مزامنة البيانات مع الشبكة</string>
 	<string name="blockchain_state_progress_stalled">مزامنة البيانات متوقفة</string>
 	<string name="blockchain_state_progress_problem_storage">مزامنة بيانات: توجد مشكلة بوحدة التخزين</string>
@@ -204,5 +204,20 @@
 	<!-- generic error messages -->
 	<string name="error_io">خطأ مدخلات/مخرجات: %s</string>
 	<string name="error_http">خطأ HTTP %1$s:\n%2$s</string>
+    <string name="send_coins_agev_radio_none">None</string>
+    <string name="send_coins_agev_consent">Over age of Consent</string>
+    <string name="send_coins_agev_over18">Over 18</string>
+    <string name="send_coins_agev_over21">Over 21</string>
+    <string name="send_coins_agev_header_hint">Set age verification for this transaction</string>
+    <string name="send_coins_agev_consent_hint">By clicking this you certify that you are over the age of consent
+    </string>
+    <string name="send_coins_agev_over18_hint">By setting this you Certify that you are at or over 18 years of age
+    </string>
+    <string name="send_coins_agev_over21_hint">By setting this you Certify that you are at or over 21 years of age
+    </string>
+    <string name="transaction_row_agev_text">AV: %1$s</string>
+    <string name="appwidget_wallet_balance_title">Sexcoin التوازن</string>
+    <string name="wallet_options_disconnect">قطع الاتصال</string>
+    <string name="send_coins_age_verification_header">تاكيد السن</string>
 
 </resources>

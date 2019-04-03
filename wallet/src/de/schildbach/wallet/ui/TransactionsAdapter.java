@@ -26,12 +26,8 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
-import org.bitcoinj.core.Address;
-import org.bitcoinj.core.Coin;
-import org.bitcoinj.core.Sha256Hash;
-import org.bitcoinj.core.Transaction;
+import org.bitcoinj.core.*;
 import org.bitcoinj.core.Transaction.Purpose;
-import org.bitcoinj.core.TransactionConfidence;
 import org.bitcoinj.core.TransactionConfidence.ConfidenceType;
 import org.bitcoinj.utils.ExchangeRate;
 import org.bitcoinj.utils.MonetaryFormat;
@@ -77,7 +73,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Nullable
     private final OnClickListener onClickListener;
 
-    private final List<Transaction> transactions = new ArrayList<Transaction>();
+    private final List<Transaction> transactions = new ArrayList<>();
     private MonetaryFormat format;
     private Warning warning = null;
 
@@ -322,6 +318,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         private final View extendMessageView;
         private final TextView messageView;
         private final ImageButton menuView;
+        private final TextView ageVerificationView;
 
         private TransactionViewHolder(final View itemView) {
             super(itemView);
@@ -346,6 +343,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             extendMessageView = itemView.findViewById(R.id.transaction_row_extend_message);
             messageView = (TextView) itemView.findViewById(R.id.transaction_row_message);
             menuView = (ImageButton) itemView.findViewById(R.id.transaction_row_menu);
+            ageVerificationView = (TextView) itemView.findViewById(R.id.transaction_row_agev_text);
         }
 
         private void bind(final Transaction tx) {
@@ -360,6 +358,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             final Transaction.Purpose purpose = tx.getPurpose();
             final Coin fee = tx.getFee();
             final String[] memo = Formats.sanitizeMemo(tx.getMemo());
+            final long txVersion = tx.getVersion();
 
             TransactionCacheEntry txCache = transactionCache.get(tx.getHash());
             if (txCache == null) {
@@ -555,7 +554,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 extendMessageView.setVisibility(View.VISIBLE);
                 messageView.setText(R.string.transaction_row_message_received_direct);
                 messageView.setTextColor(colorInsignificant);
-            } else if (!txCache.sent && txCache.value.compareTo(Transaction.MIN_NONDUST_OUTPUT) < 0) {
+            } else if (!txCache.sent && txCache.value.compareTo(SexcoinTransaction.MIN_NONDUST_OUTPUT) < 0) {
                 extendMessageView.setVisibility(View.VISIBLE);
                 messageView.setText(R.string.transaction_row_message_received_dust);
                 messageView.setTextColor(colorInsignificant);
@@ -591,6 +590,21 @@ public class TransactionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 messageView.setTextColor(colorInsignificant);
                 messageView.setSingleLine(!itemView.isActivated());
             }
+
+            // ageVerificaton
+            if( (txVersion & TransactionFlags.TX_F_IS_OVER_CONSENT) == TransactionFlags.TX_F_IS_OVER_CONSENT) {
+                ageVerificationView.setText(context.getResources().getString(R.string.transaction_row_agev_text,"Consent+"));
+                extendFeeView.setVisibility(View.VISIBLE);
+            }else if( (txVersion & TransactionFlags.TX_F_IS_OVER_18) == TransactionFlags.TX_F_IS_OVER_18) {
+                ageVerificationView.setText(context.getResources().getString(R.string.transaction_row_agev_text,"18+"));
+                extendFeeView.setVisibility(View.VISIBLE);
+            }else if( (txVersion & TransactionFlags.TX_F_IS_OVER_21) == TransactionFlags.TX_F_IS_OVER_21) {
+                ageVerificationView.setText(context.getResources().getString(R.string.transaction_row_agev_text,"21+"));
+                extendFeeView.setVisibility(View.VISIBLE);
+            }else {
+                ageVerificationView.setText(context.getResources().getString(R.string.transaction_row_agev_text,"None"));
+            }
+            ageVerificationView.setVisibility(View.VISIBLE);
 
             // menu
             menuView.setVisibility(itemView.isActivated() ? View.VISIBLE : View.GONE);

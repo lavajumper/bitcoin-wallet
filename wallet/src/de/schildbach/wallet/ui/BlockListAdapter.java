@@ -28,7 +28,7 @@ import org.bitcoinj.core.Address;
 import org.bitcoinj.core.Block;
 import org.bitcoinj.core.Coin;
 import org.bitcoinj.core.StoredBlock;
-import org.bitcoinj.core.Transaction;
+import org.bitcoinj.core.SexcoinTransaction;
 import org.bitcoinj.core.Transaction.Purpose;
 import org.bitcoinj.utils.MonetaryFormat;
 import org.bitcoinj.wallet.Wallet;
@@ -64,7 +64,7 @@ public class BlockListAdapter extends RecyclerView.Adapter<BlockListAdapter.Bloc
     private MonetaryFormat format;
 
     private final List<StoredBlock> blocks = new ArrayList<StoredBlock>();
-    private Set<Transaction> transactions;
+    private Set<SexcoinTransaction> transactions;
 
     private final String textCoinBase;
     private final String textInternal;
@@ -107,7 +107,7 @@ public class BlockListAdapter extends RecyclerView.Adapter<BlockListAdapter.Bloc
         notifyDataSetChanged();
     }
 
-    public void replaceTransactions(final Set<Transaction> transactions) {
+    public void replaceTransactions(final Set<SexcoinTransaction> transactions) {
         this.transactions = transactions;
 
         notifyDataSetChanged();
@@ -158,7 +158,7 @@ public class BlockListAdapter extends RecyclerView.Adapter<BlockListAdapter.Bloc
         int iTransactionView = 0;
 
         if (transactions != null) {
-            for (final Transaction tx : transactions) {
+            for (final SexcoinTransaction tx : transactions) {
                 if (tx.getAppearsInHashes().containsKey(header.getHash())) {
                     final View view;
                     if (iTransactionView < transactionChildCount) {
@@ -189,7 +189,7 @@ public class BlockListAdapter extends RecyclerView.Adapter<BlockListAdapter.Bloc
         }
     }
 
-    public void bindView(final View row, final Transaction tx) {
+    public void bindView(final View row, final SexcoinTransaction tx) {
         final boolean isCoinBase = tx.isCoinBase();
         final boolean isInternal = tx.getPurpose() == Purpose.KEY_ROTATION;
 
@@ -259,10 +259,10 @@ public class BlockListAdapter extends RecyclerView.Adapter<BlockListAdapter.Bloc
     }
 
     public final boolean isMiningRewardHalvingPoint(final StoredBlock storedPrev) {
-        return ((storedPrev.getHeight() + 1) % 210000) == 0;
+        return ((storedPrev.getHeight() + 1) % 600000) == 0;
     }
 
     public final boolean isDifficultyTransitionPoint(final StoredBlock storedPrev) {
-        return ((storedPrev.getHeight() + 1) % Constants.NETWORK_PARAMETERS.getInterval()) == 0;
+        return ((storedPrev.getHeight() + 1) % Constants.NETWORK_PARAMETERS.getInterval(storedPrev.getHeight() + 1)) == 0;
     }
 }

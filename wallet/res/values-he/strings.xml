@@ -3,10 +3,10 @@
   <string name="toast_wallet_reset">הארנק אופס, התאוששת תקח זמן מה.</string>
   <string name="wallet_disclaimer_fragment_remind_safety">השימוש באחריותך, קרא את הוראות השימוש</string>
   <string name="wallet_disclaimer_fragment_remind_backup">אתה צריך &lt;u&gt;לגבות את הארנק שלך&lt;/u&gt;!</string>
-  <string name="blockchain_state_progress_hours">%1$s, %2$d שעות איחור</string>
-  <string name="blockchain_state_progress_days">%1$s, %2$d ימי איחור</string>
-  <string name="blockchain_state_progress_weeks">%1$s, %2$d שבועות איחור</string>
-  <string name="blockchain_state_progress_months">%1$s, %2$d חודשי איחור</string>
+  <string name="blockchain_state_progress_hours">"[%3$d]%1$s, %2$d שעות איחור "</string>
+  <string name="blockchain_state_progress_days">[%3$d]%1$s, %2$d ימי איחור</string>
+  <string name="blockchain_state_progress_weeks">[%3$d]%1$s, %2$d שבועות איחור </string>
+  <string name="blockchain_state_progress_months">[%3$d]%1$s, %2$d חודשי איחור</string>
   <string name="blockchain_state_progress_downloading">מסנכרן רשת</string>
   <string name="blockchain_state_progress_stalled">סינכרון עוקב</string>
   <string name="blockchain_state_progress_problem_storage">סינכרון: בעיית אחסון</string>
@@ -225,4 +225,19 @@
   <string name="error_parse">שגיאת ניתוח: %s</string>
   <string name="error_http">שגיאת HTTP %1$s:\n%2$s</string>
   <string name="error_bluetooth">שגיאת בלוטות\' %1$s</string>
+    <string name="send_coins_agev_radio_none">None</string>
+    <string name="send_coins_agev_consent">Over age of Consent</string>
+    <string name="send_coins_agev_over18">Over 18</string>
+    <string name="send_coins_agev_over21">Over 21</string>
+    <string name="send_coins_agev_header_hint">Set age verification for this transaction</string>
+    <string name="send_coins_agev_consent_hint">By clicking this you certify that you are over the age of consent
+    </string>
+    <string name="send_coins_agev_over18_hint">By setting this you Certify that you are at or over 18 years of age
+    </string>
+    <string name="send_coins_agev_over21_hint">By setting this you Certify that you are at or over 21 years of age
+    </string>
+    <string name="transaction_row_agev_text">AV: %1$s</string>
+    <string name="appwidget_wallet_balance_title">מאזן</string>
+    <string name="private_key_password">PIN</string>
+    <string name="send_coins_age_verification_header">אימות גיל</string>
 </resources>

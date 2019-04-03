@@ -9,13 +9,13 @@
     android:showDividers="middle" >
 
     <ImageView
-        android:id="@+id/widget_app_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="12dp"
-        android:contentDescription="@string/app_name"
-        android:src="@mipmap/ic_app_color_48dp"
-        android:visibility="gone" />
+            android:id="@+id/widget_app_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12dp"
+            android:contentDescription="@string/app_name"
+            android:src="@mipmap/ic_app_color_48dp"
+            android:visibility="visible"/>
 
     <LinearLayout
         android:id="@+id/widget_button_balance"
@@ -41,16 +41,16 @@
                 android:layout_gravity="center_vertical" />
 
             <TextView
-                android:id="@+id/widget_wallet_balance_btc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4sp"
-                android:ellipsize="none"
-                android:fadingEdge="horizontal"
-                android:fadingEdgeLength="12dp"
-                android:singleLine="true"
-                android:textColor="@color/fg_network_significant"
-                android:textSize="@dimen/font_size_large" />
+                    android:id="@+id/widget_wallet_balance_btc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4sp"
+                    android:ellipsize="none"
+                    android:fadingEdge="horizontal"
+                    android:fadingEdgeLength="12dp"
+                    android:singleLine="true"
+                    android:textColor="@color/fg_network_significant"
+                    android:textSize="@dimen/font_size_large"/>
         </LinearLayout>
 
         <TextView

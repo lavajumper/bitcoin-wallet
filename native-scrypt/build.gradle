@@ -2,11 +2,11 @@ apply plugin: 'com.android.model.native'
 
 model {
     android {
-        compileSdkVersion 15
+        compileSdkVersion 16
 
         ndk {
             moduleName 'scrypt'
-            abiFilters.addAll(['armeabi', 'armeabi-v7a', 'x86'])
+            abiFilters.addAll(['armeabi-v7a', 'x86'])
             CFlags.add('-DHAVE_CONFIG_H')
         }
 

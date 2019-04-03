@@ -352,7 +352,7 @@ public final class RequestCoinsFragment extends Fragment implements NfcAdapter.C
 
     private void handleCopy() {
         final Uri request = Uri.parse(determineBitcoinRequestStr(false));
-        clipboardManager.setPrimaryClip(ClipData.newRawUri("Dogecoin payment request", request));
+        clipboardManager.setPrimaryClip(ClipData.newRawUri("Sexcoin payment request", request));
         log.info("payment request copied to clipboard: {}", request);
         new Toast(activity).toast(R.string.request_coins_clipboard_msg);
     }
@@ -422,7 +422,7 @@ public final class RequestCoinsFragment extends Fragment implements NfcAdapter.C
             uri.append(amount == null && ownName == null ? '?' : '&');
             uri.append(Bluetooth.MAC_URI_PARAM).append('=').append(bluetoothMac);
         }
-        return uri.toString().replace(AbstractBitcoinNetParams.BITCOIN_SCHEME, "dogecoin");
+        return uri.toString().replace(AbstractBitcoinNetParams.BITCOIN_SCHEME, "sexcoin");
     }
 
     private byte[] determinePaymentRequest(final boolean includeBluetoothMac) {

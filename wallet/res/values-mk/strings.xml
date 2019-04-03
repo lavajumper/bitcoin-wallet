@@ -4,10 +4,10 @@
 	<string name="toast_wallet_reset">Паричникот е ресетиран,\nпотребно е време да се обнови</string>
 	<string name="wallet_disclaimer_fragment_remind_safety">Користи на сопствен ризик. Прочитај &lt;u&gt;safety notes&lt;/u&gt;.</string>
 	<string name="wallet_disclaimer_fragment_remind_backup">Треба да направиш &lt;u&gt;резервна копија на твојот паричник&lt;/u&gt;!</string>
-	<string name="blockchain_state_progress_hours">%1$s, %2$d часови заостанува</string>
-	<string name="blockchain_state_progress_days">%1$s, %2$d денови заостанува</string>
-	<string name="blockchain_state_progress_weeks">%1$s, %2$d недели заостанува</string>
-	<string name="blockchain_state_progress_months">%1$s, %2$d месеци заостанува</string>
+	<string name="blockchain_state_progress_hours">%1$s, %2$d часови заостанува [%3$d]</string>
+	<string name="blockchain_state_progress_days">%1$s, %2$d денови заостанува [%3$d]</string>
+	<string name="blockchain_state_progress_weeks">%1$s, %2$d недели заостанува [%3$d]</string>
+	<string name="blockchain_state_progress_months">%1$s, %2$d месеци заостанува [%3$d]</string>
 	<string name="blockchain_state_progress_downloading">Се синхронизира со мрежата</string>
 	<string name="blockchain_state_progress_stalled">Синхронизацијата застана</string>
 	<string name="blockchain_state_progress_problem_storage">Се синхронизира: Проблем со простор за складирање</string>
@@ -180,5 +180,23 @@
 	<string name="action_browse">Прегледај</string>
 	<string name="time_today">денес</string>
 	<string name="address_unlabeled">(без ознака)</string>
+    <string name="send_coins_agev_radio_none">None</string>
+    <string name="send_coins_agev_consent">Over age of Consent</string>
+    <string name="send_coins_agev_over18">Over 18</string>
+    <string name="send_coins_agev_over21">Over 21</string>
+    <string name="send_coins_agev_header_hint">Set age verification for this transaction</string>
+    <string name="send_coins_agev_consent_hint">By clicking this you certify that you are over the age of consent
+    </string>
+    <string name="send_coins_agev_over18_hint">By setting this you Certify that you are at or over 18 years of age
+    </string>
+    <string name="send_coins_agev_over21_hint">By setting this you Certify that you are at or over 21 years of age
+    </string>
+    <string name="transaction_row_agev_text">AV: %1$s</string>
+    <string name="send_coins_fragment_request_payment_request_failed_title">Преземањето потпис не успеа</string>
+    <string name="send_coins_fragment_request_payment_request_wrong_signature">Погрешен потпис!</string>
+    <string name="send_coins_fragment_direct_payment_enable">Испрати плаќање директно на примачот.</string>
+    <string name="appwidget_wallet_balance_title">Баланс на сексуален однос</string>
+    <string name="private_key_password">PIN</string>
+    <string name="send_coins_age_verification_header">Верификација на возраст</string>
 
 </resources>

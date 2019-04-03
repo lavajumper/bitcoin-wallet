@@ -2,10 +2,10 @@
 <resources>
   <string name="wallet_disclaimer_fragment_remind_safety">Χρησιμοποιήστε με δική σας ευθύνη. Διαβάστε τις &lt;u&gt;επισημάνσεις ασφάλειας&lt;/u&gt;.</string>
   <string name="wallet_disclaimer_fragment_remind_backup">Είναι ανάγκη να &lt;u&gt;πάρετε αντίγραφο ασφάλειας του πορτοφολιού σας&lt;/u&gt;!</string>
-  <string name="blockchain_state_progress_hours">Απομένουν %1$s, %2$d ώρες</string>
-  <string name="blockchain_state_progress_days">Απομένουν %1$s, %2$d μέρες</string>
-  <string name="blockchain_state_progress_weeks">Απομένουν %1$s, %2$d εβδομάδες</string>
-  <string name="blockchain_state_progress_months">Απομένουν %1$s, %2$d μήνες</string>
+  <string name="blockchain_state_progress_hours">Απομένουν %1$s, %2$d ώρες [%3$d]</string>
+  <string name="blockchain_state_progress_days">Απομένουν %1$s, %2$d μέρες [%3$d]</string>
+  <string name="blockchain_state_progress_weeks">Απομένουν %1$s, %2$d εβδομάδες [%3$d]</string>
+  <string name="blockchain_state_progress_months">Απομένουν %1$s, %2$d μήνες [%3$d]</string>
   <string name="blockchain_state_progress_downloading">Συγχρονισμός με το δίκτυο</string>
   <string name="blockchain_state_progress_stalled">Συγχρονισμός σε αναστολή</string>
   <string name="blockchain_state_progress_problem_storage">Συγχρονισμός: Πρόβλημα αποθήκευσης</string>
@@ -33,7 +33,7 @@
   <string name="wallet_transactions_options_filter_sent">Απεστελμένες πληρωμές</string>
   <string name="wallet_options_safety_menu">Ασφάλεια</string>
   <string name="wallet_options_safety">Οδηγίες ασφαλείας</string>
-  <string name="wallet_donate_address_label">Δωρεά προς το Bitcoin Wallet</string>
+  <string name="wallet_donate_address_label">Δωρεά προς το Sexcoin Wallet</string>
   <string name="wallet_timeskew_dialog_title">Ελέγξτε τις ρυθμίσεις ώρας!</string>
   <string name="wallet_version_dialog_title">Μία νέα έκδοση είναι διαθέσιμη!</string>
   <string name="wallet_version_dialog_msg">Αυτή η έκδοση διορθώνει σημαντικά προβλήματα. Για λεπτομέρειες, δείτε το σύνολο των αλλαγών στο Google Play.</string>
@@ -238,4 +238,28 @@
   <string name="error_parse">Λάθος εισαγωγή: %s</string>
   <string name="error_http">HTTP σφάλμα %1$s:\n%2$s</string>
   <string name="error_bluetooth">Bluetooth σφάλμα: %1$s</string>
+    <string name="send_coins_agev_radio_none">None</string>
+    <string name="send_coins_agev_consent">Over age of Consent</string>
+    <string name="send_coins_agev_over18">Over 18</string>
+    <string name="send_coins_agev_over21">Over 21</string>
+    <string name="send_coins_agev_header_hint">Set age verification for this transaction</string>
+    <string name="send_coins_agev_consent_hint">By clicking this you certify that you are over the age of consent
+    </string>
+    <string name="send_coins_agev_over18_hint">By setting this you Certify that you are at or over 18 years of age
+    </string>
+    <string name="send_coins_agev_over21_hint">By setting this you Certify that you are at or over 21 years of age
+    </string>
+    <string name="transaction_row_agev_text">AV: %1$s</string>
+    <string name="toast_wallet_reset">Το πορτοφόλι σας επαναλήφθηκε! Θα χρειαστεί λίγος χρόνος για να ανακάμψει</string>
+    <string name="wallet_options_donate">Συμβουλή / δωρεά</string>
+  <string name="wallet_low_storage_dialog_title">Εσωτερικός χώρος αποθήκευσης συσκευών χαμηλός!</string>
+  <string name="wallet_low_storage_dialog_msg">Το πορτοφόλι Sexcoin χρησιμοποιεί εσωτερικό αποθηκευτικό χώρο για να
+    θυμάται τις συναλλαγές και τα μπλοκ. Αν εξαντληθεί ο χώρος, θα σταματήσει να λειτουργεί και οι Sexcoins σας θα
+    διατρέχουν κίνδυνο! Θέλετε να ανοίξετε το Application Manager για να καταργήσετε την εγκατάσταση των εφαρμογών που
+    δεν χρειάζεστε;
+  </string>
+    <string name="send_coins_fragment_request_payment_request_failed_title">Η λήψη της υπογραφής απέτυχε</string>
+    <string name="send_coins_fragment_direct_payment_enable">Αποστολή πληρωμής απευθείας στον δικαιούχο πληρωμής.</string>
+    <string name="appwidget_wallet_balance_title">Σεξουαλική ισορροπία</string>
+    <string name="send_coins_age_verification_header">Επαλήθευση ηλικίας</string>
 </resources>

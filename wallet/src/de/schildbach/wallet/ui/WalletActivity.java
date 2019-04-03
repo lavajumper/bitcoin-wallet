@@ -112,6 +112,9 @@ public final class WalletActivity extends AbstractBindServiceActivity
 
         setContentView(R.layout.wallet_content);
 
+        getActionBar().setDisplayShowHomeEnabled(true);
+        getActionBar().setIcon(R.mipmap.ic_app_color_48dp);
+
         final View exchangeRatesFragment = findViewById(R.id.wallet_main_twopanes_exchange_rates);
         if (exchangeRatesFragment != null)
             exchangeRatesFragment.setVisibility(Constants.ENABLE_EXCHANGE_RATES ? View.VISIBLE : View.GONE);

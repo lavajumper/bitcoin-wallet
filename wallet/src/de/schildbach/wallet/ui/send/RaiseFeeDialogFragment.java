@@ -23,10 +23,7 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
-import org.bitcoinj.core.Coin;
-import org.bitcoinj.core.Sha256Hash;
-import org.bitcoinj.core.Transaction;
-import org.bitcoinj.core.TransactionOutput;
+import org.bitcoinj.core.*;
 import org.bitcoinj.crypto.KeyCrypterException;
 import org.bitcoinj.wallet.KeyChain.KeyPurpose;
 import org.bitcoinj.wallet.SendRequest;
@@ -264,7 +261,7 @@ public class RaiseFeeDialogFragment extends DialogFragment {
     private void doRaiseFee(final KeyParameter encryptionKey) {
         // construct child-pays-for-parent
         final TransactionOutput outputToSpend = checkNotNull(findSpendableOutput(wallet, transaction, feeRaise));
-        final Transaction transactionToSend = new Transaction(Constants.NETWORK_PARAMETERS);
+        final SexcoinTransaction transactionToSend = new SexcoinTransaction(Constants.NETWORK_PARAMETERS);
         transactionToSend.addInput(outputToSpend);
         transactionToSend.addOutput(outputToSpend.getValue().subtract(feeRaise),
                 wallet.freshAddress(KeyPurpose.CHANGE));
@@ -279,7 +276,7 @@ public class RaiseFeeDialogFragment extends DialogFragment {
             log.info("raise fee: cpfp {}", transactionToSend);
 
             wallet.commitTx(transactionToSend);
-            application.broadcastTransaction(transactionToSend);
+            application.broadcastTransaction((SexcoinTransaction) transactionToSend);
 
             state = State.DONE;
             updateView();

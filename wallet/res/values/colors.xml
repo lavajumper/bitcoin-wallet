@@ -14,9 +14,9 @@
 
     <!-- background -->
     <color name="bg_bright">#ffffffff</color>
-    <color name="bg_less_bright">#d2cfc5</color>
+    <color name="bg_less_bright">#d2c6c5</color>
     <color name="bg_action_bar">#ff222222</color>
-    <color name="bg_panel">#ffdbd2a9</color>
+    <color name="bg_panel">#e4c9c6</color>
     <color name="bg_form">@android:color/white</color>
     <color name="bg_list">#40ffffff</color>
     <color name="bg_list_selected">#40808090</color>

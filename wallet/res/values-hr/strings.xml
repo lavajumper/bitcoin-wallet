@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="blockchain_state_progress_hours">%1$s, %2$d sati iza</string>
-  <string name="blockchain_state_progress_days">%1$s, %2$d dani iza</string>
-  <string name="blockchain_state_progress_weeks">%1$s, %2$d tjedana iza</string>
-  <string name="blockchain_state_progress_months">%1$s, %2$d mjeseci iza</string>
+  <string name="blockchain_state_progress_hours">%1$s, %2$d sati iza [%3$d]</string>
+  <string name="blockchain_state_progress_days">%1$s, %2$d dani iza [%3$d]</string>
+  <string name="blockchain_state_progress_weeks">%1$s, %2$d tjedana iza [%3$d]</string>
+  <string name="blockchain_state_progress_months">%1$s, %2$d mjeseci iza [%3$d]</string>
   <string name="blockchain_state_progress_downloading">Sinkroniziranje sa mrežom</string>
   <string name="blockchain_state_progress_stalled">Sinkronizacija u zastoju</string>
   <string name="blockchain_state_progress_problem_storage">Sinkroniziranje: Spremišni problem</string>
   <string name="blockchain_state_progress_problem_network">Sinkroniziranje: Mrežni problem</string>
-  <string name="wallet_address_fragment_clipboard_msg">Bitcoin adresa je kopirana u međuspremnik</string>
+  <string name="wallet_address_fragment_clipboard_msg">Sexcoin adresa je kopirana u međuspremnik</string>
   <string name="exchange_rates_activity_title">stopa konverzije</string>
   <string name="exchange_rates_fragment_empty_text">Onemogućen dohvat konverzijskih stopa.</string>
   <string name="exchange_rates_fragment_empty_search">Konverzijska stopa nije pronađena.</string>
@@ -17,20 +17,20 @@
   <string name="exchange_rates_fragment_balance">stanje</string>
   <string name="exchange_rates_fragment_source">Cijena sa %s</string>
   <string name="exchange_rates_options_search">Traži konverzijsku stopu</string>
-  <string name="wallet_transactions_fragment_empty_text_received">Nema primljenih Bitcoina do sad</string>
-  <string name="wallet_transactions_fragment_empty_text_sent">Nema poslanih Bitcoina do sada.</string>
+  <string name="wallet_transactions_fragment_empty_text_received">Nema primljenih Sexcoina do sad</string>
+  <string name="wallet_transactions_fragment_empty_text_sent">Nema poslanih Sexcoina do sada.</string>
   <string name="wallet_transactions_fragment_coinbase">iskopano</string>
   <string name="wallet_transactions_fragment_internal">unutarnja</string>
   <string name="wallet_options_safety_menu">Sigurnost</string>
   <string name="wallet_options_safety">Sigurnosne poruke</string>
-  <string name="wallet_donate_address_label">Donacije za Bitcoin Novčanik</string>
+  <string name="wallet_donate_address_label">Donacije za Sexcoin Novčanik</string>
   <string name="wallet_timeskew_dialog_title">Provjerite svoje vremenske postavke!</string>
   <string name="wallet_version_dialog_title">Nova verzija je dobavljiva!</string>
   <string name="wallet_version_dialog_msg">U ovoj verziji su uklonjene greške. Za detalje posjetite Google Play</string>
   <string name="wallet_version_dialog_button_market">Google Play</string>
   <string name="wallet_version_dialog_button_binary">Preuzmi</string>
   <string name="wallet_old_sdk_dialog_title">Android verzija je zastarjela</string>
-  <string name="send_coins_activity_title">Pošalji Bitcoin-ove</string>
+  <string name="send_coins_activity_title">Pošalji Sexcoin-ove</string>
   <string name="send_coins_fragment_receiving_address_label">Plati</string>
   <string name="send_coins_fragment_receiving_address_hint">upiši adresu ili ime</string>
   <string name="send_coins_fragment_amount_label">Iznos za uplatiti</string>
@@ -40,14 +40,14 @@
   <string name="send_coins_sent_msg">Poslano!</string>
   <string name="send_coins_failed_msg">Neuspješno!</string>
   <string name="send_coins_error_msg">Problem pri slanju coin-ova!</string>
-  <string name="request_coins_activity_title">Zatraži Bitcoin-ove</string>
+  <string name="request_coins_activity_title">Zatraži Sexcoin-ove</string>
   <string name="request_coins_fragment_amount_label">Zatraženi iznos (slobodan izbor)</string>
-  <string name="request_coins_clipboard_msg">Bitcoin zahtjev je kopiran u međuspremnik</string>
-  <string name="request_coins_share_dialog_title">Podjeli zahtjev za Bitcoin-om</string>
+  <string name="request_coins_clipboard_msg">Sexcoin zahtjev je kopiran u međuspremnik</string>
+  <string name="request_coins_share_dialog_title">Podjeli zahtjev za Sexcoin-om</string>
   <string name="address_book_list_receiving_title">Tvoje adrese</string>
   <string name="address_book_list_sending_title">Slanje adrese</string>
   <string name="address_book_empty_text">Nema unosa u adresnu knjigu</string>
-  <string name="address_book_context_send_title">Pošalji bitcoin-ove na adresu</string>
+  <string name="address_book_context_send_title">Pošalji sexcoin-ove na adresu</string>
   <string name="address_book_context_edit_title">Uredi adresu</string>
   <string name="address_book_context_remove_title">Ukloni adresu</string>
   <string name="address_book_context_copy_to_clipboard_title">Kopirano u međuspremnik</string>
@@ -61,7 +61,7 @@
   <string name="about_title">O nama</string>
   <string name="about_license_title">Licenca</string>
   <string name="about_category_credits">Ova aplikacija koristi…</string>
-  <string name="about_credits_bitcoinj_title">bitcoin %s</string>
+  <string name="about_credits_bitcoinj_title">bitcoinj %s</string>
   <string name="about_credits_zxing_title">ZXing</string>
   <string name="notification_peers_connected_msg">%d klijenata spojeno</string>
   <!--generic buttons-->
@@ -80,5 +80,61 @@
   <string name="action_show_qr">Prikaži QR kod</string>
   <string name="time_today">danas</string>
   <string name="address_unlabeled">(ne obilježen)</string>
-  <!--generic error messages-->
+    <string name="send_coins_agev_radio_none">None</string>
+    <string name="send_coins_agev_consent">Over age of Consent</string>
+    <string name="send_coins_agev_over18">Over 18</string>
+    <string name="send_coins_agev_over21">Over 21</string>
+    <string name="send_coins_agev_header_hint">Set age verification for this transaction</string>
+    <string name="send_coins_agev_consent_hint">By clicking this you certify that you are over the age of consent
+    </string>
+    <string name="send_coins_agev_over18_hint">By setting this you Certify that you are at or over 18 years of age
+    </string>
+    <string name="send_coins_agev_over21_hint">By setting this you Certify that you are at or over 21 years of age
+    </string>
+    <string name="transaction_row_agev_text">AV: %1$s</string>
+    <string name="wallet_disclaimer_fragment_remind_backup">Morate poduprijeti svoj novčanik!</string>
+  <string name="wallet_disclaimer_fragment_remind_safety">Koristite na vlastitu odgovornost. Pročitajte &lt;/u&gt;sigurnosne
+    napomene &lt;/u&gt;.
+  </string>
+  <string name="toast_wallet_reset">Novčanik je vraćen! Trebat će neko vrijeme da se oporavi.</string>
+  <string name="wallet_balance_fragment_replaying">Stanje nije dostupno tijekom ponavljanja.</string>
+  <string name="wallet_transactions_options_filter_received">Primljena plaćanja</string>
+  <string name="wallet_transactions_options_filter_all">Sva plaćanja</string>
+  <string name="wallet_transactions_options_filter_sent">Poslane uplate</string>
+  <string name="wallet_transactions_row_warning_backup">" Čestitamo, primili ste prvu uplatu! Jeste li već zaštitili
+    svoj novčanik kako biste zaštitili od gubitka?"
+  </string>
+  <string name="wallet_low_storage_dialog_title">Unutarnji prostor pohrane uređaja je nizak!</string>
+  <string name="wallet_options_donate">Savjet / donirajte</string>
+    <string name="wallet_low_storage_dialog_msg">Sexcoin novčanik koristi internu pohranu za pamćenje transakcija i
+        blokova. Ako mu ponestane prostora, prestat će raditi i vaš Sexcoins će biti u opasnosti! Želite li otvoriti
+        upravitelja aplikacija da biste deinstalirali nepotrebne aplikacije?
+    </string>
+    <string name="send_coins_fragment_request_payment_request_failed_title">Dohvaćanje potpisa nije uspjelo</string>
+    <string name="send_coins_fragment_request_payment_request_wrong_signature">Pogrešan potpis!</string>
+    <string name="send_coins_fragment_direct_payment_enable">Pošaljite uplatu izravno primatelju plaćanja.</string>
+    <string name="send_coins_fragment_direct_payment_ack">Vaša uplata je uspješno poslana izravno.</string>
+  <string name="send_coins_fragment_direct_payment_nack">Vaša uplata je odbijena izravnom vezom.</string>
+  <string name="send_coins_fragment_direct_payment_failed_title">Izravno plaćanje nije uspjelo</string>
+  <string name="send_coins_fragment_direct_payment_failed_msg">Vaša će se uplata i dalje prenositi putem P2P mreže.</string>
+  <string name="send_coins_fragment_insufficient_money_title">Nedovoljno dostupnih kovanica</string>
+  <string name="send_coins_preparation_msg">Potpisivanje…</string>
+  <string name="send_coins_options_empty">Prazan novčanik</string>
+  <string name="request_coins_fragment_initiate_request_qr">Pošiljatelj mora skenirati ovaj kôd.</string>
+  <string name="request_coins_fragment_initiate_request_nfc">Ili dodirnite uređaj koji podržava NFC.</string>
+  <string name="request_coins_options_local_app_title">Zahtjev od lokalne aplikacije</string>
+  <string name="address_book_activity_title">Adresar</string>
+  <string name="transaction_row_message_received_unconfirmed_unlocked">Ova uplata trebala bi postati potrošna za
+    nekoliko minuta.
+  </string>
+  <string name="network_monitor_activity_title">Monitor mreže</string>
+  <string name="network_monitor_peer_list_title">Kolega</string>
+  <string name="network_monitor_block_list_title">Blokovi</string>
+  <string name="import_keys_dialog_title">Vrati lisnicu</string>
+  <string name="about_version_title">Verzija</string>
+  <string name="notification_inactivity_title">Još uvijek imaš Sexcoins na ovom uređaju!</string>
+  <string name="appwidget_wallet_balance_title">Sexcoin ravnoteža</string>
+    <string name="private_key_password">PIN</string>
+    <string name="send_coins_age_verification_header">Provjera dobi</string>
+    <!--generic error messages-->
 </resources>

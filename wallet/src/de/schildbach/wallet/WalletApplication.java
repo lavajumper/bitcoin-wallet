@@ -121,6 +121,7 @@ public class WalletApplication extends Application {
 
         log.info("=== starting app using configuration: {}, {}", Constants.TEST ? "test" : "prod",
                 Constants.NETWORK_PARAMETERS.getId());
+        Constants.NETWORK_PARAMETERS.setSkipDiffChecks(true);
 
         Networks.register(Constants.NETWORK_PARAMETERS);
 
@@ -417,7 +418,7 @@ public class WalletApplication extends Application {
             final NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
             final NotificationChannel received = new NotificationChannel(Constants.NOTIFICATION_CHANNEL_ID_RECEIVED,
-                    getString(R.string.notification_channel_received_name), NotificationManager.IMPORTANCE_DEFAULT);
+                    getString(R.string.notification_channel_received_name), android.app.NotificationManager.IMPORTANCE_DEFAULT);
             received.setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.coins_received),
                     new AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
                             .setLegacyStreamType(AudioManager.STREAM_NOTIFICATION)
@@ -519,7 +520,7 @@ public class WalletApplication extends Application {
     }
 
     public int maxConnectedPeers() {
-        return isLowRamDevice() ? 4 : 6;
+        return isLowRamDevice() ? 4 : 8;
     }
 
     public int scryptIterationsTarget() {

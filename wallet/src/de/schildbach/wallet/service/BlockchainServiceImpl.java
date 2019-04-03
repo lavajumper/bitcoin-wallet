@@ -406,11 +406,12 @@ public class BlockchainServiceImpl extends android.app.Service implements Blockc
 
                 final boolean connectTrustedPeerOnly = hasTrustedPeer && config.getTrustedPeerOnly();
                 peerGroup.setMaxConnections(connectTrustedPeerOnly ? 1 : maxConnectedPeers);
+                peerGroup.setMinBroadcastConnections(connectTrustedPeerOnly ? 1 : Constants.PEER_MIN_BROADCAST_CONNECTIONS);
                 peerGroup.setConnectTimeoutMillis(Constants.PEER_TIMEOUT_MS);
                 peerGroup.setPeerDiscoveryTimeoutMillis(Constants.PEER_DISCOVERY_TIMEOUT_MS);
 
                 peerGroup.addPeerDiscovery(new PeerDiscovery() {
-                    private final PeerDiscovery normalPeerDiscovery = new DnsDiscovery(Constants.NETWORK_PARAMETERS); // DOGE only has DNS
+                    private final PeerDiscovery normalPeerDiscovery = new DnsDiscovery(Constants.NETWORK_PARAMETERS); // SXC only has DNS at the moment
 
                     @Override
                     public InetSocketAddress[] getPeers(final long services, final long timeoutValue,
@@ -423,8 +424,15 @@ public class BlockchainServiceImpl extends android.app.Service implements Blockc
                             log.info(
                                     "trusted peer '" + trustedPeerHost + "'" + (connectTrustedPeerOnly ? " only" : ""));
 
-                            final InetSocketAddress addr = new InetSocketAddress(trustedPeerHost,
-                                    Constants.NETWORK_PARAMETERS.getPort());
+                            String address=trustedPeerHost;
+                            int port=Constants.NETWORK_PARAMETERS.getPort();
+                            if(trustedPeerHost.contains(":")){
+                                String[] host = trustedPeerHost.split(":");
+                                address = host[0];
+                                port = Integer.parseInt(host[1]);
+                            }
+
+                            final InetSocketAddress addr = new InetSocketAddress(address,port);
                             if (addr.getAddress() != null) {
                                 peers.add(addr);
                                 needsTrimPeersWorkaround = true;

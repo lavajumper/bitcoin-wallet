@@ -17,14 +17,12 @@
 
 package de.schildbach.wallet.ui;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.RejectedExecutionException;
 
 import org.bitcoinj.core.Sha256Hash;
 import org.bitcoinj.core.StoredBlock;
+import org.bitcoinj.core.SexcoinTransaction;
 import org.bitcoinj.core.Transaction;
 import org.bitcoinj.wallet.Wallet;
 import org.slf4j.Logger;
@@ -176,10 +174,10 @@ public final class BlockListFragment extends Fragment implements BlockListAdapte
                 switch (item.getItemId()) {
                 case R.id.blocks_context_browse:
                     final String blockHash = block.getHeader().getHashAsString();
-                    final Uri blockExplorerUri = Uri.parse(Constants.EXPLORE_BASE_URL_BLOCK);
+                    final Uri blockExplorerUri = Uri.parse(Constants.EXPLORE_BASE_URL_BLOCK + blockHash);
                     log.info("Viewing block {} on {}", blockHash, blockExplorerUri);
-                    startActivity(new Intent(Intent.ACTION_VIEW,
-                            Uri.withAppendedPath(blockExplorerUri, blockHash)));
+                    startActivity(new Intent(Intent.ACTION_VIEW, blockExplorerUri ));
+                            //Uri.withAppendedPath(blockExplorerUri, blockHash)));
                     return true;
                 }
                 return false;
@@ -267,7 +265,7 @@ public final class BlockListFragment extends Fragment implements BlockListAdapte
             adapter.replace(blocks);
             viewGroup.setDisplayedChild(1);
 
-            final Loader<Set<Transaction>> transactionLoader = loaderManager.getLoader(ID_TRANSACTION_LOADER);
+            final Loader<Set<SexcoinTransaction>> transactionLoader = loaderManager.getLoader(ID_TRANSACTION_LOADER);
             if (transactionLoader != null && transactionLoader.isStarted())
                 transactionLoader.forceLoad();
         }
@@ -278,7 +276,7 @@ public final class BlockListFragment extends Fragment implements BlockListAdapte
         }
     };
 
-    private static class TransactionsLoader extends AsyncTaskLoader<Set<Transaction>> {
+    private static class TransactionsLoader extends AsyncTaskLoader<Set<SexcoinTransaction>> {
         private final Wallet wallet;
 
         private TransactionsLoader(final Context context, final Wallet wallet) {
@@ -288,35 +286,38 @@ public final class BlockListFragment extends Fragment implements BlockListAdapte
         }
 
         @Override
-        public Set<Transaction> loadInBackground() {
+        public Set<SexcoinTransaction> loadInBackground() {
             org.bitcoinj.core.Context.propagate(Constants.CONTEXT);
 
             final Set<Transaction> transactions = wallet.getTransactions(true);
 
-            final Set<Transaction> filteredTransactions = new HashSet<Transaction>(transactions.size());
+            final Set<SexcoinTransaction> filteredTransactions = new HashSet<SexcoinTransaction>(transactions.size());
             for (final Transaction tx : transactions) {
                 final Map<Sha256Hash, Integer> appearsIn = tx.getAppearsInHashes();
-                if (appearsIn != null && !appearsIn.isEmpty()) // TODO filter by updateTime
-                    filteredTransactions.add(tx);
+                if (appearsIn != null && !appearsIn.isEmpty()) { // TODO filter by updateTime
+                    SexcoinTransaction x = new SexcoinTransaction(tx.getParams(), tx.bitcoinSerialize());
+                    x.populateBlockAppearance(tx.getAppearsInHashes());
+                    filteredTransactions.add(x);
+                }
             }
 
             return filteredTransactions;
         }
     }
 
-    private final LoaderCallbacks<Set<Transaction>> transactionLoaderCallbacks = new LoaderCallbacks<Set<Transaction>>() {
+    private final LoaderCallbacks<Set<SexcoinTransaction>> transactionLoaderCallbacks = new LoaderCallbacks<Set<SexcoinTransaction>>() {
         @Override
-        public Loader<Set<Transaction>> onCreateLoader(final int id, final Bundle args) {
+        public Loader<Set<SexcoinTransaction>> onCreateLoader(final int id, final Bundle args) {
             return new TransactionsLoader(activity, wallet);
         }
 
         @Override
-        public void onLoadFinished(final Loader<Set<Transaction>> loader, final Set<Transaction> transactions) {
+        public void onLoadFinished(final Loader<Set<SexcoinTransaction>> loader, final Set<SexcoinTransaction> transactions) {
             adapter.replaceTransactions(transactions);
         }
 
         @Override
-        public void onLoaderReset(final Loader<Set<Transaction>> loader) {
+        public void onLoaderReset(final Loader<Set<SexcoinTransaction>> loader) {
             adapter.clearTransactions();
         }
     };

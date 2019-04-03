@@ -26,17 +26,10 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
+import android.widget.*;
 import org.bitcoin.protocols.payments.Protos.Payment;
-import org.bitcoinj.core.Address;
-import org.bitcoinj.core.AddressFormatException;
-import org.bitcoinj.core.Coin;
-import org.bitcoinj.core.InsufficientMoneyException;
-import org.bitcoinj.core.Sha256Hash;
-import org.bitcoinj.core.Transaction;
-import org.bitcoinj.core.TransactionConfidence;
+import org.bitcoinj.core.*;
 import org.bitcoinj.core.TransactionConfidence.ConfidenceType;
-import org.bitcoinj.core.VerificationException;
-import org.bitcoinj.core.VersionedChecksummedBytes;
 import org.bitcoinj.protocols.payments.PaymentProtocol;
 import org.bitcoinj.utils.MonetaryFormat;
 import org.bitcoinj.wallet.KeyChain.KeyPurpose;
@@ -79,6 +72,7 @@ import de.schildbach.wallet.ui.TransactionsAdapter;
 import de.schildbach.wallet.util.Bluetooth;
 import de.schildbach.wallet.util.Nfc;
 import de.schildbach.wallet.util.WalletUtils;
+import de.schildbach.wallet.util.Toast;
 import de.schildbach.wallet_test.R;
 
 import android.app.Activity;
@@ -117,16 +111,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.CursorAdapter;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+
 
 /**
  * @author Andreas Schildbach
@@ -170,6 +156,12 @@ public final class SendCoinsFragment extends Fragment {
     private Button viewGo;
     private Button viewCancel;
 
+    private RadioGroup agevGroup;
+    private RadioButton agevNone;
+    private RadioButton agevConsent;
+    private RadioButton agevOver18;
+    private RadioButton agevOver21;
+
     @Nullable
     private State state = null;
 
@@ -195,6 +187,8 @@ public final class SendCoinsFragment extends Fragment {
     private static final int REQUEST_CODE_SCAN = 0;
     private static final int REQUEST_CODE_ENABLE_BLUETOOTH_FOR_PAYMENT_REQUEST = 1;
     private static final int REQUEST_CODE_ENABLE_BLUETOOTH_FOR_DIRECT_PAYMENT = 2;
+
+    private long ageVerificationFlag = 0;
 
     private static final Logger log = LoggerFactory.getLogger(SendCoinsFragment.class);
 
@@ -523,7 +517,7 @@ public final class SendCoinsFragment extends Fragment {
             final String mimeType = intent.getType();
 
             if ((Intent.ACTION_VIEW.equals(action) || NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action))
-                    && intentUri != null && "dogecoin".equals(scheme)) {
+                    && intentUri != null && "sexcoin".equals(scheme)) {
                 initStateFromBitcoinUri(intentUri);
             } else if ((NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action))
                     && PaymentProtocol.MIMETYPE_PAYMENTREQUEST.equals(mimeType)) {
@@ -611,6 +605,35 @@ public final class SendCoinsFragment extends Fragment {
         privateKeyPasswordViewGroup = view.findViewById(R.id.send_coins_private_key_password_group);
         privateKeyPasswordView = (EditText) view.findViewById(R.id.send_coins_private_key_password);
         privateKeyBadPasswordView = view.findViewById(R.id.send_coins_private_key_bad_password);
+
+        agevGroup = view.findViewById(R.id.send_coins_agev_group);
+        agevNone = view.findViewById(R.id.send_coins_agev_none);
+        agevConsent = view.findViewById(R.id.send_coins_agev_consent);
+        agevOver18 = view.findViewById(R.id.send_coins_agev_over18);
+        agevOver21 = view.findViewById(R.id.send_coins_agev_over21);
+
+        agevGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton checkRadioButton = group.findViewById(checkedId);
+                switch(checkedId){
+                    case R.id.send_coins_agev_none:
+                        ageVerificationFlag = TransactionFlags.TX_F_NONE;
+                        break;
+                    case R.id.send_coins_agev_consent:
+                        ageVerificationFlag = TransactionFlags.TX_F_IS_OVER_CONSENT;
+                        break;
+                    case R.id.send_coins_agev_over18:
+                        ageVerificationFlag = TransactionFlags.TX_F_IS_OVER_18;
+                        break;
+                    case R.id.send_coins_agev_over21:
+                        ageVerificationFlag = TransactionFlags.TX_F_IS_OVER_21;
+                        break;
+
+                }
+            }
+        });
+
 
         viewGo = (Button) view.findViewById(R.id.send_coins_go);
         viewGo.setOnClickListener(new OnClickListener() {
@@ -958,6 +981,7 @@ public final class SendCoinsFragment extends Fragment {
     }
 
     private void sendPayment(final SendRequest sendRequest, final Coin finalAmount) {
+        sendRequest.tx.setVersion((int)ageVerificationFlag + 1);
         new SendCoinsOfflineTask(wallet, backgroundHandler) {
             @Override
             protected void onSuccess(final Transaction transaction) {

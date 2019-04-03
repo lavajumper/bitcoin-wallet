@@ -9,3 +9,7 @@ local.properties
 bin/
 gen/
 wallet/libs/
+_mainnet/
+wallet/_mainnet/
+*.xlsx
+*~

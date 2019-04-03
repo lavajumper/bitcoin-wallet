@@ -19,6 +19,7 @@ package de.schildbach.wallet.offline;
 
 import java.io.IOException;
 
+import org.bitcoinj.core.SexcoinTransaction;
 import org.bitcoinj.core.Transaction;
 import org.bitcoinj.core.VerificationException;
 import org.bitcoinj.wallet.Wallet;
@@ -123,7 +124,7 @@ public final class AcceptBluetoothService extends Service {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        application.broadcastTransaction(tx);
+                        application.broadcastTransaction((SexcoinTransaction) tx);
                     }
                 });
             } else {

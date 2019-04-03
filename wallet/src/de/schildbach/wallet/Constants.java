@@ -23,9 +23,9 @@ import java.util.concurrent.TimeUnit;
 import org.bitcoinj.core.Context;
 import org.bitcoinj.core.NetworkParameters;
 import org.bitcoinj.utils.MonetaryFormat;
-import org.libdohj.params.AbstractDogecoinParams;
-import org.libdohj.params.DogecoinMainNetParams;
-import org.libdohj.params.DogecoinTestNet3Params;
+import org.libdohj.params.AbstractSexcoinParams;
+import org.libdohj.params.SexcoinMainNetParams;
+import org.libdohj.params.SexcoinTestNet3Params;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,7 +47,8 @@ public final class Constants {
     public static final boolean TEST = BuildConfig.FLAVOR.equals("_testnet");
 
     /** Network this wallet is on (e.g. testnet or mainnet). */
-    public static final NetworkParameters NETWORK_PARAMETERS = TEST ? DogecoinTestNet3Params.get() : DogecoinMainNetParams.get();
+    public static final AbstractSexcoinParams NETWORK_PARAMETERS = TEST ? SexcoinTestNet3Params.get() : SexcoinMainNetParams.get();
+
 
     /** Bitcoinj global context. */
     public static final Context CONTEXT = new Context(NETWORK_PARAMETERS);
@@ -62,7 +63,7 @@ public final class Constants {
     public static final boolean ENABLE_BROWSE = true;
 
     public final static class Files {
-        private static final String FILENAME_NETWORK_SUFFIX = NETWORK_PARAMETERS.getId().equals(AbstractDogecoinParams.ID_DOGE_MAINNET) ? "" : "-testnet";
+        private static final String FILENAME_NETWORK_SUFFIX = NETWORK_PARAMETERS.getId().equals(AbstractSexcoinParams.ID_SXC_MAINNET) ? "" : "-testnet";
 
         /** Filename of the wallet. */
         public static final String WALLET_FILENAME_PROTOBUF = "wallet-protobuf" + FILENAME_NETWORK_SUFFIX;
@@ -84,10 +85,10 @@ public final class Constants {
                 .getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
 
         /** Filename of the manual key backup (old format, can only be read). */
-        public static final String EXTERNAL_WALLET_KEY_BACKUP = "dogecoin-wallet-keys" + FILENAME_NETWORK_SUFFIX;
+        public static final String EXTERNAL_WALLET_KEY_BACKUP = "sexcoin-wallet-keys" + FILENAME_NETWORK_SUFFIX;
 
         /** Filename of the manual wallet backup. */
-        public static final String EXTERNAL_WALLET_BACKUP = "dogecoin-wallet-backup" + FILENAME_NETWORK_SUFFIX;
+        public static final String EXTERNAL_WALLET_BACKUP = "sexcoin-wallet-backup" + FILENAME_NETWORK_SUFFIX;
 
         /** Suffix for the subject of the manual wallet backup. */
         public static final String EXTERNAL_WALLET_BACKUP_SUBJECT_SUFFIX = NETWORK_PARAMETERS.getId()
@@ -110,50 +111,53 @@ public final class Constants {
     public static final long BACKUP_MAX_CHARS = 10000000;
 
     /** Base URL for browsing transactions, blocks or addresses. */
-    private static final String EXPLORE_BASE_URL_TX_PROD = "https://chain.so/tx/DOGE/";
+    private static final String EXPLORE_BASE_URL_TX_PROD = "https://chainz.cryptoid.info/sxc/tx.dws?";
     private static final String EXPLORE_BASE_URL_TX_TEST = "https://chain.so/tx/DOGETEST/";
-    private static final String EXPLORE_BASE_URL_ADDR_PROD = "https://chain.so/address/DOGE/";
+    private static final String EXPLORE_BASE_URL_ADDR_PROD = "https://chainz.cryptoid.info/sxc/address.dws?";
     private static final String EXPLORE_BASE_URL_ADDR_TEST = "https://chain.so/address/DOGETEST/";
-    private static final String EXPLORE_BASE_URL_BLOCK_PROD = "https://chain.so/block/DOGE/";
+    private static final String EXPLORE_BASE_URL_BLOCK_PROD = "https://chainz.cryptoid.info/sxc/block.dws?";
     private static final String EXPLORE_BASE_URL_BLOCK_TEST = "https://chain.so/block/DOGETEST/";
     public static final String EXPLORE_BASE_URL_TX = TEST ? EXPLORE_BASE_URL_TX_TEST  : EXPLORE_BASE_URL_TX_PROD;
     public static final String EXPLORE_BASE_URL_ADDR = TEST ? EXPLORE_BASE_URL_ADDR_TEST : EXPLORE_BASE_URL_ADDR_PROD;
     public static final String EXPLORE_BASE_URL_BLOCK = TEST ? EXPLORE_BASE_URL_BLOCK_TEST : EXPLORE_BASE_URL_BLOCK_PROD;
 
-    public static final String DOGECHAIN_API_URL = "https://dogechain.info/api/v1/unspent/";
-    public static final String CHAINSO_API_URL = "https://chain.so/api/v2/lite/unspent/DOGE/";
-    public static final String BLOCKCYPHER_API_URL = "https://api.blockcypher.com/v1/doge/main/addrs/";
+    //public static final String DOGECHAIN_API_URL = "https://dogechain.info/api/v1/unspent/";
+    //public static final String CHAINSO_API_URL = "https://chain.so/api/v2/lite/unspent/DOGE/";
+    //public static final String BLOCKCYPHER_API_URL = "https://api.blockcypher.com/v1/doge/main/addrs/";
+    public static final String CRYPTOID_API_URL = "https://chainz.cryptoid.info/sxc/api.dws?";
+    public static final String CRYPTOID_API_KEY = "7858e2da58aa";
+    public static final String SXC_INSIGHT_API_URL = "http://be.sexcoin.info/insight-sexcoin-api/";
 
     /** Currency code for the wallet name resolver. */
     public static final String WALLET_NAME_CURRENCY_CODE = NETWORK_PARAMETERS.getId()
-            .equals(NetworkParameters.ID_MAINNET) ? "doge" : "doget";
+            .equals(NetworkParameters.ID_MAINNET) ? "sxc" : "sxctest";
 
     /** URL to fetch version alerts from. */
-    public static final HttpUrl VERSION_URL = HttpUrl.parse("https://maxkeller.io/version");
+    public static final HttpUrl VERSION_URL = HttpUrl.parse("https://sexcoin.info/androidversion");
     /** URL to fetch dynamic fees from. */
     public static final HttpUrl DYNAMIC_FEES_URL = HttpUrl.parse("https://wallet.schildbach.de/fees");
 
     /** MIME type used for transmitting single transactions. */
-    public static final String MIMETYPE_TRANSACTION = "application/x-dogetx";
+    public static final String MIMETYPE_TRANSACTION = "application/x-sxctx";
 
     /** MIME type used for transmitting wallet backups. */
-    public static final String MIMETYPE_WALLET_BACKUP = "application/x-dogecoin-wallet-backup";
+    public static final String MIMETYPE_WALLET_BACKUP = "application/x-sexcoin-wallet-backup";
 
     /** Number of confirmations until a transaction is fully confirmed. */
-    public static final int MAX_NUM_CONFIRMATIONS = 7;
+    public static final int MAX_NUM_CONFIRMATIONS = 6;
 
     /** User-agent to use for network access. */
-    public static final String USER_AGENT = "Dogecoin Wallet";
+    public static final String USER_AGENT = "Sexcoin Wallet";
 
     /** Default currency to use if all default mechanisms fail. */
     public static final String DEFAULT_EXCHANGE_CURRENCY = "USD";
 
     /** Donation address for tip/donate action. */
-    public static final String DONATION_ADDRESS = NETWORK_PARAMETERS.getId().equals(AbstractDogecoinParams.ID_DOGE_MAINNET)
-            ? "DDa3MCfbUABVsxJzhw5j7HttHLXFYGQbZS" : null;
+    public static final String DONATION_ADDRESS = NETWORK_PARAMETERS.getId().equals(AbstractSexcoinParams.ID_SXC_MAINNET)
+            ? "S7NgcaY5qtjsBpNqdJsYbeTjacwuCUhC2Z" : null;
 
     /** Recipient e-mail address for reports. */
-    public static final String REPORT_EMAIL = "dogecoinandroid@gmail.com";
+    public static final String REPORT_EMAIL = "android_support@lavajumper.com";
 
     /** Subject line for manually reported issues. */
     public static final String REPORT_SUBJECT_ISSUE = "Reported issue";
@@ -175,13 +179,14 @@ public final class Constants {
 
     public static final BaseEncoding HEX = BaseEncoding.base16().lowerCase();
 
-    public static final String SOURCE_URL = "https://github.com/langerhans/dogecoin-wallet-new";
-    public static final String BINARY_URL = "http://langerhans.github.io/dogecoin-wallet-new/releases";
+    public static final String SOURCE_URL = "https://github.com/lavajumper/sexcoin-wallet-new";
+    public static final String BINARY_URL = "http://github.com/lavajumper/sexcoin-wallet-new/releases";
     public static final String MARKET_APP_URL = "market://details?id=%s";
     public static final String WEBMARKET_APP_URL = "https://play.google.com/store/apps/details?id=%s";
 
-    public static final int PEER_DISCOVERY_TIMEOUT_MS = 10 * (int) DateUtils.SECOND_IN_MILLIS;
-    public static final int PEER_TIMEOUT_MS = 15 * (int) DateUtils.SECOND_IN_MILLIS;
+    public static final int PEER_DISCOVERY_TIMEOUT_MS = 30 * (int) DateUtils.SECOND_IN_MILLIS;
+    public static final int PEER_TIMEOUT_MS = 60 * (int) DateUtils.SECOND_IN_MILLIS;
+    public static final int PEER_MIN_BROADCAST_CONNECTIONS = 2;
 
     public static final long LAST_USAGE_THRESHOLD_JUST_MS = DateUtils.HOUR_IN_MILLIS;
     public static final long LAST_USAGE_THRESHOLD_RECENTLY_MS = 2 * DateUtils.DAY_IN_MILLIS;

@@ -50,6 +50,8 @@ import java.util.Set;
 import de.schildbach.wallet.Constants;
 import de.schildbach.wallet_test.R;
 
+import de.schildbach.wallet.data.explorers.*;
+
 /**
  * @author Andreas Schildbach
  */
@@ -78,22 +80,55 @@ public final class RequestWalletBalanceTask {
             public void run() {
                 Context.propagate(Constants.CONTEXT);
 
-                // Use either dogechain or chain.so
+                // Use either cryptoid or be.sexcoin.info
                 List<String> urls = new ArrayList<String>(2);
-                urls.add(Constants.BLOCKCYPHER_API_URL);
-                //urls.add(Constants.DOGECHAIN_API_URL); // Seems unreliable too now
-                //urls.add(Constants.CHAINSO_API_URL); // inactive for now
+                urls.add(Constants.SXC_INSIGHT_API_URL);
+                urls.add(Constants.CRYPTOID_API_URL);
+                //urls.add(Constants.BLOCKCYPHER_API_URL);
+
                 Collections.shuffle(urls, new Random(System.nanoTime()));
 
-                final StringBuilder url = new StringBuilder(urls.get(0));
-                url.append(address.toString());
+                HttpUrl req = null;// I hate this.
 
-                log.debug("trying to request wallet balance from {}", url);
+                if(urls.get(0) == Constants.SXC_INSIGHT_API_URL)
+                    req = SxcInsightAPI.makeGetAddress(address.toString(), "utxo");
+                if(urls.get(0) == Constants.CRYPTOID_API_URL)
+                    req = CryptoidAPI.makeGetAddress(address.toString(), "utxo");
+
+                log.warn("trying to access {}", req.toString());
 
                 final Request.Builder request = new Request.Builder();
-                request.url(HttpUrl.parse(url.toString()).newBuilder().encodedQuery("unspentOnly=true&includeScript=true").build());
+                request.url(req);
+                //request.url(HttpUrl.parse(url.toString()).newBuilder().encodedQuery("unspentOnly=true&includeScript=true").build());
 
+                log.warn("trying to request wallet balance from {}", request.toString());
                 final Call call = Constants.HTTP_CLIENT.newCall(request.build());
+
+                try {
+                    final Response response = call.execute();
+                    if (response.isSuccessful()) {
+                        Set<UTXO> utxSet = new HashSet<>();
+                        if(urls.get(0) == Constants.SXC_INSIGHT_API_URL){
+                            utxSet = SxcInsightAPI.getUTXOs(response);
+                        }else if(urls.get(0) == Constants.CRYPTOID_API_URL){
+                            utxSet = CryptoidAPI.getUTXOs(response);
+                        }
+                        final Set<UTXO> utxoSet = utxSet;
+                        log.info("fetched unspent outputs from {}", req.toString());
+                        onResult(utxoSet);
+                    } else {
+                        final String responseMessage = response.message();
+                        log.info("got http error '{}: {}' from {}", response.code(), responseMessage, req.toString());
+                        onFail(R.string.error_http, response.code(), responseMessage);
+                    }
+                } catch (final JSONException x) {
+                    log.info("problem parsing json from " + req.toString(), x);
+                    onFail(R.string.error_parse, x.getMessage());
+                } catch (final IOException x) {
+                    log.info("problem querying unspent outputs from " + req.toString(), x);
+                    onFail(R.string.error_io, x.getMessage());
+                }
+                /*
                 try {
                     final Response response = call.execute();
                     if (response.isSuccessful()) {
@@ -133,6 +168,8 @@ public final class RequestWalletBalanceTask {
                     log.info("problem querying unspent outputs from " + url, x);
                     onFail(R.string.error_io, x.getMessage());
                 }
+                */
+
             }
         });
     }
