@@ -219,5 +219,8 @@
     <string name="appwidget_wallet_balance_title">Sexcoin التوازن</string>
     <string name="wallet_options_disconnect">قطع الاتصال</string>
     <string name="send_coins_age_verification_header">تاكيد السن</string>
+    <string name="report_issue_dialog_save_to_downloads">Save a copy to Download Folder</string>
+    <string name="report_issue_dialog_send_via_email">Deliver Report via Email</string>
+    <string name="report_issue_dialog_delivery_options_title">Delivery Options</string>
 
 </resources>

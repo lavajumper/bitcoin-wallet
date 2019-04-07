@@ -262,4 +262,7 @@
     <string name="send_coins_fragment_direct_payment_enable">Αποστολή πληρωμής απευθείας στον δικαιούχο πληρωμής.</string>
     <string name="appwidget_wallet_balance_title">Σεξουαλική ισορροπία</string>
     <string name="send_coins_age_verification_header">Επαλήθευση ηλικίας</string>
+    <string name="report_issue_dialog_save_to_downloads">Save a copy to Download Folder</string>
+    <string name="report_issue_dialog_send_via_email">Deliver Report via Email</string>
+    <string name="report_issue_dialog_delivery_options_title">Delivery Options</string>
 </resources>

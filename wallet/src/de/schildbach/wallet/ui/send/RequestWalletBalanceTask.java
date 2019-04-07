@@ -95,13 +95,13 @@ public final class RequestWalletBalanceTask {
                 if(urls.get(0) == Constants.CRYPTOID_API_URL)
                     req = CryptoidAPI.makeGetAddress(address.toString(), "utxo");
 
-                log.warn("trying to access {}", req.toString());
+                //log.info("trying to access {}", req.toString());
 
                 final Request.Builder request = new Request.Builder();
                 request.url(req);
                 //request.url(HttpUrl.parse(url.toString()).newBuilder().encodedQuery("unspentOnly=true&includeScript=true").build());
 
-                log.warn("trying to request wallet balance from {}", request.toString());
+                //log.info("trying to request wallet balance from {}", request.toString());
                 final Call call = Constants.HTTP_CLIENT.newCall(request.build());
 
                 try {

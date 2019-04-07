@@ -85,6 +85,10 @@ public class ExchangeRatesProvider extends ContentProvider {
     private static final HttpUrl COINMARKETCAP_URL = HttpUrl
             .parse("https://api.coinmarketcap.com/v1/ticker/sexcoin/");
     private static final String COINMARKETCAP_SOURCE = "coinmarketcap.com";
+    private static final HttpUrl LIVECOINNET_URL = HttpUrl
+            .parse("https://api.livecoin.net/exchange/ticker?currencyPair=SXC/BTC");
+    private static final String LIVECOINNET_SOURCE = "livcoin.net";
+
 
     private static final long UPDATE_FREQ_MS = 10 * DateUtils.MINUTE_IN_MILLIS;
 
@@ -247,7 +251,7 @@ public class ExchangeRatesProvider extends ContentProvider {
         throw new UnsupportedOperationException();
     }
 
-    private Map<String, ExchangeRate> requestExchangeRates(double dogeBtcConversion) {
+    private Map<String, ExchangeRate> requestExchangeRates(double altBtcConversion) {
         final Stopwatch watch = Stopwatch.createStarted();
 
         final Request.Builder request = new Request.Builder();
@@ -280,11 +284,11 @@ public class ExchangeRatesProvider extends ContentProvider {
                                 dfs.setDecimalSeparator('.');
                                 dfs.setGroupingSeparator(',');
                                 df.setDecimalFormatSymbols(dfs);
-                                final Fiat dogeRate = parseFiatInexact(fiatCurrencyCode, df.format(btcRate*dogeBtcConversion));
+                                final Fiat altRate = parseFiatInexact(fiatCurrencyCode, df.format(btcRate*altBtcConversion));
 
-                                if (dogeRate.signum() > 0)
+                                if (altRate.signum() > 0)
                                     rates.put(fiatCurrencyCode, new ExchangeRate(
-                                            new org.bitcoinj.utils.ExchangeRate(dogeRate), BITCOINAVERAGE_SOURCE));
+                                            new org.bitcoinj.utils.ExchangeRate(altRate), BITCOINAVERAGE_SOURCE));
                             } catch (final IllegalArgumentException x) {
                                 log.warn("problem fetching {} exchange rate from {}: {}", currencyCode,
                                         BITCOINAVERAGE_URL, x.getMessage());
@@ -316,6 +320,42 @@ public class ExchangeRatesProvider extends ContentProvider {
 
     private double requestSxcBtcConversion() {
         final Request.Builder request = new Request.Builder();
+        request.url(COINMARKETCAP_URL);
+        request.header("User-Agent", userAgent);
+
+        final Call call = Constants.HTTP_CLIENT.newCall(request.build());
+        try {
+            final Response response = call.execute();
+            if (response.isSuccessful()) {
+                final String content = response.body().string();
+                try {
+                    final JSONArray json = new JSONArray(content);
+                    return Double.valueOf(json.getJSONObject(0).getString("price_btc"));
+                } catch (NumberFormatException e) {
+                    log.debug("Couldn't get the current exchange rate from cmc.");
+                    return -1;
+                }
+
+            } else {
+                log.warn("http status {} when fetching exchange rates from {}", response.code(), COINMARKETCAP_URL);
+            }
+        } catch (final Exception x) {
+            log.debug("problem reading exchange rates", x);
+        }
+
+        return -1;
+    }
+
+    /**
+     * This will hopefully make it easier for any alt coin dev to implement conversions.
+     * Not implemented completely
+     * TODO: finish this
+     * @param altcoinName
+     * @return
+     */
+    private double requestAltBtcConversion(String altcoinName) {
+        final Request.Builder request = new Request.Builder();
+
         request.url(COINMARKETCAP_URL);
         request.header("User-Agent", userAgent);
 

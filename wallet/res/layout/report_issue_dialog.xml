@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+            xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:scrollbars="none" >
@@ -47,22 +47,41 @@
             android:text="@string/report_issue_dialog_collect_application_log" />
 
         <CheckBox
-            android:id="@+id/report_issue_dialog_collect_wallet_dump"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/list_entry_padding_vertical"
-            android:layout_marginTop="@dimen/list_entry_padding_vertical"
-            android:checked="true"
-            android:text="@string/report_issue_dialog_collect_wallet_dump" />
+                android:id="@+id/report_issue_dialog_collect_wallet_dump"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/list_entry_padding_vertical"
+                android:layout_marginTop="@dimen/list_entry_padding_vertical"
+                android:checked="true"
+                android:text="@string/report_issue_dialog_collect_wallet_dump"/>
 
         <CheckBox
-            android:id="@+id/report_issue_dialog_collect_installed_packages"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/list_entry_padding_vertical"
-            android:layout_marginTop="@dimen/list_entry_padding_vertical"
-            android:checked="false"
-            android:text="@string/report_issue_dialog_collect_installed_packages" />
+                android:id="@+id/report_issue_dialog_collect_installed_packages"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/list_entry_padding_vertical"
+                android:layout_marginTop="@dimen/list_entry_padding_vertical"
+                android:checked="false"
+                android:text="@string/report_issue_dialog_collect_installed_packages"/>
+        <TextView
+                android:text="@string/report_issue_dialog_delivery_options_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/report_issue_dialog_delivery_options_title"
+                android:clickable="false" android:cursorVisible="false" android:editable="false"
+                android:focusableInTouchMode="false" android:textIsSelectable="false" android:textStyle="bold"
+                android:height="@dimen/font_size_xlarge" android:textSize="18sp"/>
+        <CheckBox
+                android:text="@string/report_issue_dialog_save_to_downloads"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/report_issue_dialog_save_to_downloads"
+                android:layout_marginBottom="@dimen/list_entry_padding_vertical"
+                android:layout_marginTop="@dimen/list_entry_padding_vertical" android:checked="true"/>
+        <CheckBox
+                android:text="@string/report_issue_dialog_send_via_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/report_issue_dialog_send_via_email"
+                android:layout_marginBottom="@dimen/list_entry_padding_vertical"
+                android:layout_marginTop="@dimen/list_entry_padding_vertical" android:checked="true"/>
     </LinearLayout>
 
 </ScrollView>

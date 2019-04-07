@@ -17,16 +17,18 @@
 
 package de.schildbach.wallet.ui;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
+import java.io.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 import javax.annotation.Nullable;
 
+import android.os.AsyncTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,6 +37,7 @@ import com.google.common.base.Charsets;
 import de.schildbach.wallet.Constants;
 import de.schildbach.wallet.util.CrashReporter;
 import de.schildbach.wallet_test.R;
+import de.schildbach.wallet.util.Toast;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -59,8 +62,24 @@ public abstract class ReportIssueDialogBuilder extends DialogBuilder implements 
     private CheckBox viewCollectInstalledPackages;
     private CheckBox viewCollectApplicationLog;
     private CheckBox viewCollectWalletDump;
+    private CheckBox viewDeliverViaEmail;
+    private CheckBox viewSaveToDownload;
 
     private static final Logger log = LoggerFactory.getLogger(ReportIssueDialogBuilder.class);
+
+    private class ReportContainer{
+        public List<Uri> attachments;
+        public CharSequence text;
+
+        ReportContainer(List<Uri> _attachments, CharSequence _text){
+            attachments = _attachments;
+            text = _text;
+        }
+
+        public List<Uri> getAttachments(){ return attachments; }
+        public CharSequence getText(){ return text; }
+        public String getTextAsString() { return text.toString(); }
+    }
 
     public ReportIssueDialogBuilder(final Activity activity, final int titleResId, final int messageResId) {
         super(activity);
@@ -79,6 +98,8 @@ public abstract class ReportIssueDialogBuilder extends DialogBuilder implements 
                 .findViewById(R.id.report_issue_dialog_collect_installed_packages);
         viewCollectApplicationLog = (CheckBox) view.findViewById(R.id.report_issue_dialog_collect_application_log);
         viewCollectWalletDump = (CheckBox) view.findViewById(R.id.report_issue_dialog_collect_wallet_dump);
+        viewDeliverViaEmail = (CheckBox) view.findViewById((R.id.report_issue_dialog_send_via_email));
+        viewSaveToDownload = (CheckBox) view.findViewById((R.id.report_issue_dialog_save_to_downloads));
 
         setTitle(titleResId);
         setView(view);
@@ -190,7 +211,14 @@ public abstract class ReportIssueDialogBuilder extends DialogBuilder implements 
 
         text.append("\n\nPUT ADDITIONAL COMMENTS TO THE TOP. DOWN HERE NOBODY WILL NOTICE.");
 
-        startSend(subject(), text, attachments);
+        ReportContainer report = new ReportContainer(attachments,text);
+
+        if(viewSaveToDownload.isChecked())
+            saveToDownload(report);
+
+        if(viewDeliverViaEmail.isChecked())
+            startSend(subject(), text, attachments);
+
     }
 
     private void startSend(final String subject, final CharSequence text, final List<Uri> attachments) {
@@ -202,9 +230,14 @@ public abstract class ReportIssueDialogBuilder extends DialogBuilder implements 
             builder.setSubject(subject);
         builder.setText(text);
         builder.setType("text/plain");
+
         builder.setChooserTitle(R.string.report_issue_dialog_mail_intent_chooser);
         builder.startChooser();
         log.info("invoked chooser for sending issue report");
+    }
+
+    private void saveToDownload(ReportContainer report){
+        new WriteCrashReport().execute(report);
     }
 
     @Nullable
@@ -233,5 +266,101 @@ public abstract class ReportIssueDialogBuilder extends DialogBuilder implements 
     @Nullable
     protected CharSequence collectWalletDump() throws IOException {
         return null;
+    }
+
+    private class WriteCrashReport extends AsyncTask<ReportContainer, Void, String>{
+        protected String doInBackground(ReportContainer... reports){
+            ReportContainer report=reports[0];
+            List<Uri> attachments=report.attachments;
+            CharSequence text = report.text;
+
+            DateFormat df = new SimpleDateFormat("yyyyMMdd_HH_mm");
+            String now = df.format(Calendar.getInstance().getTime());
+
+            String outfilename = "SXC-CrashReport." + now + ".zip";
+            String outpathname = Constants.Files.EXTERNAL_WALLET_BACKUP_DIR.getPath();
+
+            File outputfile = new File( outpathname, outfilename);
+            Writer allOut = null;
+
+            final StringBuffer sb = new StringBuffer();
+            sb.append(text + "\r\n");
+
+            try {
+                if (!outputfile.exists()) { outputfile.createNewFile(); }
+                ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(outputfile));
+                zos.putNextEntry(new ZipEntry("CrashReport.txt"));
+                zos.write(sb.toString().getBytes());
+                zos.closeEntry();
+
+                for (final Uri attachment : attachments) {
+
+                    InputStream istream = getContext().getContentResolver().openInputStream(attachment);
+                    BufferedInputStream buff = new BufferedInputStream(istream);
+                    zos.putNextEntry(new ZipEntry(attachment.getLastPathSegment()));
+                    while(buff.available() > 0){
+                        zos.write(buff.read());
+                    }
+                    zos.closeEntry();
+                    istream.close();
+                }
+                zos.close();
+            }catch(IOException e){
+                log.error("Failed to copy attachments." + e.getMessage());
+                return("FAIL:" + e.getMessage());
+            }
+            /*
+            try{
+                allOut = new OutputStreamWriter(new FileOutputStream(outputfile), Charsets.UTF_8);
+                allOut.write(sb.toString());
+                allOut.flush();
+                allOut.close();
+            }catch(IOException e){
+                log.error("Couldn't write crash report to device: " + e.getMessage());
+                log.error(sb.toString());
+                return("FAIL:" + e.getMessage());
+            }
+            */
+            log.warn("Crash Report successfully written: [--------------\r\n" + sb.toString() + "\r\n----------------]");
+            return outfilename;
+
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            Toast toaster = new Toast(activity.getApplicationContext());
+            toaster.toast(getContext().getResources().getText(R.string.report_issue_saving_to_local));
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            Toast toaster = new Toast(activity.getApplicationContext());
+            if(s.startsWith("FAIL")){
+                String reason = getContext().getResources().getString(R.string.report_issue_fail_message) + "\r\n"
+                        + s.substring(5);
+                toaster.longToast(reason);
+            } else {
+                s = getContext().getResources().getString(R.string.report_issue_saved_message) + "\r\n" +
+                        Constants.Files.EXTERNAL_WALLET_BACKUP_DIR.getPath() + "/" + s;
+                toaster.longToast(s);
+            }
+        }
+
+        @Override
+        protected void onCancelled(String s) {
+            super.onCancelled(s);
+        }
+
+        @Override
+        protected void onCancelled() {
+            Toast toaster = new Toast(activity.getApplicationContext());
+            CharSequence s = getContext().getResources().getString(R.string.report_issue_fail_message);
+            toaster.longToast(s);
+        }
     }
 }

@@ -376,5 +376,11 @@
     <string name="send_coins_agev_over21_hint">By setting this you Certify that you are at or over 21 years of age
     </string>
     <string name="transaction_row_agev_text">AV: %1$s</string>
+    <string name="report_issue_dialog_save_to_downloads">Save a copy to Download Folder</string>
+    <string name="report_issue_dialog_send_via_email">Deliver Report via Email</string>
+    <string name="report_issue_dialog_delivery_options_title">Delivery Options</string>
+    <string name="report_issue_saved_message">Report Saved to:</string>
+    <string name="report_issue_fail_message">Couldn\'t Save Crash Report</string>
+    <string name="report_issue_saving_to_local">Saving Crash Report...</string>
 
 </resources>

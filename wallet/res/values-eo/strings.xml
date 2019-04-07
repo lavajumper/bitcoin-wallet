@@ -198,5 +198,8 @@
     <string name="appwidget_wallet_balance_title">Sexcoin ekvilibro</string>
     <string name="private_key_password">PIN</string>
     <string name="send_coins_age_verification_header">Aĝa Kontrolo</string>
+    <string name="report_issue_dialog_save_to_downloads">Save a copy to Download Folder</string>
+    <string name="report_issue_dialog_send_via_email">Deliver Report via Email</string>
+    <string name="report_issue_dialog_delivery_options_title">Delivery Options</string>
 
 </resources>
