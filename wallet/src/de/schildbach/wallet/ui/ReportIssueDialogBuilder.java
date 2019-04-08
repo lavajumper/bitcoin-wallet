@@ -309,18 +309,7 @@ public abstract class ReportIssueDialogBuilder extends DialogBuilder implements 
                 log.error("Failed to copy attachments." + e.getMessage());
                 return("FAIL:" + e.getMessage());
             }
-            /*
-            try{
-                allOut = new OutputStreamWriter(new FileOutputStream(outputfile), Charsets.UTF_8);
-                allOut.write(sb.toString());
-                allOut.flush();
-                allOut.close();
-            }catch(IOException e){
-                log.error("Couldn't write crash report to device: " + e.getMessage());
-                log.error(sb.toString());
-                return("FAIL:" + e.getMessage());
-            }
-            */
+
             log.warn("Crash Report successfully written: [--------------\r\n" + sb.toString() + "\r\n----------------]");
             return outfilename;
 

@@ -9,5 +9,9 @@
         android:key="initiate_reset"
         android:summary="@string/preferences_initiate_reset_summary"
         android:title="@string/preferences_initiate_reset_title" />
+    <Preference
+            android:key="clear_log_files"
+            android:title="@string/preferences_clear_log_files_title"
+            android:summary="@string/preferences_clear_log_files_summary"/>
 
 </PreferenceScreen>

@@ -348,4 +348,6 @@
     <string name="report_issue_dialog_save_to_downloads">Save a copy to Download Folder</string>
     <string name="report_issue_dialog_send_via_email">Deliver Report via Email</string>
     <string name="report_issue_dialog_delivery_options_title">Delivery Options</string>
+    <string name="preferences_clear_log_files_title">Clear Log Files</string>
+    <string name="preferences_clear_log_files_summary">Delete old log files to recover space</string>
 </resources>

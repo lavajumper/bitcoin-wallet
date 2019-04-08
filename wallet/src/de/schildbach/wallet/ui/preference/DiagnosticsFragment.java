@@ -17,8 +17,14 @@
 
 package de.schildbach.wallet.ui.preference;
 
+import java.io.File;
+import java.text.NumberFormat;
 import java.util.Locale;
 
+
+import android.support.v4.content.FileProvider;
+import android.text.format.Formatter;
+import de.schildbach.wallet.util.Toast;
 import org.bitcoinj.crypto.DeterministicKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,6 +51,7 @@ public final class DiagnosticsFragment extends PreferenceFragment {
 
     private static final String PREFS_KEY_INITIATE_RESET = "initiate_reset";
     private static final String PREFS_KEY_EXTENDED_PUBLIC_KEY = "extended_public_key";
+    private static final String PREFS_KEY_CLEAR_OLD_LOGFILES = "clear_log_files";
 
     private static final Logger log = LoggerFactory.getLogger(DiagnosticsFragment.class);
 
@@ -73,6 +80,9 @@ public final class DiagnosticsFragment extends PreferenceFragment {
         } else if (PREFS_KEY_EXTENDED_PUBLIC_KEY.equals(key)) {
             handleExtendedPublicKey();
             return true;
+        } else if (PREFS_KEY_CLEAR_OLD_LOGFILES.equals(key)){
+            handleClearOldLogfiles();
+            return true;
         }
 
         return false;
@@ -100,5 +110,37 @@ public final class DiagnosticsFragment extends PreferenceFragment {
         final String xpub = String.format(Locale.US, "%s?c=%d&h=bip32",
                 extendedKey.serializePubB58(Constants.NETWORK_PARAMETERS), extendedKey.getCreationTimeSeconds());
         ExtendedPublicKeyFragment.show(getFragmentManager(), (CharSequence) xpub);
+    }
+
+    private void handleClearOldLogfiles(){
+
+        final DialogBuilder dialog = new DialogBuilder(activity);
+        dialog.setTitle(R.string.preferences_clear_log_files_title);
+        dialog.setMessage(R.string.preferences_clear_log_files_summary);
+        dialog.setPositiveButton(R.string.preferences_initiate_reset_dialog_positive, new OnClickListener() {
+            @Override
+            public void onClick(final DialogInterface dialog, final int which) {
+                log.info("Manually Clearing old log files");
+                final File logDir = new File(activity.getFilesDir(), "log");
+                int totalSpace = 0;
+                int deletedCount = 0;
+                if (logDir.exists())
+                    for (final File logFile : logDir.listFiles())
+                        if (logFile.isFile() && logFile.length() > 0 && logFile.canWrite() && logFile.getName().endsWith(".gz")){
+                            totalSpace += logFile.length();
+                            deletedCount += 1;
+                            logFile.delete();
+                        }
+                Toast toaster = new Toast(application.getApplicationContext());
+                toaster.longToast("Deleted logs freed up "
+                        + Formatter.formatShortFileSize(application.getApplicationContext(),totalSpace));
+                log.info( "Deleted " + deletedCount + " archived log files");
+                activity.finish(); // TODO doesn't fully finish prefs on single pane layouts
+
+            }
+        });
+        dialog.setNegativeButton(R.string.button_dismiss, null);
+        dialog.show();
+
     }
 }

@@ -382,5 +382,7 @@
     <string name="report_issue_saved_message">Report Saved to:</string>
     <string name="report_issue_fail_message">Couldn\'t Save Crash Report</string>
     <string name="report_issue_saving_to_local">Saving Crash Report...</string>
+    <string name="preferences_clear_log_files_title">Clear Log Files</string>
+    <string name="preferences_clear_log_files_summary">Delete old log files to recover space</string>
 
 </resources>
