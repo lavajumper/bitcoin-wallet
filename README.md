@@ -25,7 +25,7 @@ This project contains several sub-projects:
 
 __Dependencies:__
 
-This project relys on __Bitcoinj__ and __Libdohj__, both of which have been adapted for sexcoin. 
+This project relys on __Sexcoinj__ and __Libdohj__, both of which have been adapted for sexcoin. 
 You can find these in [Lavajumper's Github](https://github.com/lavajumper)
 
 Sexcoin's Bitcoinj was built using [bisq-networks's](https://github.com/bisq-network/bitcoinj) frozen fork.
