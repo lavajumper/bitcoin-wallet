@@ -1,6 +1,6 @@
 Welcome to __Sexcoin Wallet__, a standalone Sexcoin payment app for your Android device!
 
-This work is a fork of Langerhans's Dogecoin wallet, which is a fork from Schildebach's
+This work is a fork of Langerhans's Dogecoin wallet, which is a fork from Schildbach's
 wallet. FOSS is a wonderful thing. 
 
 This project contains several sub-projects:
