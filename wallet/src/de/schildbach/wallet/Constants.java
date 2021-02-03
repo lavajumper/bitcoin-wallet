@@ -133,7 +133,7 @@ public final class Constants {
             .equals(NetworkParameters.ID_MAINNET) ? "sxc" : "sxctest";
 
     /** URL to fetch version alerts from. */
-    public static final HttpUrl VERSION_URL = HttpUrl.parse("https://sexcoin.info/androidversion.txt");
+    public static final HttpUrl VERSION_URL = HttpUrl.parse("https://sexcoin.info/androidversion/");
     /** URL to fetch dynamic fees from. */
     public static final HttpUrl DYNAMIC_FEES_URL = HttpUrl.parse("https://wallet.schildbach.de/fees");
 

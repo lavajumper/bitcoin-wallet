@@ -107,14 +107,14 @@ public class AlertDialogsFragment extends Fragment {
         url.addEncodedQueryParameter("package", packageInfo.packageName);
         url.addQueryParameter("current", Integer.toString(packageInfo.versionCode));
         versionUrl = url.build();
-        log.error("versionUrl=" + versionUrl.toString());
+        //log.error("versionUrl=" + versionUrl.toString());
     }
 
     @Override
     public void onActivityCreated(final Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        log.error("querying \"{}\"...", versionUrl);
+        //log.error("querying \"{}\"...", versionUrl);
         final Request.Builder request = new Request.Builder();
         request.url(versionUrl);
         request.header("Accept-Charset", "utf-8");
@@ -132,9 +132,9 @@ public class AlertDialogsFragment extends Fragment {
                     final Response response = call.execute();
                     if (response.isSuccessful()) {
                         final long serverTime = response.headers().getDate("Date").getTime();
-                        log.warn("============");
-                        log.warn(response.toString());
-                        log.warn("============");
+                        //log.warn("============");
+                        //log.warn(response.toString());
+                        //log.warn("============");
                         try (final BufferedReader reader = new BufferedReader(response.body().charStream())) {
                             abort = handleServerTime(serverTime);
 
@@ -144,7 +144,7 @@ public class AlertDialogsFragment extends Fragment {
                                     break;
                                 if (line.charAt(0) == '#')
                                     continue;
-                                log.error("bodyline=" + line);
+                                //log.error("bodyline=" + line);
                                 final Splitter splitter = Splitter.on('=').trimResults();
                                 final Iterator<String> split = splitter.split(line).iterator();
                                 if (!split.hasNext())

@@ -56,8 +56,8 @@ android {
     defaultConfig {
         generatedDensities = ['hdpi', 'xhdpi']
         applicationId 'info.sexcoin.wallet'
-        versionCode 332
-        versionName '3.3.2-beta1'
+        versionCode 333
+        versionName '3.3.3-beta1'
         minSdkVersion 16
         targetSdkVersion 26
         vectorDrawables.useSupportLibrary = true

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+<PreferenceScreen xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <Preference
         android:key="about_version"
         android:title="@string/about_version_title" />
     <Preference
-            android:summary="© 2011-2018, the Bitcoin Wallet developers\n© 2013-2018, the Dogecoin Wallet developers\n© 2013-2019, the Sexcoin Wallet developers"
+            android:summary="© 2011-2018, the Bitcoin Wallet developers\n© 2013-2018, the Dogecoin Wallet developers\n© 2013-2021, the Sexcoin Wallet developers"
             android:title="@string/about_copyright_title"/>
     <Preference
         android:key="about_license"
@@ -25,16 +25,16 @@
     </Preference>
     <Preference
         android:key="about_source"
-        android:summary="https://github.com/lavajumper/sexcoin-wallet-new"
+        android:summary="https://github.com/lavajumper/sexcoin-wallet"
         android:title="@string/about_source_title" >
         <intent
             android:action="android.intent.action.VIEW"
-            android:data="https://github.com/lavajumper/sexcoin-wallet.new" />
+            android:data="https://github.com/lavajumper/sexcoin-wallet" />
     </Preference>
-    <Preference
-        android:key="about_market_app"
-        android:summary="@string/about_market_app_summary"
-        android:title="@string/about_market_app_title" />
+    <!-- <Preference
+            android:key="about_market_app"
+            android:summary="@string/about_market_app_summary"
+            android:title="@string/about_market_app_title" android:enabled="false"/> -->
     <!--
     <Preference
         android:key="about_community_googleplus"
@@ -43,8 +43,9 @@
         <intent
             android:action="android.intent.action.VIEW"
             android:data="https://plus.google.com/communities/100766328093543169555" />
-    </Preference>
-    -->
+    </Preference> -->
+
+
     <Preference
         android:key="about_twitter"
         android:summary="\@lavajumper"
