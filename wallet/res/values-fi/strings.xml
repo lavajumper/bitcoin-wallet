@@ -49,7 +49,7 @@
   <string name="wallet_timeskew_dialog_title">Tarkista päivämäärän &amp; ajan asetukset</string>
   <string name="wallet_timeskew_dialog_msg">Laitteesi aika on jäljessä %d minuuttia. Et ehkä voi lähettää tai vastaanottaa Sexcoineja tämän ongelman takia.\n\nSinun tulisi tarkistaa ja tarvittaessa oikaista päivämäärän, ajan ja aikavyöhykkeen asetukset.</string>
   <string name="wallet_version_dialog_title">Uusi versio on saatavilla!</string>
-  <string name="wallet_version_dialog_msg">Tämä versio korjaa tärkeitä ongelmia. Lisätietoja saadaksesi katso muutosloki Google Play:ssa.</string>
+  <string name="wallet_version_dialog_msg">Tämä versio korjaa tärkeitä ongelmia. Lisätietoja saadaksesi katso muutosloki GitHub:ssa.</string>
   <string name="wallet_version_dialog_msg_deprecated">Jos et näe päivitystä, se ehkä tarkoittaa että laitteesi Androidin versio ei ole enää tuettu.</string>
   <string name="wallet_version_dialog_button_market">Google Play</string>
   <string name="wallet_version_dialog_button_binary">Lataa</string>

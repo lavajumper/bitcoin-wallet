@@ -23,9 +23,9 @@
   <string name="exchange_rates_fragment_balance">saldo</string>
   <string name="exchange_rates_fragment_source">Pris från %s</string>
   <string name="exchange_rates_options_search">Sök växlingskurs</string>
-  <string name="wallet_transactions_fragment_empty_text_received">Inga bitcoin har mottagits hittills</string>
+  <string name="wallet_transactions_fragment_empty_text_received">Inga sexcoin har mottagits hittills</string>
   <string name="wallet_transactions_fragment_empty_text_sent">Inga bitcoin har skickats hittills</string>
-  <string name="wallet_transactions_fragment_empty_text_howto">Hur får man tag i bitcoin?\n\nKöp för svenska kronor,\nsälj varor eller tjänster eller\ntjäna genom att arbeta.</string>
+  <string name="wallet_transactions_fragment_empty_text_howto">Hur får man tag i sexcoin?\n\nKöp för svenska kronor,\nsälj varor eller tjänster eller\ntjäna genom att arbeta.</string>
   <string name="wallet_transactions_row_warning_backup">Grattis, du fick din första betalning! Har du redan &lt;u&gt;säkerhetskopierat din plånbok&lt;/u&gt;, för att skydda mot förlust?</string>
   <string name="wallet_transactions_row_warning_storage_encryption">Tips: för att öka säkerheten på din plånbok kan du &lt;u&gt;kryptera din enhet&lt;/u&gt;. Det skyddar också dina andra appar.</string>
   <string name="wallet_transactions_fragment_coinbase">genererade</string>
@@ -46,7 +46,7 @@
   <string name="wallet_timeskew_dialog_title">Kontrollera inställningar för datum &amp; tid</string>
   <string name="wallet_timeskew_dialog_msg">Enhetens tid är fel med %d minuter. Du kan förmodligen inte skicka eller ta emot sexcoin på grund av detta.\n\nDu bör kontrollera och korrigera tiden och tidszonen.</string>
   <string name="wallet_version_dialog_title">En ny version är tillgänglig!</string>
-  <string name="wallet_version_dialog_msg">Denna version löser viktiga buggar. För mer information, se ändringsloggen på Google Play.</string>
+  <string name="wallet_version_dialog_msg">Denna version löser viktiga buggar. För mer information, se ändringsloggen på GitHub.</string>
   <string name="wallet_version_dialog_msg_deprecated">Om du inte ser en uppdatering så beror det förmodligen på att din version av Android inte längre stöds.</string>
   <string name="wallet_version_dialog_button_market">Google Play</string>
   <string name="wallet_version_dialog_button_binary">Ladda ner</string>

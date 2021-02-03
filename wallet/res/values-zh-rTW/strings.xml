@@ -49,7 +49,7 @@
   <string name="wallet_timeskew_dialog_title">檢查時間日期設定</string>
   <string name="wallet_timeskew_dialog_msg">設備的時間差了約 %d 分鐘，可能會因此沒辦法付或是收 Bitcoin。\n\n請檢查並修正時間、日期、以及時區的設定。</string>
   <string name="wallet_version_dialog_title">有新版程式了！</string>
-  <string name="wallet_version_dialog_msg">這個版本修正了重大錯誤。詳情請見 Google Play 上的改版紀錄。</string>
+  <string name="wallet_version_dialog_msg">這個版本修正了重大錯誤。詳情請見 GitHub 上的改版紀錄。</string>
   <string name="wallet_version_dialog_msg_deprecated">如果看不到任何程式更新，有可能你的 Android 版本已經不再支援了。</string>
   <string name="wallet_version_dialog_button_market">Google Play</string>
   <string name="wallet_version_dialog_button_binary">下載</string>

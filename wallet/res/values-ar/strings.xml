@@ -38,7 +38,7 @@
 	<string name="wallet_timeskew_dialog_title">تأكد من إعدادات الوقت!</string>
 	<string name="wallet_timeskew_dialog_msg">إن إعدادت الوقت لجهازك منحرفة ب%d دقائق، لا يمكنك ارسال ولا استلام مبالغ بيتكوين بسبب هذه المشكلة.\nيجب أن تتأكد وتصحح إعدادات الوقت والتوقيت timezone.</string>
 	<string name="wallet_version_dialog_title">يوجد إصدار جديد الآن!</string>
-	<string name="wallet_version_dialog_msg">يقوم هذ الإصدار بإصلاح أعطال مهمة. للمزيد من التفاصيل، يرجى مراجعة سجل التغييرات في متجر جوجل بلاي Google Play.</string>
+	<string name="wallet_version_dialog_msg">يقوم هذ الإصدار بإصلاح أعطال مهمة. للمزيد من التفاصيل، يرجى مراجعة سجل التغييرات في متجر جوجل بلاي GitHub</string>
 	<string name="wallet_version_dialog_button_market">متجر جوجل بلاي Google Play.</string>
 	<string name="wallet_version_dialog_button_binary">تنزيل</string>
 	<string name="wallet_old_sdk_dialog_title">إصدار نظام الأندرويد الخاص بك قديم أو غير محدث</string>

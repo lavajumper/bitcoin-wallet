@@ -90,9 +90,9 @@ public final class RequestWalletBalanceTask {
 
                 HttpUrl req = null;// I hate this.
 
-                if(urls.get(0) == Constants.SXC_INSIGHT_API_URL)
+                if(urls.get(0).equals(Constants.SXC_INSIGHT_API_URL))
                     req = SxcInsightAPI.makeGetAddress(address.toString(), "utxo");
-                if(urls.get(0) == Constants.CRYPTOID_API_URL)
+                if(urls.get(0).equals(Constants.CRYPTOID_API_URL))
                     req = CryptoidAPI.makeGetAddress(address.toString(), "utxo");
 
                 //log.info("trying to access {}", req.toString());
@@ -108,9 +108,9 @@ public final class RequestWalletBalanceTask {
                     final Response response = call.execute();
                     if (response.isSuccessful()) {
                         Set<UTXO> utxSet = new HashSet<>();
-                        if(urls.get(0) == Constants.SXC_INSIGHT_API_URL){
+                        if(urls.get(0).equals(Constants.SXC_INSIGHT_API_URL)){
                             utxSet = SxcInsightAPI.getUTXOs(response);
-                        }else if(urls.get(0) == Constants.CRYPTOID_API_URL){
+                        }else if(urls.get(0).equals(Constants.CRYPTOID_API_URL)){
                             utxSet = CryptoidAPI.getUTXOs(response);
                         }
                         final Set<UTXO> utxoSet = utxSet;
@@ -128,48 +128,6 @@ public final class RequestWalletBalanceTask {
                     log.info("problem querying unspent outputs from " + req.toString(), x);
                     onFail(R.string.error_io, x.getMessage());
                 }
-                /*
-                try {
-                    final Response response = call.execute();
-                    if (response.isSuccessful()) {
-                        String content = response.body().string();
-                        final JSONObject json = new JSONObject(content);
-                        final JSONArray jsonOutputs = json.optJSONArray("txrefs");
-
-                        final Set<UTXO> utxoSet = new HashSet<>();
-                        if (jsonOutputs == null) {
-                            onResult(utxoSet);
-                            return;
-                        }
-
-                        for (int i = 0; i < jsonOutputs.length(); i++) {
-                            final JSONObject jsonOutput = jsonOutputs.getJSONObject(i);
-
-                            final Sha256Hash utxoHash = Sha256Hash.wrap(jsonOutput.getString("tx_hash"));
-                            final int utxoIndex = jsonOutput.getInt("tx_output_n");
-                            final byte[] utxoScriptBytes = Hex.decode(jsonOutput.getString("script"));
-                            final Coin uxtutx = Coin.valueOf(Long.parseLong(jsonOutput.getString("value")));
-
-                            UTXO utxo = new UTXO(utxoHash, utxoIndex, uxtutx, -1, false, new Script(utxoScriptBytes));
-                            utxoSet.add(utxo);
-                        }
-
-                        log.info("fetched unspent outputs from {}", url);
-                        onResult(utxoSet);
-                    } else {
-                        final String responseMessage = response.message();
-                        log.info("got http error '{}: {}' from {}", response.code(), responseMessage, url);
-                        onFail(R.string.error_http, response.code(), responseMessage);
-                    }
-                } catch (final JSONException x) {
-                    log.info("problem parsing json from " + url, x);
-                    onFail(R.string.error_parse, x.getMessage());
-                } catch (final IOException x) {
-                    log.info("problem querying unspent outputs from " + url, x);
-                    onFail(R.string.error_io, x.getMessage());
-                }
-                */
-
             }
         });
     }

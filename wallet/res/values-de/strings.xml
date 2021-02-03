@@ -56,7 +56,7 @@
     <string name="wallet_timeskew_dialog_title">Überprüfe Datums &amp; Uhrzeit-Einstellungen</string>
     <string name="wallet_timeskew_dialog_msg">Deine Gerätezeit geht um %d Minuten falsch. Deswegen kannst Du möglicherweise keine Sexcoins senden oder empfangen.\n\nDu solltest deine Datums, Zeit- und Zeitzoneneinstellungen überprüfen und ggf. korrigieren.</string>
     <string name="wallet_version_dialog_title">Eine neue Version ist verfügbar!</string>
-    <string name="wallet_version_dialog_msg">Diese Version behebt wichtige Fehler. Die Einzelheiten stehen in der Liste der Änderungen auf Google Play.</string>
+    <string name="wallet_version_dialog_msg">Diese Version behebt wichtige Fehler. Die Einzelheiten stehen in der Liste der Änderungen auf GitHub.</string>
     <string name="wallet_version_dialog_msg_deprecated">Wenn du kein Update siehst, heißt das vermutlich daß deine Android-Version nicht mehr unterstützt wird.</string>
     <string name="wallet_version_dialog_button_market">Google Play</string>
     <string name="wallet_version_dialog_button_binary">Herunterladen</string>

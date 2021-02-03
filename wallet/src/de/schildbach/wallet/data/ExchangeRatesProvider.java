@@ -21,6 +21,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.util.Currency;
 import java.util.Iterator;
 import java.util.Locale;
@@ -40,6 +41,7 @@ import org.slf4j.LoggerFactory;
 import com.google.common.base.Stopwatch;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.HttpUrl;
+import com.squareup.okhttp.Handshake;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
@@ -79,15 +81,48 @@ public class ExchangeRatesProvider extends ContentProvider {
     private long lastUpdated = 0;
     private double sxcBtcConversion = -1;
 
+    // BitcoinAverage
     private static final HttpUrl BITCOINAVERAGE_URL = HttpUrl
             .parse("https://apiv2.bitcoinaverage.com/indices/global/ticker/short?crypto=BTC");
     private static final String BITCOINAVERAGE_SOURCE = "BitcoinAverage.com";
+    private static final String BITCOINAVERAGE_AUTH_HEAD = "x-ba-key";
+    private static final String BITCOINAVERAGE_KEY = "OTJlYTZhZTRhNjJhNDUxOWExNDU5YzY2NzcyMDcyMDk";
+
+    // CoinMarketCap
     private static final HttpUrl COINMARKETCAP_URL = HttpUrl
             .parse("https://api.coinmarketcap.com/v1/ticker/sexcoin/");
     private static final String COINMARKETCAP_SOURCE = "coinmarketcap.com";
+
+    // CoinGecko
+    private static final HttpUrl COINGECKO_URL = HttpUrl
+            .parse("https://api.coingecko.com/api/v3/coins/sexcoin/tickers");
+    private static final String COINGECKO_SOURCE = "CoinGecko.com";
+
+    private static final HttpUrl COINGECKO_SXC_URL = HttpUrl
+            .parse("https://api.coingecko.com/api/v3/coins/sexcoin?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false");
+    private static final String COINGECKO_SXC_SOURCE = "CoinGecko.com";
+
+    private static final HttpUrl COINGECKO_FIAT_URL = HttpUrl
+            .parse("https://api.coingecko.com/api/v3/exchange_rates");
+    private static final String COINGECKO_FIAT_SOURCE = "CoinGecko.com";
+
+    // CoinAPI
+    private static final HttpUrl COINAPI_URL = HttpUrl
+            .parse("https://api.coinapi.io/v1/exchangerate/BTC");
+    private static final String COINAPI_AUTH_HEAD = "X-CoinAPI-Key";
+    private static final String COINAPI_KEY = "91D44995-00C3-4208-9689-1F6E7E5857DF";
+    private static final String COINAPI_SOURCE = "coinapi.io";
+
+    // Livecoin.net
     private static final HttpUrl LIVECOINNET_URL = HttpUrl
             .parse("https://api.livecoin.net/exchange/ticker?currencyPair=SXC/BTC");
-    private static final String LIVECOINNET_SOURCE = "livcoin.net";
+    private static final String LIVECOINNET_SOURCE = "livecoin.net";
+
+    // Freiexchange.com
+    private static final HttpUrl FREI_URL = HttpUrl
+            .parse("https://api.freiexchange.com/public/ticker/SXC");
+    private static final String FREI_SOURCE = "freiexchange.com";
+
 
 
     private static final long UPDATE_FREQ_MS = 10 * DateUtils.MINUTE_IN_MILLIS;
@@ -137,16 +172,19 @@ public class ExchangeRatesProvider extends ContentProvider {
 
             if (sxcBtcConversion == -1)
                 return null;
-
+            log.info("sxcBtcConversion = " + sxcBtcConversion);
             Map<String, ExchangeRate> newExchangeRates = null;
             if (newExchangeRates == null)
-                newExchangeRates = requestExchangeRates(sxcBtcConversion);
+                newExchangeRates = requestGekoExchangeRates(sxcBtcConversion);
 
             if (newExchangeRates != null) {
                 double mBTCRate = sxcBtcConversion *1000;
+
                 String strmBTCRate = String.format(Locale.US, "%.4f", mBTCRate).replace(',', '.');
-                newExchangeRates.put("mBTC", new ExchangeRate(new org.bitcoinj.utils.ExchangeRate(Fiat.parseFiat("mBTC", strmBTCRate)), COINMARKETCAP_SOURCE));
-                newExchangeRates.put("SXC", new ExchangeRate(new org.bitcoinj.utils.ExchangeRate(Fiat.parseFiat("SXC", "1")), "livecoin.net"));
+                if(strmBTCRate.equals("0.0000"))
+                    strmBTCRate = "0.0001";
+                newExchangeRates.put("mBTC", new ExchangeRate(new org.bitcoinj.utils.ExchangeRate(Fiat.parseFiat("mBTC", strmBTCRate)), COINGECKO_SOURCE));
+                newExchangeRates.put("SXC", new ExchangeRate(new org.bitcoinj.utils.ExchangeRate(Fiat.parseFiat("SXC", "1")), COINGECKO_SOURCE));
 
                 exchangeRates = newExchangeRates;
                 lastUpdated = now;
@@ -257,12 +295,15 @@ public class ExchangeRatesProvider extends ContentProvider {
         final Request.Builder request = new Request.Builder();
         request.url(BITCOINAVERAGE_URL);
         request.header("User-Agent", userAgent);
+        request.header(BITCOINAVERAGE_AUTH_HEAD, BITCOINAVERAGE_KEY);
 
         final Call call = Constants.HTTP_CLIENT.newCall(request.build());
         try {
             final Response response = call.execute();
+
             if (response.isSuccessful()) {
                 final String content = response.body().string();
+                //log.error("BTCAVG response: " + content);
                 final JSONObject head = new JSONObject(content);
                 final Map<String, ExchangeRate> rates = new TreeMap<String, ExchangeRate>();
 
@@ -300,7 +341,7 @@ public class ExchangeRatesProvider extends ContentProvider {
                 watch.stop();
                 log.info("fetched exchange rates from {}, {} chars, took {}", BITCOINAVERAGE_URL, content.length(),
                         watch);
-
+                response.body().close();
                 return rates;
             } else {
                 log.warn("http status {} when fetching exchange rates from {}", response.code(), BITCOINAVERAGE_URL);
@@ -312,6 +353,69 @@ public class ExchangeRatesProvider extends ContentProvider {
         return null;
     }
 
+    private Map<String, ExchangeRate> requestGekoExchangeRates(double altBtcConversion) {
+        final Stopwatch watch = Stopwatch.createStarted();
+
+        final Request.Builder request = new Request.Builder();
+        request.url(COINGECKO_FIAT_URL);
+        request.header("User-Agent", userAgent);
+
+        final Call call = Constants.HTTP_CLIENT.newCall(request.build());
+        try {
+            final Response response = call.execute();
+
+            if (response.isSuccessful()) {
+                final String content = response.body().string();
+                final JSONObject head = new JSONObject(content);
+                final JSONObject ratedata = head.getJSONObject("rates");
+                final Map<String, ExchangeRate> rates = new TreeMap<String, ExchangeRate>();
+
+                for (final Iterator<String> i = ratedata.keys(); i.hasNext();) {
+                    final String currencyCode = i.next();
+                    if (ratedata.getJSONObject(currencyCode).getString("type").equals("fiat") ) {
+                        final String fiatCurrencyCode = currencyCode.toUpperCase();
+                        if (!fiatCurrencyCode.equals(MonetaryFormat.CODE_BTC)
+                                && !fiatCurrencyCode.equals(MonetaryFormat.CODE_MBTC)
+                                && !fiatCurrencyCode.equals(MonetaryFormat.CODE_UBTC)) {
+                            final JSONObject exchangeRate = ratedata.getJSONObject(currencyCode);
+
+                            try {
+                                final String rate = exchangeRate.getString("value");
+                                final double btcRate = Double.parseDouble(parseFiatInexact(fiatCurrencyCode, rate).toPlainString());
+
+                                DecimalFormat df = new DecimalFormat("#.########");
+                                df.setRoundingMode(RoundingMode.HALF_UP);
+                                DecimalFormatSymbols dfs = new DecimalFormatSymbols();
+                                dfs.setDecimalSeparator('.');
+                                dfs.setGroupingSeparator(',');
+                                df.setDecimalFormatSymbols(dfs);
+                                final Fiat altRate = parseFiatInexact(fiatCurrencyCode, df.format(btcRate*altBtcConversion));
+
+                                if (altRate.signum() > 0)
+                                    rates.put(fiatCurrencyCode, new ExchangeRate(
+                                            new org.bitcoinj.utils.ExchangeRate(altRate), COINGECKO_SOURCE));
+                            } catch (final IllegalArgumentException x) {
+                                log.warn("problem fetching {} exchange rate from {}: {}", currencyCode,
+                                        COINGECKO_FIAT_URL, x.getMessage());
+                            }
+                        }
+                    }
+                }
+
+                watch.stop();
+                log.info("fetched exchange rates from {}, {} chars, took {}", COINGECKO_FIAT_URL, content.length(),
+                        watch);
+                response.body().close();
+                return rates;
+            } else {
+                log.warn("http status {} when fetching exchange rates from {}", response.code(), COINGECKO_FIAT_URL);
+            }
+        } catch (final Exception x) {
+            log.warn("problem fetching exchange rates from " + COINGECKO_FIAT_URL, x);
+        }
+
+        return null;
+    }
     // backport from bitcoinj 0.15
     private static Fiat parseFiatInexact(final String currencyCode, final String str) {
         final long val = new BigDecimal(str).movePointRight(Fiat.SMALLEST_UNIT_EXPONENT).longValue();
@@ -320,6 +424,43 @@ public class ExchangeRatesProvider extends ContentProvider {
 
     private double requestSxcBtcConversion() {
         final Request.Builder request = new Request.Builder();
+        request.url(COINGECKO_URL);
+        request.header("User-Agent", userAgent);
+
+        final Call call = Constants.HTTP_CLIENT.newCall(request.build());
+        try {
+            final Response response = call.execute();
+
+            if (response.isSuccessful()) {
+                final String content = response.body().string();
+
+                try {
+                     final JSONObject json = new JSONObject(content);
+                    final String btcprice = json.getJSONArray("tickers")
+                            .getJSONObject(0)
+                            .getJSONObject("converted_last")
+                            .getString("btc");
+                    return Double.valueOf(btcprice);
+                    //return Double.valueOf(json.getJSONObject(29).getJSONObject("current_price").getString("btc"));
+
+                } catch (NumberFormatException e) {
+                    log.error("Couldn't get the current exchange rate from coingeko.");
+                    return -1;
+                }
+
+            } else {
+                log.error("http status {} when fetching exchange rates from {}", response.code(), COINGECKO_URL);
+            }
+        } catch (final Exception x) {
+            log.error("problem reading exchange rates", x);
+        }
+
+        return -1;
+    }
+
+    private double requestBTCtoFiatRates() {
+        final Request.Builder request = new Request.Builder();
+
         request.url(COINMARKETCAP_URL);
         request.header("User-Agent", userAgent);
 

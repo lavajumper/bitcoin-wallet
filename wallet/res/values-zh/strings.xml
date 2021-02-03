@@ -46,7 +46,7 @@
   <string name="wallet_timeskew_dialog_title">检查日期 &amp; 时间设置</string>
   <string name="wallet_timeskew_dialog_msg">您的设备时间已关闭 %d 分钟。由于这个问题您可能无法发送或接收比特币。\n\n您应检查，如果必须更正您的日期、时间和时区设置。</string>
   <string name="wallet_version_dialog_title">有新的版本可用！</string>
-  <string name="wallet_version_dialog_msg">该版本修复了重要的bug，详情请详见 Google Play 上的更改日志。</string>
+  <string name="wallet_version_dialog_msg">该版本修复了重要的bug，详情请详见 GitHub 上的更改日志。</string>
   <string name="wallet_version_dialog_msg_deprecated">如果你没有看到更新，这可能意味您的 Android 版本已经不被支持了。</string>
   <string name="wallet_version_dialog_button_market">Google Play</string>
   <string name="wallet_version_dialog_button_binary">下载</string>

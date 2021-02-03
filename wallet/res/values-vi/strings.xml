@@ -36,7 +36,7 @@
 	<string name="wallet_timeskew_dialog_title">Kiểm tra thiết lập về múi giờ của bạn!</string>
 	<string name="wallet_timeskew_dialog_msg">Thiết bị của bạn đã tắt trong %d phút. Có thể đây là lý do bạn không thể gửi hoặc nhận Sexcoin.\n\nXin vui lòng kiểm tra lại thời gian của bạn và các thiết lập liên quan đến múi giờ.</string>
 	<string name="wallet_version_dialog_title">Hiện đã có một phiên bản mới!</string>
-	<string name="wallet_version_dialog_msg">Phiên bản này sửa các lỗi quan trọng mà chương trình gặp phải. Để biết thêm chi tiết, xem phần nhật trình thay đổi trên Google Play.</string>
+	<string name="wallet_version_dialog_msg">Phiên bản này sửa các lỗi quan trọng mà chương trình gặp phải. Để biết thêm chi tiết, xem phần nhật trình thay đổi trên GitHub.</string>
 	<string name="wallet_version_dialog_button_market">Google Play</string>
 	<string name="wallet_version_dialog_button_binary">Tải về</string>
 	<string name="wallet_old_sdk_dialog_title">Phiên bản Android này đã quá cũ</string>

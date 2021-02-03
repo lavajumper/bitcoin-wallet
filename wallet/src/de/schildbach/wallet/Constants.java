@@ -133,7 +133,7 @@ public final class Constants {
             .equals(NetworkParameters.ID_MAINNET) ? "sxc" : "sxctest";
 
     /** URL to fetch version alerts from. */
-    public static final HttpUrl VERSION_URL = HttpUrl.parse("https://sexcoin.info/androidversion");
+    public static final HttpUrl VERSION_URL = HttpUrl.parse("https://sexcoin.info/androidversion.txt");
     /** URL to fetch dynamic fees from. */
     public static final HttpUrl DYNAMIC_FEES_URL = HttpUrl.parse("https://wallet.schildbach.de/fees");
 
@@ -163,7 +163,7 @@ public final class Constants {
     public static final String REPORT_SUBJECT_ISSUE = "Reported issue";
 
     /** Subject line for crash reports. */
-    public static final String REPORT_SUBJECT_CRASH = "Crash report";
+    public static final String REPORT_SUBJECT_CRASH = "Android Crash report";
 
     public static final char CHAR_HAIR_SPACE = '\u200a';
     public static final char CHAR_THIN_SPACE = '\u2009';
@@ -179,8 +179,8 @@ public final class Constants {
 
     public static final BaseEncoding HEX = BaseEncoding.base16().lowerCase();
 
-    public static final String SOURCE_URL = "https://github.com/lavajumper/sexcoin-wallet-new";
-    public static final String BINARY_URL = "http://github.com/lavajumper/sexcoin-wallet-new/releases";
+    public static final String SOURCE_URL = "https://github.com/lavajumper/sexcoin-wallet";
+    public static final String BINARY_URL = "http://github.com/lavajumper/sexcoin-wallet/releases";
     public static final String MARKET_APP_URL = "market://details?id=%s";
     public static final String WEBMARKET_APP_URL = "https://play.google.com/store/apps/details?id=%s";
 

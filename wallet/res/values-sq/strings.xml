@@ -47,7 +47,7 @@
   <string name="wallet_timeskew_dialog_title">Kontrolloni kohën tuaj!</string>
   <string name="wallet_timeskew_dialog_msg">Ora juaj është gabim për %d minuta. Ju ndoshta nuk mund të pranoni apo dërgoni Sexcoins për shkak të këtij problemi.\n\nJu duhet të kontrolloni dhe korrigjoni orën dhe kohën zonale.</string>
   <string name="wallet_version_dialog_title">Një verzion i ri është në dispozicion!</string>
-  <string name="wallet_version_dialog_msg">Në këtë verzion janë përmirësuar disa gabime. Për më shumë hollësira kyçuni në Google Play.</string>
+  <string name="wallet_version_dialog_msg">Në këtë verzion janë përmirësuar disa gabime. Për më shumë hollësira kyçuni në GitHub.</string>
   <string name="wallet_version_dialog_msg_deprecated">Nëse nuk e shiheni ndonjë aktualizim, shkaku është se versioni juaj i Androidit nuk është më aktual.</string>
   <string name="wallet_version_dialog_button_market">Google Play</string>
   <string name="wallet_version_dialog_button_binary">Shkarkoni</string>

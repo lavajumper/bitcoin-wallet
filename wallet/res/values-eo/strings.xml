@@ -38,7 +38,7 @@
 	<string name="wallet_timeskew_dialog_title">Kontrolu vian tempojn agordojn!</string>
 	<string name="wallet_timeskew_dialog_msg">Via aparata tempo estas ekstere de %d minutoj. Vi probable ne povas sendi aŭ ricevi Sexmonoj pro tiu problemo.\n\nVi devus kontroli kaj korekti vian tempon kaj horzonojn agordojn.</string>
 	<string name="wallet_version_dialog_title">Nova versio estas disponebla!</string>
-	<string name="wallet_version_dialog_msg">Tiu versio korektas gravajn cimojn. Por detaloj, vidu la ŝanĝan loglibron ĉe Google Play.</string>
+	<string name="wallet_version_dialog_msg">Tiu versio korektas gravajn cimojn. Por detaloj, vidu la ŝanĝan loglibron ĉe GitHub.</string>
 	<string name="wallet_version_dialog_button_market">Google Play</string>
 	<string name="wallet_version_dialog_button_binary">Elŝuti</string>
 	<string name="wallet_old_sdk_dialog_title">Androida versio eksdatas</string>

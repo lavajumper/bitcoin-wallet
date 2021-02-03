@@ -49,7 +49,7 @@
   <string name="wallet_timeskew_dialog_title">Tarih &amp; zaman ayarlarını kontrol ediniz</string>
   <string name="wallet_timeskew_dialog_msg">Cihazınızın saati %d dakika gecikmiş ya da ileridedir. Bu sorun sebebiyle muhtemelen Sexcoin alamayacak ve gönderemeyeceksiniz.\n\nSaat, tarih ve zaman dilimi ayarlarını kontrol edip gerekliyse değiştirmeniz gereklidir.</string>
   <string name="wallet_version_dialog_title">Yeni bir sürüm mevcuttur!</string>
-  <string name="wallet_version_dialog_msg">Bu sürüm önemli hata düzeltmeleri içerir. Detaylar için Google Play\'de değişikliklere bakınız.</string>
+  <string name="wallet_version_dialog_msg">Bu sürüm önemli hata düzeltmeleri içerir. Detaylar için GitHub\'de değişikliklere bakınız.</string>
   <string name="wallet_version_dialog_msg_deprecated">Eğer bir güncelleme görmüyorsanız, bu muhtemelen sizin Android sürümünüzün artık desteklenmediği anlamına gelir.</string>
   <string name="wallet_version_dialog_button_market">Google Play</string>
   <string name="wallet_version_dialog_button_binary">İndir</string>

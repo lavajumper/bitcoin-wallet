@@ -49,7 +49,7 @@
   <string name="wallet_timeskew_dialog_title">Проверьте дату &amp; в настройках времени</string>
   <string name="wallet_timeskew_dialog_msg">Ваше устройство выключено %d минут. Возможно, из-за этого Вы не можете отправлять и получать Sexcoin.\n\nПроверьте и исправте при необходимости настройки даты, времени и часового пояса.</string>
   <string name="wallet_version_dialog_title">Доступна новая версия!</string>
-  <string name="wallet_version_dialog_msg">Эта версия исправляет важные ошибки. Детали на Google Play.</string>
+  <string name="wallet_version_dialog_msg">Эта версия исправляет важные ошибки. Детали на GitHub.</string>
   <string name="wallet_version_dialog_msg_deprecated">Если вы не видите обновления, это означает, что ваша версия Android больше не поддерживается.</string>
   <string name="wallet_version_dialog_button_market">Google Play</string>
   <string name="wallet_version_dialog_button_binary">Скачать</string>

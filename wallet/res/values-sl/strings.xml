@@ -40,7 +40,7 @@
   <string name="wallet_timeskew_dialog_title">Preverite nastavitve časa!</string>
   <string name="wallet_timeskew_dialog_msg">Čas na vaši napravi prehiteva ali zaostaja za %d minut. Zaradi tega verjetno ne morete prejemati ali pošiljati sexcoinov.\n\nProsimo, preverite in popravite svoje časovne nastavitve.</string>
   <string name="wallet_version_dialog_title">Na voljo je nova verzija!</string>
-  <string name="wallet_version_dialog_msg">Ta verzija vsebuje popravke pomembnih hroščev. Podrobnosti si lahko ogledate na Google Play.</string>
+  <string name="wallet_version_dialog_msg">Ta verzija vsebuje popravke pomembnih hroščev. Podrobnosti si lahko ogledate na GitHub.</string>
   <string name="wallet_version_dialog_msg_deprecated">Če ne vidite nove verzije, vaša verzija Androida najbrž ni več podprta.</string>
   <string name="wallet_version_dialog_button_market">Google Play</string>
   <string name="wallet_version_dialog_button_binary">Prenos</string>

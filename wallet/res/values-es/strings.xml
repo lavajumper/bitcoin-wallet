@@ -49,7 +49,7 @@
   <string name="wallet_timeskew_dialog_title">Configure la hora</string>
   <string name="wallet_timeskew_dialog_msg">El horario de su dispositivo está retrasado por %d minutos. Probablemente no podrá enviar o recibir Sexcoins debido a este problema.\n\nPara corregirlo configure la fecha, hora y zona horaria correctamente.</string>
   <string name="wallet_version_dialog_title">¡Hay una nueva versión disponible!</string>
-  <string name="wallet_version_dialog_msg">Esta versión corrige fallos importantes. Más detalles en el historial de cambios de Google Play.</string>
+  <string name="wallet_version_dialog_msg">Esta versión corrige fallos importantes. Más detalles en el historial de cambios de GitHub.</string>
   <string name="wallet_version_dialog_msg_deprecated">Si no ve una actualización, es probable que su versión de Android ya no sea compatible.</string>
   <string name="wallet_version_dialog_button_market">Google Play</string>
   <string name="wallet_version_dialog_button_binary">Descargar</string>

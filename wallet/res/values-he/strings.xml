@@ -40,7 +40,7 @@
   <string name="wallet_timeskew_dialog_title">בדוק את הגדרות הזמנים שלך</string>
   <string name="wallet_timeskew_dialog_msg">זמן המכשיר מאחר ב %d דקות. אתה כנראה לא יכול לקבל או לשלוח ביטקוינים בגלל בעיה זהו.\n\nכדאי שתבדוק את הגדרות הזמן ואיזור הזמן שלך.</string>
   <string name="wallet_version_dialog_title">גירסה חדשה זמינה!</string>
-  <string name="wallet_version_dialog_msg">גירסה זו מתקנת באגים חשובים, לפרטים גש לדף העדכון בGoogle Play.</string>
+  <string name="wallet_version_dialog_msg">גירסה זו מתקנת באגים חשובים, לפרטים גש לדף העדכון בGitHub.</string>
   <string name="wallet_version_dialog_msg_deprecated">אם אתה לא רואה עדכון, זה כנראה אומר שגרסאת האנדרואיד שלך אינה נתמכת יותר.</string>
   <string name="wallet_version_dialog_button_market">Google Play</string>
   <string name="wallet_version_dialog_button_binary">הורדה</string>

@@ -43,7 +43,7 @@
   <string name="wallet_timeskew_dialog_title">Cheki wazingira wakati yako!</string>
   <string name="wallet_timeskew_dialog_msg">Simu yako wakati ni makosa %d minuti. Pengine hawezi kutuma Sexcoin kwa sababu ya tatizo hili. Angalia mipangilio yako majira ya saa.</string>
   <string name="wallet_version_dialog_title">Toleo jipya ni hapa kwa shusha!</string>
-  <string name="wallet_version_dialog_msg">Hii toleo kunasa makosa makubwa. Kwa maelezo, kuona changelog juu ya Google Play.</string>
+  <string name="wallet_version_dialog_msg">Hii toleo kunasa makosa makubwa. Kwa maelezo, kuona changelog juu ya GitHub.</string>
   <string name="wallet_version_dialog_msg_deprecated">Kama huwezi kupata toleo jipya, Android yako ni mzee, sana!</string>
   <string name="wallet_version_dialog_button_market">Google Play</string>
   <string name="wallet_version_dialog_button_binary">Shusha</string>

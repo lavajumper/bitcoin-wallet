@@ -36,7 +36,7 @@
   <string name="wallet_donate_address_label">Δωρεά προς το Sexcoin Wallet</string>
   <string name="wallet_timeskew_dialog_title">Ελέγξτε τις ρυθμίσεις ώρας!</string>
   <string name="wallet_version_dialog_title">Μία νέα έκδοση είναι διαθέσιμη!</string>
-  <string name="wallet_version_dialog_msg">Αυτή η έκδοση διορθώνει σημαντικά προβλήματα. Για λεπτομέρειες, δείτε το σύνολο των αλλαγών στο Google Play.</string>
+  <string name="wallet_version_dialog_msg">Αυτή η έκδοση διορθώνει σημαντικά προβλήματα. Για λεπτομέρειες, δείτε το σύνολο των αλλαγών στο GitHub.</string>
   <string name="wallet_version_dialog_button_market">Google Play</string>
   <string name="wallet_version_dialog_button_binary">Λήψη</string>
   <string name="wallet_old_sdk_dialog_title">Η έκδοση για Android είναι παρωχημένη</string>

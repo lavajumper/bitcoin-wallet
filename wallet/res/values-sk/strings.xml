@@ -38,7 +38,7 @@
 	<string name="wallet_timeskew_dialog_title">Skontrolujte nastavenie času!</string>
 	<string name="wallet_timeskew_dialog_msg">Vaše zariadenie má posunutý čas o %d minúť. Pravdepodobne nemôže posielať a prijímať Sexcoiny kvôli tomuto problému.\n\nMali by ste skontrolovať a upraviť nastavenie času alebo časovej zóny.</string>
 	<string name="wallet_version_dialog_title">Je dostupná nová verzia!</string>
-	<string name="wallet_version_dialog_msg">Táto verzia opravuje kritické chyby. Pre viac informácií navštívte Google Play.</string>
+	<string name="wallet_version_dialog_msg">Táto verzia opravuje kritické chyby. Pre viac informácií navštívte GitHub.</string>
 	<string name="wallet_version_dialog_button_market">Google Play</string>
 	<string name="wallet_version_dialog_button_binary">Stiahnuť</string>
 	<string name="wallet_old_sdk_dialog_title">Verzia vášho Androidu je zastaralá</string>
